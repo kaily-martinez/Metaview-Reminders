@@ -24,8 +24,12 @@ Run `echo "DRY_RUN=$DRY_RUN TEST_SELF=$TEST_SELF RUN_MODE=$RUN_MODE"` via Bash.
 - `TEST_SELF=true` → send every message to `testDmUserId` from config
   instead of the real interviewer's Slack ID, and prefix the message with
   `[TEST — would have gone to {{interviewer_name}}]\n\n`. Used for the
-  one-time "check tone and formatting" test in the testing checklist. Still
-  writes to the log normally unless `DRY_RUN` is also true.
+  one-time "check tone and formatting" test in the testing checklist.
+  **Never write these to `state/sit-rep-log.json`**, even when `DRY_RUN` is
+  false — a log entry under the real interviewer's name pointing at your own
+  DM thread would corrupt their real miss count, and the weekly job would
+  later misread whatever you reply with in your own thread as *their*
+  answer. Skip step 7 entirely in this mode.
 - `RUN_MODE` — `today` (default, used for the normal 6pm weekday run) or
   `yesterday` (only needed if the schedule ever moves to a next-morning run).
   If unset, treat as `today`.
@@ -150,14 +154,21 @@ For each entry in `messages`:
   Record the returned message `ts` — this is each entry's `messageTs`.
 
   For each of this message's `entries` (there may be several misses folded
-  into one DM), set `messageTs` to the ts you just got back, `sentAt` to the
-  current ISO timestamp, and `channelId` to the target you actually sent to
-  (so replies can be read back later even in `TEST_SELF` mode).
+  into one DM), set `messageTs` to the ts you just got back and `sentAt` to
+  the current ISO timestamp. Leave `channelId` as the entry's real
+  `interviewerSlackId` regardless of where you actually sent it in
+  `TEST_SELF` mode — see step 7.
 
-## 7. Persist the log (skip entirely if `DRY_RUN=true`)
+## 7. Persist the log (skip entirely if `DRY_RUN=true` OR `TEST_SELF=true`)
 
-Collect every entry (across all sent messages) into one array and write it
-to e.g. `/tmp/daily-log-entries.json` as `{ "entries": [...] }`, then run:
+A `TEST_SELF` send goes to your own DM, not the interviewer's — logging it
+under their name would point the weekly reply-check at the wrong thread and
+attribute whatever you reply with to them. So in either `DRY_RUN=true` or
+`TEST_SELF=true` mode, stop here: do not call `bin/append-log.js`.
+
+Only when both are false (a real scheduled or manual live run), collect
+every entry (across all sent messages) into one array and write it to e.g.
+`/tmp/daily-log-entries.json` as `{ "entries": [...] }`, then run:
 
 ```
 node bin/append-log.js state/sit-rep-log.json < /tmp/daily-log-entries.json
