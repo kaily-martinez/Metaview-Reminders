@@ -87,6 +87,12 @@ and the runner do it deterministically.
 
 Save the raw `conversations` array from the response.
 
+**Important**: `default:conversation_type` must stay in the `fields` list
+above whenever `allowedConversationTypeIds` is passed to the runner in step
+5 — if the runner can't see a conversation's type, it fails safe and drops
+that conversation rather than guessing, so a missing field here silently
+zeroes out the whole run instead of loudly erring.
+
 ## 4. Resolve Slack IDs for interviewers
 
 Collect every unique interviewer email from the raw conversations (from each

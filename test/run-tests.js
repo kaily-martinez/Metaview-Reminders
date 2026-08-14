@@ -79,6 +79,24 @@ test('filterRealMisses ignores conversationType allowlist when not provided (bac
   assert.strictEqual(result.length, 1);
 });
 
+test('filterRealMisses fails safe (drops everything) if conversation_type was never fetched but an allowlist is set', () => {
+  // If the caller sets allowedConversationTypeIds but forgot to fetch/pass
+  // default:conversation_type on the rows, there's no way to confirm a
+  // match - so this must reject rather than silently let everything
+  // through. Real conversations always include this field: this only
+  // triggers on a caller mistake, and should surface as "0 misses found"
+  // (loud) rather than "every miss included" (quietly wrong).
+  const rows = [
+    row(1, {
+      [FIELDS.candidate]: [participant('Ryan Pak')],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+      // no conversationType field at all
+    }),
+  ];
+  const result = filterRealMisses(rows, FIELDS, { now: NOW, allowedConversationTypeIds: [JOB_INTERVIEW_TYPE_ID] });
+  assert.strictEqual(result.length, 0);
+});
+
 test('filterRealMisses drops conversations with an empty candidate list', () => {
   const rows = [
     row(1, { [FIELDS.candidate]: [], [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00') }),
