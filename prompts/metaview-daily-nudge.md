@@ -1,5 +1,8 @@
 # Metaview Daily Nudge — runner prompt
 
+Runs weekdays at 9am, checking the previous business day's interviews (a
+Monday run checks Friday, since the job doesn't run over the weekend).
+
 You are running as a scheduled, non-interactive job (`claude -p` in headless
 mode). Execute the steps below in order, using your Metaview and Slack MCP
 tools plus the Bash tool to run the Node helper scripts in this repo. Do not
@@ -31,20 +34,30 @@ Run `echo "DRY_RUN=$DRY_RUN TEST_SELF=$TEST_SELF RUN_MODE=$RUN_MODE"` via Bash.
   DM thread would corrupt their real miss count, and the weekly job would
   later misread whatever you reply with in your own thread as *their*
   answer. Skip step 7 entirely in this mode.
-- `RUN_MODE` — `today` (default, used for the normal 6pm weekday run) or
-  `yesterday` (only needed if the schedule ever moves to a next-morning run).
-  If unset, treat as `today`.
+- `RUN_MODE` — unset/anything else (default, used for the normal 9am
+  scheduled run) checks the previous business day. `RUN_MODE=today` is a
+  manual-only override for ad hoc same-day dry runs (e.g. spot-checking
+  what's accumulated so far this afternoon) — never used by the schedule.
 
 ## 2. Compute the date window
 
-Using the `timezone` from config.json, compute:
+Don't hand-compute this with bash date arithmetic — the Friday-to-Monday
+rollover is easy to get subtly wrong that way. Instead run (from the repo
+root):
 
-- `today`: `RUN_MODE=today` → start of the current local day through now.
-  `RUN_MODE=yesterday` → start through end of the previous local day.
+```
+node bin/window.js previous-business-day --timezone=<timezone from config.json>
+```
 
-Get the current time via Bash (`date -u +%Y-%m-%dT%H:%M:%S.000Z`) and derive
-the window's start/end as ISO-8601 UTC timestamps. Only the past matters
-here — never include a window end in the future.
+or, only when `RUN_MODE=today`:
+
+```
+node bin/window.js today-so-far --timezone=<timezone from config.json>
+```
+
+Parse the printed `{ startISO, endISO, dateLabel }` — these are the window
+bounds for step 3, and `dateLabel` (e.g. "2026-08-14") is the day you're
+reporting on for step 8's summary.
 
 ## 3. Query Metaview for the unrecorded bucket
 
@@ -178,8 +191,9 @@ node bin/append-log.js state/sit-rep-log.json < /tmp/daily-log-entries.json
 
 ## 8. Report a summary
 
-Print a short summary: how many raw conversations came back, how many
-survived the real-candidate-interview filter, how many DMs were sent (or
-would be sent, in dry-run), and list anyone in `unresolved` by name/email so
-a human can add their Slack mapping. Do not print full message text again if
-you already printed it in step 6.
+Print a short summary: which day this run covered (`dateLabel` from step 2),
+how many raw conversations came back, how many survived the
+real-candidate-interview filter, how many DMs were sent (or would be sent,
+in dry-run), and list anyone in `unresolved` by name/email so a human can
+add their Slack mapping. Do not print full message text again if you
+already printed it in step 6.

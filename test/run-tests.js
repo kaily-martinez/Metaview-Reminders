@@ -4,6 +4,8 @@ const { filterRealMisses, groupByInterviewer, firstName } = require('../lib/filt
 const { renderNudgeMessage } = require('../lib/templates');
 const { parseReply, tallyReasons, missRate, trendArrow, byTeamRows, repeatOffenders } = require('../lib/aggregate');
 const { renderCanvasSections } = require('../lib/canvas-render');
+const { previousBusinessDayWindow, weekSoFarWindow, zonedMidnightToUTC } = require('../lib/schedule');
+const { groupEntriesByInterviewer, renderOutreachReport } = require('../lib/outreach');
 
 const FIELDS = {
   interviewer: 'default:interviewer',
@@ -158,6 +160,47 @@ test('renderNudgeMessage uses the single-miss template for one miss', () => {
   assert.ok(msg.includes('a) Forgot to admit it when it asked to join'));
 });
 
+test('renderNudgeMessage includes the candidate name in both templates when present', () => {
+  const single = renderNudgeMessage({
+    interviewerName: 'Jane Doe',
+    misses: [{ eventName: 'Onsite', candidateName: 'Alex Chen', startTime: '2026-08-13T10:00:00-07:00' }],
+  });
+  assert.ok(single.includes('Onsite with Alex Chen'), `expected candidate name in:\n${single}`);
+
+  const multi = renderNudgeMessage({
+    interviewerName: 'Hakeem Saleh',
+    misses: [
+      { eventName: 'Recruiter Screen', candidateName: 'Sean Jaffe', startTime: '2026-08-14 20:30:00+00:00' },
+      { eventName: 'Recruiter Screen', candidateName: 'Jennifer Jones', startTime: '2026-08-14 18:00:00+00:00' },
+    ],
+  });
+  assert.ok(multi.includes('Recruiter Screen with Sean Jaffe'), `expected first candidate name in:\n${multi}`);
+  assert.ok(multi.includes('Recruiter Screen with Jennifer Jones'), `expected second candidate name in:\n${multi}`);
+});
+
+test('renderNudgeMessage falls back gracefully when candidateName is missing', () => {
+  const msg = renderNudgeMessage({
+    interviewerName: 'Jane Doe',
+    misses: [{ eventName: 'Onsite', startTime: '2026-08-13T10:00:00-07:00' }],
+  });
+  assert.ok(msg.includes('for Onsite on'), `should not print "with" when there is no candidate name:\n${msg}`);
+  assert.ok(!msg.includes('with undefined') && !msg.includes('with null'));
+});
+
+test('renderNudgeMessage appends a timezone abbreviation next to times in the multi-miss template', () => {
+  const msg = renderNudgeMessage(
+    {
+      interviewerName: 'Hakeem Saleh',
+      misses: [
+        { eventName: 'Recruiter Screen', candidateName: 'Sean Jaffe', startTime: '2026-08-14 20:30:00+00:00' },
+        { eventName: 'Recruiter Screen', candidateName: 'Jennifer Jones', startTime: '2026-08-14 18:00:00+00:00' },
+      ],
+    },
+    { timeZone: 'America/Los_Angeles' }
+  );
+  assert.ok(msg.includes('1:30 PM PDT'), `expected a timezone abbreviation next to the time in:\n${msg}`);
+});
+
 test('renderNudgeMessage omits the resource line when no resourceUrl is configured', () => {
   const group = { interviewerName: 'Jane Doe', misses: [{ eventName: 'Onsite: Alex Chen', startTime: '2026-08-13T10:00:00-07:00' }] };
   const msg = renderNudgeMessage(group);
@@ -308,6 +351,69 @@ test('renderCanvasSections produces all required sections and preserves a Notes 
   assert.ok(sections.glance.includes('| Interviews scheduled | 20 |'));
   assert.ok(sections.notesPlaceholder.includes('## Notes'));
   assert.ok(sections.full.includes('## Repeat pattern'));
+});
+
+test('zonedMidnightToUTC finds the correct UTC instant for local midnight', () => {
+  // Aug 14 2026 is PDT (UTC-7), so Pacific midnight is 07:00 UTC.
+  assert.strictEqual(zonedMidnightToUTC(2026, 8, 14, 'America/Los_Angeles').toISOString(), '2026-08-14T07:00:00.000Z');
+});
+
+test('previousBusinessDayWindow rolls a Monday run back to the preceding Friday', () => {
+  const monday9am = new Date('2026-08-17T16:00:00.000Z'); // Mon Aug 17, 9am PDT
+  const result = previousBusinessDayWindow(monday9am, 'America/Los_Angeles');
+  assert.strictEqual(result.dateLabel, '2026-08-14'); // Friday
+  assert.strictEqual(result.startISO, '2026-08-14T07:00:00.000Z');
+  assert.strictEqual(result.endISO, '2026-08-15T07:00:00.000Z');
+});
+
+test('previousBusinessDayWindow uses the prior calendar day on Tue-Fri', () => {
+  const tuesday9am = new Date('2026-08-18T16:00:00.000Z'); // Tue Aug 18, 9am PDT
+  const result = previousBusinessDayWindow(tuesday9am, 'America/Los_Angeles');
+  assert.strictEqual(result.dateLabel, '2026-08-17'); // Monday
+});
+
+test('previousBusinessDayWindow rolls weekend manual runs back to Friday too', () => {
+  const saturday = new Date('2026-08-15T16:00:00.000Z');
+  const sunday = new Date('2026-08-16T16:00:00.000Z');
+  assert.strictEqual(previousBusinessDayWindow(saturday, 'America/Los_Angeles').dateLabel, '2026-08-14');
+  assert.strictEqual(previousBusinessDayWindow(sunday, 'America/Los_Angeles').dateLabel, '2026-08-14');
+});
+
+test('weekSoFarWindow starts at Monday of the current week', () => {
+  const friday10am = new Date('2026-08-14T17:00:00.000Z'); // Fri Aug 14, 10am PDT
+  const result = weekSoFarWindow(friday10am, 'America/Los_Angeles');
+  assert.strictEqual(result.weekStartDateLabel, '2026-08-10'); // Monday of that week
+  assert.strictEqual(result.endISO, friday10am.toISOString());
+});
+
+test('groupEntriesByInterviewer groups and sorts busiest-first', () => {
+  const entries = [
+    { interviewerName: 'Sam Lee', interviewerSlackId: 'U2', eventName: 'HM Screen' },
+    { interviewerName: 'Jane Doe', interviewerSlackId: 'U1', eventName: 'Recruiter Screen' },
+    { interviewerName: 'Jane Doe', interviewerSlackId: 'U1', eventName: 'Onsite' },
+  ];
+  const groups = groupEntriesByInterviewer(entries);
+  assert.strictEqual(groups.length, 2);
+  assert.strictEqual(groups[0].interviewerName, 'Jane Doe');
+  assert.strictEqual(groups[0].entries.length, 2);
+  assert.strictEqual(groups[1].interviewerName, 'Sam Lee');
+});
+
+test('renderOutreachReport lists single and combined misses per interviewer', () => {
+  const entries = [
+    { interviewerName: 'Jane Doe', interviewerSlackId: 'U1', eventName: 'Recruiter Screen', date: 'Aug 11' },
+    { interviewerName: 'Jane Doe', interviewerSlackId: 'U1', eventName: 'Onsite', date: 'Aug 12' },
+    { interviewerName: 'Sam Lee', interviewerSlackId: 'U2', eventName: 'HM Screen', date: 'Aug 13' },
+  ];
+  const text = renderOutreachReport(entries, { weekStartLabel: 'Aug 10', weekEndLabel: 'Aug 14' });
+  assert.ok(text.includes('3 misses across 2 interviewers'));
+  assert.ok(text.includes('*Jane Doe* — 2 misses: Recruiter Screen (Aug 11), Onsite (Aug 12)'));
+  assert.ok(text.includes('*Sam Lee* — HM Screen (Aug 13)'));
+});
+
+test('renderOutreachReport handles a dry week gracefully', () => {
+  const text = renderOutreachReport([], { weekStartLabel: 'Aug 10', weekEndLabel: 'Aug 14' });
+  assert.ok(text.includes('No misses logged yet this week'));
 });
 
 console.log(`\n${passed} test(s) passed`);
