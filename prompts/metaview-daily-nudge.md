@@ -10,8 +10,9 @@ your working directory.
 ## 0. Load config
 
 Read `config.json`. You'll use `metaviewFields`, `departmentFieldId`,
-`interviewConversationTypes`, and `testDmUserId` below. If `sitrepChannelId`
-is empty, that's fine — it's not used by this script (only the weekly one).
+`interviewConversationTypes`, `resourceUrl`, and `testDmUserId` below. If
+`sitrepChannelId` is empty, that's fine — it's not used by this script (only
+the weekly one).
 
 ## 1. Determine run mode
 
@@ -125,7 +126,8 @@ Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
   "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
   "slackIdMap": { ...from step 4... },
   "now": "<current ISO timestamp>",
-  "timezone": "<timezone from config.json>"
+  "timezone": "<timezone from config.json>",
+  "resourceUrl": "<resourceUrl from config.json>"
 }
 ```
 

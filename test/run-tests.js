@@ -158,6 +158,34 @@ test('renderNudgeMessage uses the single-miss template for one miss', () => {
   assert.ok(msg.includes('a) Forgot to admit it when it asked to join'));
 });
 
+test('renderNudgeMessage omits the resource line when no resourceUrl is configured', () => {
+  const group = { interviewerName: 'Jane Doe', misses: [{ eventName: 'Onsite: Alex Chen', startTime: '2026-08-13T10:00:00-07:00' }] };
+  const msg = renderNudgeMessage(group);
+  assert.ok(!msg.includes('Quick reference'));
+});
+
+test('renderNudgeMessage appends a resource line in both templates when resourceUrl is configured', () => {
+  const url = 'https://example.com/metaview-guide';
+  const single = renderNudgeMessage(
+    { interviewerName: 'Jane Doe', misses: [{ eventName: 'Onsite: Alex Chen', startTime: '2026-08-13T10:00:00-07:00' }] },
+    { resourceUrl: url }
+  );
+  assert.ok(single.includes(`[Quick reference](${url})`));
+  assert.ok(single.indexOf('Quick reference') < single.indexOf('No stress'), 'resource line should come before the closing line');
+
+  const multi = renderNudgeMessage(
+    {
+      interviewerName: 'Hakeem Saleh',
+      misses: [
+        { eventName: 'Recruiter Screen', startTime: '2026-08-14 20:30:00+00:00' },
+        { eventName: 'Recruiter Screen', startTime: '2026-08-14 18:00:00+00:00' },
+      ],
+    },
+    { resourceUrl: url }
+  );
+  assert.ok(multi.includes(`[Quick reference](${url})`));
+});
+
 test('renderNudgeMessage renders times in the configured company timezone, not the host machine timezone', () => {
   // 2026-08-14 20:30:00+00:00 is 1:30 PM Pacific (PDT, UTC-7), not 8:30 PM.
   const group = {

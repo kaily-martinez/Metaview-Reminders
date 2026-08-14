@@ -22,7 +22,8 @@
  *   "allowedConversationTypeIds": ["<uuid>", ...],     // optional - if set, only these conversation_type values count as real interviews
  *   "slackIdMap": { "jane@co.com": "U123..." },        // email -> resolved Slack user id
  *   "now": "2026-08-14T18:00:00-07:00",                // optional, defaults to real now
- *   "timezone": "America/Los_Angeles"                  // IANA zone for displayed dates/times; defaults to America/Los_Angeles
+ *   "timezone": "America/Los_Angeles",                 // IANA zone for displayed dates/times; defaults to America/Los_Angeles
+ *   "resourceUrl": "https://..."                       // optional - if set, appends a short "how admit works" pointer to the DM
  * }
  */
 
@@ -64,6 +65,7 @@ async function main() {
   const now = input.now ? new Date(input.now) : new Date();
   const timeZone = input.timezone || 'America/Los_Angeles';
   const allowedConversationTypeIds = input.allowedConversationTypeIds || null;
+  const resourceUrl = input.resourceUrl || null;
 
   const misses = filterRealMisses(conversations, fields, { now, allowedConversationTypeIds });
   const groups = groupByInterviewer(misses, fields);
@@ -82,7 +84,7 @@ async function main() {
       continue;
     }
 
-    const text = renderNudgeMessage({ interviewerName: group.interviewerName, misses: group.misses }, { timeZone });
+    const text = renderNudgeMessage({ interviewerName: group.interviewerName, misses: group.misses }, { timeZone, resourceUrl });
 
     const entries = group.misses.map((m) => ({
       id: `${m.conversationId ?? slugify(m.eventName)}-${slugify(slackId)}`,

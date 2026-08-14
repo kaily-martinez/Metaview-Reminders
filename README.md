@@ -19,6 +19,14 @@ and two conversations tagged "Other" (a vendor/ATS sync and an internal
 leadership sync) that all carried a non-empty candidate field despite not
 being real interviews — the conversation_type check is what excludes those.
 
+**Help resource**: both templates append a short, optional pointer to an
+internal quick-reference doc on why/how to admit Metaview (`config.json`'s
+`resourceUrl`) — on the theory that a lot of misses are people not knowing
+the admit prompt exists rather than actively ignoring it. It renders right
+before the closing line, e.g. "New to Metaview or forgot how the admit
+prompt works? [Quick reference](...)". Omitted entirely if `resourceUrl`
+isn't set.
+
 ## How this is built, and why
 
 The daily/weekly logic is split into two layers:

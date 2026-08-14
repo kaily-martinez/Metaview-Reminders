@@ -16,5 +16,6 @@
     { "id": "baba8bb8-fb62-11f0-b371-baf72c0cfc4f", "label": "Coding Interview" },
     { "id": "baba8c1c-fb62-11f0-b371-baf72c0cfc4f", "label": "System Design Interview" }
   ],
-  "timezone": "America/Los_Angeles"
+  "timezone": "America/Los_Angeles",
+  "resourceUrl": "https://app.notion.com/p/lumaai/Metaview-Setup-Quick-Reference-3bc8d67ac52b81cd9c68e1b97d4ebdfb"
 }
