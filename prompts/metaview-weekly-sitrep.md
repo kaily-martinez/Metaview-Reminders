@@ -10,9 +10,10 @@ parent's parent directory) as your working directory.
 ## 0. Load config and state
 
 Read `config.json` (`sitrepChannelId`, `canvasId`, `departmentFieldId`,
-`metaviewFields`, `timezone`) and `state/sit-rep-log.json` (the full nudge
-log) and `state/weekly-history.json` (an array of prior weeks' summaries,
-oldest first: `{ weekStartISO, weekEndISO, scheduled, missed, missRate }`).
+`metaviewFields`, `interviewConversationTypes`, `timezone`) and
+`state/sit-rep-log.json` (the full nudge log) and
+`state/weekly-history.json` (an array of prior weeks' summaries, oldest
+first: `{ weekStartISO, weekEndISO, scheduled, missed, missRate }`).
 
 If `config.json`'s `sitrepChannelId` is empty, stop and report that the
 Slack channel for the sit-rep hasn't been configured yet — do not guess a
@@ -59,10 +60,16 @@ filters: [
     "field_id": "default:start_time",
     "operation": "between",
     "value": { "scope": "absolute", "value": ["<weekStart local midnight, ISO UTC>", "<weekEnd local end-of-day, ISO UTC>"] }
+  },
+  {
+    "field_id": "default:conversation_type",
+    "operation": "is_one_of",
+    "value": [ ...ids from config.json's interviewConversationTypes... ]
   }
 ]
 fields: [
   "default:candidate",
+  "default:conversation_type",
   "<departmentFieldId from config>"
 ]
 limit: 200
@@ -70,8 +77,10 @@ limit: 200
 
 Paginate with `offset` if `total_count` exceeds 200. Save the raw
 `conversations` array as `recordedConversations` — this, filtered for a
-non-empty candidate list (done by the runner, not by you), is this week's
-recorded real candidate interviews.
+non-empty candidate list and an allowed conversation_type (both done by the
+runner, not by you), is this week's recorded real candidate interviews. Using
+the same conversation_type + candidate filters here as in the daily job keeps
+"scheduled" and "missed" counting the same thing.
 
 ## 4. Run the weekly runner
 
@@ -85,7 +94,12 @@ Write a JSON file (e.g. `/tmp/weekly-input.json`):
   "weekLogEntries": [ ...from step 2, each with rawReplyText attached... ],
   "trailing4WeeksLogEntries": [ ...from step 2... ],
   "recordedConversations": [ ...from step 3... ],
-  "fields": { "candidate": "default:candidate", "department": "<departmentFieldId from config>" },
+  "fields": {
+    "candidate": "default:candidate",
+    "department": "<departmentFieldId from config>",
+    "conversationType": "default:conversation_type"
+  },
+  "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
   "history": [ ...state/weekly-history.json content... ],
   "timezone": "<timezone from config.json>"
 }

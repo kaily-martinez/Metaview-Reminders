@@ -9,6 +9,16 @@ Two jobs:
    and reply data into a Slack Canvas so the team can track whether this is
    improving over time.
 
+**What counts as a "real miss":** a conversation must have (a) a non-empty
+candidate list, filtered in code, since that field can't be queried
+server-side for "is not empty", **and** (b) a `conversation_type` of Job
+Interview, Coding Interview, or System Design Interview (see
+`interviewConversationTypes` in `config.json`), filtered server-side. Both
+conditions matter: a live test run turned up an internal "Candidate Debrief"
+and two conversations tagged "Other" (a vendor/ATS sync and an internal
+leadership sync) that all carried a non-empty candidate field despite not
+being real interviews — the conversation_type check is what excludes those.
+
 ## How this is built, and why
 
 The daily/weekly logic is split into two layers:
@@ -68,6 +78,13 @@ test/run-tests.js                 assertion tests for everything in lib/
    (`OSPT:451a0128-1a7a-11f0-910a-bfcaaf3ed43b`), discovered via
    `list_fields`. If your Metaview workspace ever changes, re-run
    `list_fields` with `search_term: "department"` and update it.
+3a. `config.json`'s `interviewConversationTypes` is filled in with this
+   workspace's real `conversation_type` values, discovered via
+   `list_fields`/`group_conversations`: Job Interview, Coding Interview, and
+   System Design Interview are treated as real interviews; Candidate
+   Debrief, Client Call, Role Intake, and Other are not. If new conversation
+   types get introduced later, re-run `group_conversations` grouped by
+   `default:conversation_type` to check the set is still complete.
 4. `config.json`'s `testDmUserId` defaults to the currently-authenticated
    Slack user (used for the "send yourself a test DM" step below). Change it
    if that's not you.

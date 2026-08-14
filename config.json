@@ -8,7 +8,13 @@
     "candidate": "default:candidate",
     "eventTitle": "default:calendar_event_title",
     "startTime": "default:start_time",
-    "department": "OSPT:451a0128-1a7a-11f0-910a-bfcaaf3ed43b"
+    "department": "OSPT:451a0128-1a7a-11f0-910a-bfcaaf3ed43b",
+    "conversationType": "default:conversation_type"
   },
+  "interviewConversationTypes": [
+    { "id": "22eae796-087b-11ef-9815-5f761d7a35b3", "label": "Job Interview" },
+    { "id": "baba8bb8-fb62-11f0-b371-baf72c0cfc4f", "label": "Coding Interview" },
+    { "id": "baba8c1c-fb62-11f0-b371-baf72c0cfc4f", "label": "System Design Interview" }
+  ],
   "timezone": "America/Los_Angeles"
 }

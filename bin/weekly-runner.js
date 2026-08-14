@@ -33,7 +33,9 @@
  *                                  are substituted in automatically> ],
  *   "recordedConversations": [ <raw Metaview rows, only_show_recorded_conversations: true,
  *                               same fields as the daily nudge query> ],
- *   "fields": { "candidate": "default:candidate", "department": "OSPT:<field-id>" },
+ *   "fields": { "candidate": "default:candidate", "department": "OSPT:<field-id>",
+ *               "conversationType": "default:conversation_type" },  // optional, needed for allowedConversationTypeIds below
+ *   "allowedConversationTypeIds": ["<uuid>", ...],     // optional - if set, only these conversation_type values count as real interviews
  *   "history": [ { "weekStartISO": "2026-08-03", "weekEndISO": "2026-08-09",
  *                   "scheduled": N, "missed": N, "missRate": N } ... ],  // ascending, oldest first
  *   "timezone": "America/Los_Angeles"   // IANA zone for the "Last updated" timestamp; defaults to America/Los_Angeles
@@ -69,15 +71,20 @@ async function main() {
   const raw = await readStdin();
   const input = JSON.parse(raw || '{}');
 
-  const fields = Object.assign({ candidate: 'default:candidate', department: null }, input.fields || {});
+  const fields = Object.assign({ candidate: 'default:candidate', department: null, conversationType: null }, input.fields || {});
   const now = new Date();
+  const allowedConversationTypeIds = input.allowedConversationTypeIds || null;
 
   const updatedWeekEntries = (input.weekLogEntries || []).map(resolveReply);
   const updatedById = new Map(updatedWeekEntries.map((e) => [e.id, e]));
 
   const trailing4Weeks = (input.trailing4WeeksLogEntries || []).map((e) => updatedById.get(e.id) || e);
 
-  const recordedReal = filterRealMisses(input.recordedConversations || [], fields, { now, requirePast: false });
+  const recordedReal = filterRealMisses(input.recordedConversations || [], fields, {
+    now,
+    requirePast: false,
+    allowedConversationTypeIds,
+  });
 
   const missed = updatedWeekEntries.length;
   const scheduled = recordedReal.length + missed;

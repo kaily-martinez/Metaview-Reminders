@@ -9,9 +9,9 @@ your working directory.
 
 ## 0. Load config
 
-Read `config.json`. You'll use `metaviewFields`, `departmentFieldId`, and
-`testDmUserId` below. If `sitrepChannelId` is empty, that's fine — it's not
-used by this script (only the weekly one).
+Read `config.json`. You'll use `metaviewFields`, `departmentFieldId`,
+`interviewConversationTypes`, and `testDmUserId` below. If `sitrepChannelId`
+is empty, that's fine — it's not used by this script (only the weekly one).
 
 ## 1. Determine run mode
 
@@ -52,6 +52,11 @@ filters: [
     "field_id": "default:start_time",
     "operation": "between",
     "value": { "scope": "absolute", "value": ["<window_start_iso>", "<window_end_iso>"] }
+  },
+  {
+    "field_id": "default:conversation_type",
+    "operation": "is_one_of",
+    "value": [ ...ids from config.json's interviewConversationTypes... ]
   }
 ]
 fields: [
@@ -59,6 +64,7 @@ fields: [
   "default:candidate",
   "default:calendar_event_title",
   "default:start_time",
+  "default:conversation_type",
   "<departmentFieldId from config>"
 ]
 limit: 200
@@ -68,11 +74,16 @@ If `total_count` suggests more than 200 rows for the window (unlikely for a
 single day, but check), paginate with `offset` until you have them all.
 
 This bucket mixes real missed candidate interviews with recurring internal
-syncs that were never supposed to have a bot in them (some mislabeled with an
-interview-sounding conversation_type). **Do not filter on conversation_type.**
-The Node runner below does the correct filter (non-empty `default:candidate`)
-in code, per the build spec — do not try to replicate that filtering
-yourself by reasoning over the JSON; let the runner do it deterministically.
+syncs that were never supposed to have a bot in them, plus internal
+conversations (debriefs, vendor/leadership syncs) that can carry a
+candidate participant despite not being an interview. Two independent
+signals combine to catch both: the `conversation_type` filter above scopes
+the query to real interview types (Job Interview / Coding Interview / System
+Design Interview - see `interviewConversationTypes` in config.json), and the
+Node runner below additionally requires a non-empty `default:candidate` list
+in code (since that field can't be filtered server-side). Don't try to
+replicate either filter yourself by reasoning over the JSON — let the query
+and the runner do it deterministically.
 
 Save the raw `conversations` array from the response.
 
@@ -98,8 +109,10 @@ Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
     "candidate": "default:candidate",
     "eventTitle": "default:calendar_event_title",
     "startTime": "default:start_time",
-    "department": "<departmentFieldId from config>"
+    "department": "<departmentFieldId from config>",
+    "conversationType": "default:conversation_type"
   },
+  "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
   "slackIdMap": { ...from step 4... },
   "now": "<current ISO timestamp>",
   "timezone": "<timezone from config.json>"

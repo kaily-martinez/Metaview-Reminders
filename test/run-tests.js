@@ -11,7 +11,11 @@ const FIELDS = {
   eventTitle: 'default:calendar_event_title',
   startTime: 'default:start_time',
   department: 'OSPT:dept-field-id',
+  conversationType: 'default:conversation_type',
 };
+
+const JOB_INTERVIEW_TYPE_ID = '22eae796-087b-11ef-9815-5f761d7a35b3';
+const CANDIDATE_DEBRIEF_TYPE_ID = '386f3400-087b-11ef-9816-335c9f345f49';
 
 let passed = 0;
 function test(name, fn) {
@@ -42,6 +46,38 @@ function participant(name, email, slackId) {
 function scalar(value) {
   return [{ value, label: value }];
 }
+
+test('filterRealMisses drops a candidate-attached conversation whose type is not an allowed interview type', () => {
+  // Mirrors real data: a "Candidate Debrief" (or vendor sync tagged "Other")
+  // can carry a non-empty candidate list despite not being a real interview.
+  const rows = [
+    row(1, {
+      [FIELDS.candidate]: [participant('Jim Saraco')],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+      [FIELDS.conversationType]: scalar(CANDIDATE_DEBRIEF_TYPE_ID),
+    }),
+    row(2, {
+      [FIELDS.candidate]: [participant('Ryan Pak')],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+      [FIELDS.conversationType]: scalar(JOB_INTERVIEW_TYPE_ID),
+    }),
+  ];
+  const result = filterRealMisses(rows, FIELDS, { now: NOW, allowedConversationTypeIds: [JOB_INTERVIEW_TYPE_ID] });
+  assert.strictEqual(result.length, 1);
+  assert.strictEqual(result[0].id, 2);
+});
+
+test('filterRealMisses ignores conversationType allowlist when not provided (back-compat)', () => {
+  const rows = [
+    row(1, {
+      [FIELDS.candidate]: [participant('Jim Saraco')],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+      [FIELDS.conversationType]: scalar(CANDIDATE_DEBRIEF_TYPE_ID),
+    }),
+  ];
+  const result = filterRealMisses(rows, FIELDS, { now: NOW });
+  assert.strictEqual(result.length, 1);
+});
 
 test('filterRealMisses drops conversations with an empty candidate list', () => {
   const rows = [

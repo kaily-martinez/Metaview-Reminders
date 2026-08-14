@@ -17,7 +17,9 @@
  *   "conversations": [ <raw Metaview search_conversations rows> ],
  *   "fields": { "interviewer": "default:interviewer", "candidate": "default:candidate",
  *               "eventTitle": "default:calendar_event_title", "startTime": "default:start_time",
- *               "department": "OSPT:<field-id>" },   // department is optional
+ *               "department": "OSPT:<field-id>",      // optional
+ *               "conversationType": "default:conversation_type" },  // optional, needed for allowedConversationTypeIds below
+ *   "allowedConversationTypeIds": ["<uuid>", ...],     // optional - if set, only these conversation_type values count as real interviews
  *   "slackIdMap": { "jane@co.com": "U123..." },        // email -> resolved Slack user id
  *   "now": "2026-08-14T18:00:00-07:00",                // optional, defaults to real now
  *   "timezone": "America/Los_Angeles"                  // IANA zone for displayed dates/times; defaults to America/Los_Angeles
@@ -54,14 +56,16 @@ async function main() {
       eventTitle: 'default:calendar_event_title',
       startTime: 'default:start_time',
       department: null,
+      conversationType: null,
     },
     input.fields || {}
   );
   const slackIdMap = input.slackIdMap || {};
   const now = input.now ? new Date(input.now) : new Date();
   const timeZone = input.timezone || 'America/Los_Angeles';
+  const allowedConversationTypeIds = input.allowedConversationTypeIds || null;
 
-  const misses = filterRealMisses(conversations, fields, { now });
+  const misses = filterRealMisses(conversations, fields, { now, allowedConversationTypeIds });
   const groups = groupByInterviewer(misses, fields);
 
   const messages = [];
