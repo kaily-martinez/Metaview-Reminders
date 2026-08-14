@@ -101,7 +101,8 @@ Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
     "department": "<departmentFieldId from config>"
   },
   "slackIdMap": { ...from step 4... },
-  "now": "<current ISO timestamp>"
+  "now": "<current ISO timestamp>",
+  "timezone": "<timezone from config.json>"
 }
 ```
 

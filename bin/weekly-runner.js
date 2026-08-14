@@ -35,7 +35,8 @@
  *                               same fields as the daily nudge query> ],
  *   "fields": { "candidate": "default:candidate", "department": "OSPT:<field-id>" },
  *   "history": [ { "weekStartISO": "2026-08-03", "weekEndISO": "2026-08-09",
- *                   "scheduled": N, "missed": N, "missRate": N } ... ]  // ascending, oldest first
+ *                   "scheduled": N, "missed": N, "missRate": N } ... ],  // ascending, oldest first
+ *   "timezone": "America/Los_Angeles"   // IANA zone for the "Last updated" timestamp; defaults to America/Los_Angeles
  * }
  */
 
@@ -92,7 +93,7 @@ async function main() {
   const byTeam = byTeamRows(
     recordedReal,
     updatedWeekEntries,
-    (r) => (fields.department ? deptLabel(r[fields.department]) : null) || 'Unknown',
+    (r) => deptLabel(r, fields.department) || 'Unknown',
     (m) => m.department || 'Unknown'
   );
 
@@ -121,6 +122,7 @@ async function main() {
       day: 'numeric',
       hour: 'numeric',
       minute: '2-digit',
+      timeZone: input.timezone || 'America/Los_Angeles',
     }),
     scheduled,
     missed,

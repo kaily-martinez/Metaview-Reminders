@@ -86,7 +86,8 @@ Write a JSON file (e.g. `/tmp/weekly-input.json`):
   "trailing4WeeksLogEntries": [ ...from step 2... ],
   "recordedConversations": [ ...from step 3... ],
   "fields": { "candidate": "default:candidate", "department": "<departmentFieldId from config>" },
-  "history": [ ...state/weekly-history.json content... ]
+  "history": [ ...state/weekly-history.json content... ],
+  "timezone": "<timezone from config.json>"
 }
 ```
 

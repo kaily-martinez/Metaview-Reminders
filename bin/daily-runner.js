@@ -19,7 +19,8 @@
  *               "eventTitle": "default:calendar_event_title", "startTime": "default:start_time",
  *               "department": "OSPT:<field-id>" },   // department is optional
  *   "slackIdMap": { "jane@co.com": "U123..." },        // email -> resolved Slack user id
- *   "now": "2026-08-14T18:00:00-07:00"                 // optional, defaults to real now
+ *   "now": "2026-08-14T18:00:00-07:00",                // optional, defaults to real now
+ *   "timezone": "America/Los_Angeles"                  // IANA zone for displayed dates/times; defaults to America/Los_Angeles
  * }
  */
 
@@ -58,6 +59,7 @@ async function main() {
   );
   const slackIdMap = input.slackIdMap || {};
   const now = input.now ? new Date(input.now) : new Date();
+  const timeZone = input.timezone || 'America/Los_Angeles';
 
   const misses = filterRealMisses(conversations, fields, { now });
   const groups = groupByInterviewer(misses, fields);
@@ -76,7 +78,7 @@ async function main() {
       continue;
     }
 
-    const text = renderNudgeMessage({ interviewerName: group.interviewerName, misses: group.misses });
+    const text = renderNudgeMessage({ interviewerName: group.interviewerName, misses: group.misses }, { timeZone });
 
     const entries = group.misses.map((m) => ({
       id: `${m.conversationId ?? slugify(m.eventName)}-${slugify(slackId)}`,
@@ -86,7 +88,7 @@ async function main() {
       department: m.department || group.department || null,
       eventName: m.eventName,
       startTime: m.startTime,
-      date: formatDate(m.startTime),
+      date: formatDate(m.startTime, timeZone),
       channelId: slackId,
       messageTs: null,
       sentAt: null,

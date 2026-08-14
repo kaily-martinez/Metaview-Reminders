@@ -28,37 +28,46 @@ function test(name, fn) {
 
 const NOW = new Date('2026-08-14T12:00:00-07:00');
 
+// Mirrors the real search_conversations shape: values nest under `fields`,
+// and even scalar fields (title, start time, department) come back as
+// [{ value, label }] lists. Participant fields carry a `details` object.
+function row(id, fields) {
+  return { id, fields };
+}
+
+function participant(name, email, slackId) {
+  return { value: `uuid-${name}`, label: name, details: { name, emails: email ? [email] : [], phone_numbers: [] }, ...(slackId ? { slack_id: slackId } : {}) };
+}
+
+function scalar(value) {
+  return [{ value, label: value }];
+}
+
 test('filterRealMisses drops conversations with an empty candidate list', () => {
   const rows = [
-    { conversation_id: 1, [FIELDS.candidate]: [], [FIELDS.startTime]: '2026-08-13T10:00:00-07:00' },
-    { conversation_id: 2, [FIELDS.candidate]: [{ name: 'Alex Chen' }], [FIELDS.startTime]: '2026-08-13T10:00:00-07:00' },
+    row(1, { [FIELDS.candidate]: [], [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00') }),
+    row(2, { [FIELDS.candidate]: [participant('Alex Chen')], [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00') }),
   ];
   const result = filterRealMisses(rows, FIELDS, { now: NOW });
   assert.strictEqual(result.length, 1);
-  assert.strictEqual(result[0].conversation_id, 2);
+  assert.strictEqual(result[0].id, 2);
 });
 
 test('filterRealMisses skips events that have not happened yet', () => {
-  const rows = [
-    { conversation_id: 1, [FIELDS.candidate]: [{ name: 'A' }], [FIELDS.startTime]: '2026-08-20T10:00:00-07:00' },
-  ];
+  const rows = [row(1, { [FIELDS.candidate]: [participant('A')], [FIELDS.startTime]: scalar('2026-08-20 10:00:00-07:00') })];
   const result = filterRealMisses(rows, FIELDS, { now: NOW });
   assert.strictEqual(result.length, 0);
 });
 
 test('groupByInterviewer fans a multi-interviewer conversation into each group', () => {
   const rows = [
-    {
-      conversation_id: 1,
-      [FIELDS.candidate]: [{ name: 'Alex Chen' }],
-      [FIELDS.interviewer]: [
-        { name: 'Jane Doe', email: 'jane@co.com', slack_id: 'U1' },
-        { name: 'Sam Lee', email: 'sam@co.com' },
-      ],
-      [FIELDS.eventTitle]: 'Onsite: Alex Chen',
-      [FIELDS.startTime]: '2026-08-13T10:00:00-07:00',
-      [FIELDS.department]: 'Engineering',
-    },
+    row(1, {
+      [FIELDS.candidate]: [participant('Alex Chen')],
+      [FIELDS.interviewer]: [participant('Jane Doe', 'jane@co.com', 'U1'), participant('Sam Lee', 'sam@co.com')],
+      [FIELDS.eventTitle]: scalar('Onsite: Alex Chen'),
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+      [FIELDS.department]: scalar('Engineering'),
+    }),
   ];
   const groups = groupByInterviewer(rows, FIELDS);
   assert.strictEqual(groups.length, 2);
@@ -69,13 +78,13 @@ test('groupByInterviewer fans a multi-interviewer conversation into each group',
 
 test('groupByInterviewer combines multiple misses for the same person into one group', () => {
   const base = {
-    [FIELDS.candidate]: [{ name: 'X' }],
-    [FIELDS.interviewer]: [{ name: 'Jane Doe', slack_id: 'U1' }],
-    [FIELDS.department]: 'Eng',
+    [FIELDS.candidate]: [participant('X')],
+    [FIELDS.interviewer]: [participant('Jane Doe', null, 'U1')],
+    [FIELDS.department]: scalar('Eng'),
   };
   const rows = [
-    { ...base, conversation_id: 1, [FIELDS.eventTitle]: 'Interview A', [FIELDS.startTime]: '2026-08-11T10:00:00-07:00' },
-    { ...base, conversation_id: 2, [FIELDS.eventTitle]: 'Interview B', [FIELDS.startTime]: '2026-08-12T14:00:00-07:00' },
+    row(1, { ...base, [FIELDS.eventTitle]: scalar('Interview A'), [FIELDS.startTime]: scalar('2026-08-11 10:00:00-07:00') }),
+    row(2, { ...base, [FIELDS.eventTitle]: scalar('Interview B'), [FIELDS.startTime]: scalar('2026-08-12 14:00:00-07:00') }),
   ];
   const groups = groupByInterviewer(rows, FIELDS);
   assert.strictEqual(groups.length, 1);
@@ -93,6 +102,20 @@ test('renderNudgeMessage uses the single-miss template for one miss', () => {
   assert.ok(msg.includes('Hey Jane —'));
   assert.ok(msg.includes('Onsite: Alex Chen'));
   assert.ok(msg.includes('a) Forgot to admit it when it asked to join'));
+});
+
+test('renderNudgeMessage renders times in the configured company timezone, not the host machine timezone', () => {
+  // 2026-08-14 20:30:00+00:00 is 1:30 PM Pacific (PDT, UTC-7), not 8:30 PM.
+  const group = {
+    interviewerName: 'Hakeem Saleh',
+    misses: [
+      { eventName: 'Recruiter Screen', startTime: '2026-08-14 20:30:00+00:00' },
+      { eventName: 'Recruiter Screen', startTime: '2026-08-14 18:00:00+00:00' },
+    ],
+  };
+  const msg = renderNudgeMessage(group, { timeZone: 'America/Los_Angeles' });
+  assert.ok(msg.includes('1:30 PM'), `expected Pacific-time "1:30 PM" in:\n${msg}`);
+  assert.ok(!msg.includes('8:30 PM'), `should not render raw UTC hour "8:30 PM" in:\n${msg}`);
 });
 
 test('renderNudgeMessage uses the multi-miss template for 2+ misses', () => {
