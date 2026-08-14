@@ -1,0 +1,9 @@
+{
+  "name": "metaview-reminders",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Metaview daily nudge + weekly sit-rep automation for missed interview recordings",
+  "scripts": {
+    "test": "node test/run-tests.js"
+  }
+}

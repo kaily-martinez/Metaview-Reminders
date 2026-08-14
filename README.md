@@ -1,0 +1,122 @@
+# Metaview Reminder Bot
+
+Two jobs:
+
+1. **Daily nudge** — weekday evenings, finds candidate interviews from that
+   day where Metaview wasn't admitted, and DMs the internal host(s) a soft,
+   non-accusatory Slack message asking what happened.
+2. **Weekly sit-rep** — Monday mornings, aggregates the past week's misses
+   and reply data into a Slack Canvas so the team can track whether this is
+   improving over time.
+
+## How this is built, and why
+
+The daily/weekly logic is split into two layers:
+
+- **`lib/` — deterministic, unit-tested JS.** All the parts that must be
+  exactly right and repeatable: the "is this actually a candidate interview"
+  filter, grouping misses by interviewer, message templating, reply parsing,
+  miss-rate/trend math, and Canvas markdown rendering. None of this touches
+  the network. Run `npm test` any time to check it.
+- **`prompts/*.md` — instructions for a `claude -p` headless run.** Metaview
+  and Slack are only reachable here as MCP tools inside a Claude Code
+  session — there's no separate API key this repo can call directly. So the
+  actual "script" that cron runs is `claude -p` reading one of these prompt
+  files: it makes the live Metaview/Slack MCP calls, shells out to the
+  `bin/*.js` runners below for all the number-crunching, and reports back.
+- **`bin/*-runner.js` — the glue.** Each takes the raw data Claude fetched
+  via MCP (as JSON on stdin), runs it through `lib/`, and returns rendered
+  messages / Canvas sections / updated state (as JSON on stdout). This
+  keeps every actual decision (which conversations count as real misses,
+  what percentage rounds to what, which Canvas section gets touched) in
+  testable code instead of asked-fresh-each-time LLM judgment.
+
+This is a deliberate deviation from the original spec's literal
+`metaview-daily-nudge.js` / `metaview-weekly-sitrep.js` naming — those exist
+here as `prompts/metaview-daily-nudge.md` and
+`prompts/metaview-weekly-sitrep.md`, paired with the `bin/` runners they
+call out to. Functionally it's the same two jobs, same schedule, same
+templates and Canvas layout.
+
+## Layout
+
+```
+config.json                       channel/canvas IDs, cached Metaview field IDs
+state/sit-rep-log.json            every nudge ever sent + reply data (source of truth)
+state/weekly-history.json         last 5 weeks' scheduled/missed/miss-rate (for the trend section)
+lib/filters.js                    real-miss filter, interviewer grouping, name/department normalization
+lib/templates.js                  DM message templates, date/time formatting
+lib/aggregate.js                  reply parsing, miss-rate math, by-team rows, repeat-offender detection
+lib/canvas-render.js              renders each Canvas section as markdown
+lib/log-store.js                  read/write/upsert state/sit-rep-log.json
+bin/daily-runner.js               conversations + resolved Slack IDs -> rendered DMs + log-entry skeletons
+bin/append-log.js                 appends/upserts entries into state/sit-rep-log.json
+bin/weekly-runner.js              week's log + fresh Metaview counts + history -> Canvas sections + updated state
+prompts/metaview-daily-nudge.md   claude -p prompt for the daily job
+prompts/metaview-weekly-sitrep.md claude -p prompt for the weekly job
+test/run-tests.js                 assertion tests for everything in lib/
+```
+
+## One-time setup
+
+1. Make sure the Metaview and Slack MCP servers are connected to whatever
+   Claude Code session/environment will run these prompts.
+2. Create the Slack channel for the weekly Canvas, then put its channel ID
+   in `config.json`'s `sitrepChannelId`.
+3. `config.json`'s `departmentFieldId` is already filled in with this
+   workspace's live OSPT Department field ID
+   (`OSPT:451a0128-1a7a-11f0-910a-bfcaaf3ed43b`), discovered via
+   `list_fields`. If your Metaview workspace ever changes, re-run
+   `list_fields` with `search_term: "department"` and update it.
+4. `config.json`'s `testDmUserId` defaults to the currently-authenticated
+   Slack user (used for the "send yourself a test DM" step below). Change it
+   if that's not you.
+5. `npm test` — confirm all `lib/` tests pass before trusting live output.
+
+## Running manually
+
+From the repo root, in a Claude Code session with the Metaview + Slack MCP
+servers connected:
+
+```
+DRY_RUN=true claude -p "$(cat prompts/metaview-daily-nudge.md)"
+```
+
+```
+DRY_RUN=false TEST_SELF=true claude -p "$(cat prompts/metaview-daily-nudge.md)"
+```
+
+```
+claude -p "$(cat prompts/metaview-weekly-sitrep.md)"
+```
+
+`DRY_RUN` and `TEST_SELF` are read by the daily prompt (see step 1 in that
+file) — unset/false means the normal live-send path.
+
+## Testing checklist (do this before scheduling)
+
+- [ ] Run the daily prompt with `DRY_RUN=true` for 2-3 days running; manually
+      cross-check the flagged interviews against the Metaview web app to
+      confirm they're real misses, not noise (recurring syncs, etc.).
+- [ ] Run once with `DRY_RUN=false TEST_SELF=true` to send one real DM to
+      yourself and check tone/formatting render correctly in Slack.
+- [ ] Backfill a week of dry-run data into `state/sit-rep-log.json` (or let
+      a few real days accumulate), then run the weekly prompt once manually
+      and review the Canvas before scheduling it.
+- [ ] Once both look right, come back and we'll set up the crontab entries
+      together (see below — don't install these yet).
+
+## Cron (draft — set these up together once testing above is done)
+
+```cron
+# Daily nudge — weekdays at 6pm
+0 18 * * 1-5 cd /path/to/this/repo && DRY_RUN=false claude -p "$(cat prompts/metaview-daily-nudge.md)" >> logs/daily-nudge.log 2>&1
+
+# Weekly sit-rep — Monday mornings at 8am
+0 8 * * 1 cd /path/to/this/repo && claude -p "$(cat prompts/metaview-weekly-sitrep.md)" >> logs/weekly-sitrep.log 2>&1
+```
+
+Replace `/path/to/this/repo` with the real path once you know where this
+will run, and make sure that machine's Claude Code has the Metaview/Slack
+MCP servers configured (cron runs headless — there's no interactive
+approval, so tool calls need to be pre-approved for that environment).

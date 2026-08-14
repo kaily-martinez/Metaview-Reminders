@@ -1,0 +1,14 @@
+{
+  "sitrepChannelId": "",
+  "canvasId": null,
+  "testDmUserId": "U09T1FVBX2T",
+  "departmentFieldId": "OSPT:451a0128-1a7a-11f0-910a-bfcaaf3ed43b",
+  "metaviewFields": {
+    "interviewer": "default:interviewer",
+    "candidate": "default:candidate",
+    "eventTitle": "default:calendar_event_title",
+    "startTime": "default:start_time",
+    "department": "OSPT:451a0128-1a7a-11f0-910a-bfcaaf3ed43b"
+  },
+  "timezone": "America/Los_Angeles"
+}
