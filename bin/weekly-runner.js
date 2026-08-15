@@ -8,14 +8,14 @@
  * nudge, with raw Slack reply text attached by the calling prompt after it
  * read each thread), (b) a fresh Metaview query of this week's *recorded*
  * real candidate interviews, (c) trailing-4-week log entries for the
- * repeat-pattern section, and (d) prior weeks' summaries - into rendered
- * Canvas sections plus updated state to persist.
+ * repeat-pattern section, and (d) prior weeks' summaries - into a rendered
+ * report message plus updated state to persist.
  *
  * Does no network I/O itself. The calling prompt: reads Slack threads,
  * queries Metaview, feeds everything in here, then writes updatedLogEntries
  * back via bin/append-log.js, writes updatedHistory to
- * state/weekly-history.json, and creates/updates the Slack Canvas from
- * canvasSections.
+ * state/weekly-history.json, and posts reportSections.full as a fresh
+ * message to the sit-rep channel (not a Canvas - a new message each week).
  *
  * Usage: node bin/weekly-runner.js < input.json > output.json
  *
@@ -45,7 +45,7 @@
 const { filterRealMisses, deptLabel } = require('../lib/filters');
 const { formatIsoDateLabel } = require('../lib/templates');
 const { parseReply, missRate, trendArrow, tallyReasons, byTeamRows, repeatOffenders } = require('../lib/aggregate');
-const { renderCanvasSections } = require('../lib/canvas-render');
+const { renderReportSections } = require('../lib/report-render');
 
 function readStdin() {
   const chunks = [];
@@ -121,7 +121,7 @@ async function main() {
 
   const trend = updatedHistory.map((w) => ({ weekStart: formatIsoDateLabel(w.weekStartISO), missRate: w.missRate }));
 
-  const canvasSections = renderCanvasSections({
+  const reportSections = renderReportSections({
     weekStart: formatIsoDateLabel(input.weekStartISO),
     weekEnd: formatIsoDateLabel(input.weekEndISO),
     timestamp: new Date(input.timestamp || now).toLocaleString('en-US', {
@@ -144,7 +144,7 @@ async function main() {
 
   const output = {
     summary,
-    canvasSections,
+    reportSections,
     updatedHistory,
     updatedLogEntries: updatedWeekEntries,
     stats: {

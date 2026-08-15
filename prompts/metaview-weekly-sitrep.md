@@ -9,11 +9,11 @@ parent's parent directory) as your working directory.
 
 ## 0. Load config and state
 
-Read `config.json` (`sitrepChannelId`, `canvasId`, `departmentFieldId`,
-`metaviewFields`, `interviewConversationTypes`, `timezone`) and
-`state/sit-rep-log.json` (the full nudge log) and
-`state/weekly-history.json` (an array of prior weeks' summaries, oldest
-first: `{ weekStartISO, weekEndISO, scheduled, missed, missRate }`).
+Read `config.json` (`sitrepChannelId`, `departmentFieldId`, `metaviewFields`,
+`interviewConversationTypes`, `timezone`) and `state/sit-rep-log.json` (the
+full nudge log) and `state/weekly-history.json` (an array of prior weeks'
+summaries, oldest first: `{ weekStartISO, weekEndISO, scheduled, missed,
+missRate }`).
 
 If `config.json`'s `sitrepChannelId` is empty, stop and report that the
 Slack channel for the sit-rep hasn't been configured yet — do not guess a
@@ -117,11 +117,11 @@ Then run:
 node bin/weekly-runner.js < /tmp/weekly-input.json > /tmp/weekly-output.json
 ```
 
-Read `/tmp/weekly-output.json`. It contains `canvasSections` (each canvas
-section pre-rendered as markdown, including a `full` field with everything
-joined), `updatedHistory` (last 5 weeks, ready to persist), and
-`updatedLogEntries` (this week's log entries with `reason`/`replyRaw` now
-resolved from `rawReplyText`).
+Read `/tmp/weekly-output.json`. It contains `reportSections` (each section
+pre-rendered as markdown, including a `full` field with everything joined —
+this is the whole message text), `updatedHistory` (last 5 weeks, ready to
+persist), and `updatedLogEntries` (this week's log entries with
+`reason`/`replyRaw` now resolved from `rawReplyText`).
 
 ## 5. Persist state
 
@@ -131,38 +131,17 @@ resolved from `rawReplyText`).
 - Overwrite `state/weekly-history.json` with `updatedHistory` (pretty-printed
   JSON, trailing newline).
 
-## 6. Create or update the Canvas
+## 6. Post the report
 
-**First run ever** (`config.json`'s `canvasId` is `null`): call
-`slack_create_canvas` in the channel from `sitrepChannelId`, with
-`title: "🎥 Metaview Weekly Sit-Rep"` and `content` = `canvasSections.subtitle`
-+ `canvasSections.glance` + `canvasSections.reasons` + `canvasSections.byTeam`
-+ `canvasSections.repeatPattern` + `canvasSections.trend` +
-`canvasSections.notesPlaceholder`, each joined by a blank line (do not
-include `canvasSections.title` in `content` — the `title` param covers that).
-Take the returned canvas ID and write it into `config.json`'s `canvasId`
-field (edit the file directly).
-
-**Every run after that**: call `slack_read_canvas` with the stored
-`canvasId` to get the current section mapping. Match each returned section
-to the heading/content it starts with, and build one `slack_update_canvas`
-call with `edit_type: "replace"` for each of these six sections using the
-freshly rendered content from `canvasSections`:
-
-1. the subtitle line (starts with `**Week of`) → `canvasSections.subtitle`
-2. `## This week at a glance` → `canvasSections.glance`
-3. `## Breakdown by reason` → `canvasSections.reasons`
-4. `## By team` → `canvasSections.byTeam`
-5. `## Repeat pattern (trailing 4 weeks)` → `canvasSections.repeatPattern`
-6. `## Trend (last 5 weeks)` → `canvasSections.trend`
-
-**Do not touch the `## Notes` section or the title section.** Notes is a
-manually-edited space for the team — clobbering it every Monday would defeat
-its purpose. If for some reason one of the six sections above is missing
-from the canvas (someone deleted it manually), append it back near where it
-belongs rather than failing the whole run, and note that in your summary.
+Call `slack_send_message` with `channel_id` = `sitrepChannelId` from config
+and `message` = `reportSections.full`. This is a plain channel message
+posted fresh each week — not a Canvas, so there's no create-vs-update
+distinction and nothing to preserve between runs. Manual commentary from the
+team belongs as a thread reply on that message (the report text invites
+this), not as an edited section, so there's no "Notes" state to manage here.
 
 ## 7. Report a summary
 
 Print: interviews scheduled/missed/miss-rate for the week, the vs-last-week
-trend, how many repeat-pattern people were flagged, and the canvas URL/link.
+trend, how many repeat-pattern people were flagged, and the Slack message
+link.

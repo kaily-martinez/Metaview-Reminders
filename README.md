@@ -9,11 +9,13 @@ Three jobs:
    happened.
 2. **Friday outreach list** — Fridays at 10am, posts a plain-text list of
    who's been nudged so far this week to `#metaview-alerts`. A lightweight,
-   mid-week companion to the Monday Canvas — no reply-checking or trends,
+   mid-week companion to the Monday report — no reply-checking or trends,
    just visibility.
 3. **Weekly sit-rep** — Monday mornings, aggregates the past week's misses
-   and reply data into a Slack Canvas so the team can track whether this is
-   improving over time.
+   and reply data into a message posted to `#metaview-alerts`, so the team
+   can track whether this is improving over time. A fresh message each
+   week, not an editable document — manual commentary goes as a thread
+   reply on that week's post.
 
 **What counts as a "real miss":** a conversation must have (a) a non-empty
 candidate list, filtered in code, since that field can't be queried
@@ -42,7 +44,7 @@ The logic is split into two layers:
 - **`lib/` — deterministic, unit-tested JS.** All the parts that must be
   exactly right and repeatable: the "is this actually a candidate interview"
   filter, grouping misses by interviewer, message templating, reply parsing,
-  miss-rate/trend math, Canvas markdown rendering, and business-day/week
+  miss-rate/trend math, report markdown rendering, and business-day/week
   window math. None of this touches the network. Run `npm test` any time to
   check it.
 - **`prompts/*.md` — instructions for a `claude -p` headless run.** Metaview
@@ -53,30 +55,31 @@ The logic is split into two layers:
   `bin/*.js` runners below for all the number-crunching, and reports back.
 - **`bin/*.js` — the glue.** Each takes the raw data Claude fetched via MCP
   (as JSON on stdin), runs it through `lib/`, and returns rendered messages /
-  Canvas sections / report text / updated state (as JSON on stdout). This
-  keeps every actual decision (which conversations count as real misses,
-  what percentage rounds to what, which Canvas section gets touched, which
-  business day a run covers) in testable code instead of asked-fresh-each-time
-  LLM judgment — including date math, where a Friday-to-Monday rollover done
-  ad hoc in a prompt is an easy place to introduce an off-by-one.
+  report text / updated state (as JSON on stdout). This keeps every actual
+  decision (which conversations count as real misses, what percentage rounds
+  to what, which business day a run covers) in testable code instead of
+  asked-fresh-each-time LLM judgment — including date math, where a
+  Friday-to-Monday rollover done ad hoc in a prompt is an easy place to
+  introduce an off-by-one.
 
 This is a deliberate deviation from the original spec's literal
 `metaview-daily-nudge.js` / `metaview-weekly-sitrep.js` naming — those exist
 here as `prompts/metaview-daily-nudge.md` and
 `prompts/metaview-weekly-sitrep.md`, paired with the `bin/` runners they
-call out to. Functionally it's the same jobs, same templates and Canvas
-layout, on the schedule described above.
+call out to. It's also a deviation from the spec's original Canvas-based
+weekly report: the weekly sit-rep now posts as a plain channel message
+(see "Canvas → channel message" below for why).
 
 ## Layout
 
 ```
-config.json                          channel/canvas IDs, cached Metaview field IDs, help resource URL
+config.json                          channel IDs, cached Metaview field IDs, help resource URL
 state/sit-rep-log.json               every nudge ever sent + reply data (source of truth)
 state/weekly-history.json            last 5 weeks' scheduled/missed/miss-rate (for the trend section)
 lib/filters.js                       real-miss filter, interviewer grouping, name/department normalization
 lib/templates.js                     DM message templates, date/time/timezone formatting
 lib/aggregate.js                     reply parsing, miss-rate math, by-team rows, repeat-offender detection
-lib/canvas-render.js                 renders each Canvas section as markdown
+lib/report-render.js                 renders the weekly sit-rep as a markdown message
 lib/log-store.js                     read/write/upsert state/sit-rep-log.json
 lib/schedule.js                      timezone-correct business-day/week window math
 lib/outreach.js                      groups + renders the Friday outreach-list report
@@ -84,18 +87,29 @@ bin/window.js                        prints query window bounds (previous busine
 bin/daily-runner.js                  conversations + resolved Slack IDs -> rendered DMs + log-entry skeletons
 bin/append-log.js                    appends/upserts entries into state/sit-rep-log.json
 bin/outreach-runner.js               this week's log entries -> the Friday outreach-list message
-bin/weekly-runner.js                 week's log + fresh Metaview counts + history -> Canvas sections + updated state
+bin/weekly-runner.js                 week's log + fresh Metaview counts + history -> report message + updated state
 prompts/metaview-daily-nudge.md      claude -p prompt for the daily job
 prompts/metaview-friday-outreach.md  claude -p prompt for the Friday outreach-list job
 prompts/metaview-weekly-sitrep.md    claude -p prompt for the weekly job
 test/run-tests.js                    assertion tests for everything in lib/
 ```
 
+## Canvas → channel message
+
+The original spec called for the weekly sit-rep as a Slack Canvas (an
+editable persistent document, updated in place each week, with a manually-
+edited "Notes" section preserved across updates). It's built here as a
+plain message instead, posted fresh every Monday: simpler to reason about
+(no create-vs-update branching, no matching-sections-by-heading-text logic,
+nothing that can drift out of sync with a manually-edited document), and it
+threads naturally — team commentary goes as a reply on that week's message
+instead of an edited section.
+
 ## One-time setup
 
 1. Make sure the Metaview and Slack MCP servers are connected to whatever
    Claude Code session/environment will run these prompts.
-2. Create the Slack channel for the weekly Canvas and Friday outreach list,
+2. Create the Slack channel for the weekly report and Friday outreach list,
    then put its channel ID in `config.json`'s `sitrepChannelId`.
 3. `config.json`'s `departmentFieldId` is already filled in with this
    workspace's live OSPT Department field ID

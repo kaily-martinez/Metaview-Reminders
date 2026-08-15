@@ -3,7 +3,7 @@ const assert = require('assert');
 const { filterRealMisses, groupByInterviewer, firstName } = require('../lib/filters');
 const { renderNudgeMessage } = require('../lib/templates');
 const { parseReply, tallyReasons, missRate, trendArrow, byTeamRows, repeatOffenders } = require('../lib/aggregate');
-const { renderCanvasSections } = require('../lib/canvas-render');
+const { renderReportSections } = require('../lib/report-render');
 const { previousBusinessDayWindow, weekSoFarWindow, zonedMidnightToUTC } = require('../lib/schedule');
 const { groupEntriesByInterviewer, renderOutreachReport } = require('../lib/outreach');
 
@@ -326,8 +326,8 @@ test('repeatOffenders only surfaces people with 2+ misses in the trailing window
   assert.strictEqual(offenders[0].count, 2);
 });
 
-test('renderCanvasSections produces all required sections and preserves a Notes placeholder', () => {
-  const sections = renderCanvasSections({
+test('renderReportSections produces all required sections as a plain message (no Canvas/Notes doc)', () => {
+  const sections = renderReportSections({
     weekStart: 'Aug 10',
     weekEnd: 'Aug 16',
     timestamp: 'Aug 17, 8:00 AM',
@@ -349,7 +349,7 @@ test('renderCanvasSections produces all required sections and preserves a Notes 
   assert.ok(sections.title.includes('Metaview Weekly Sit-Rep'));
   assert.ok(sections.subtitle.includes('Aug 10'));
   assert.ok(sections.glance.includes('| Interviews scheduled | 20 |'));
-  assert.ok(sections.notesPlaceholder.includes('## Notes'));
+  assert.ok(sections.notesInvite.includes('Reply in this thread'));
   assert.ok(sections.full.includes('## Repeat pattern'));
 });
 
