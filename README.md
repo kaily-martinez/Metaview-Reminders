@@ -17,15 +17,23 @@ Three jobs:
    week, not an editable document — manual commentary goes as a thread
    reply on that week's post.
 
-**What counts as a "real miss":** a conversation must have (a) a non-empty
-candidate list, filtered in code, since that field can't be queried
-server-side for "is not empty", **and** (b) a `conversation_type` of Job
-Interview, Coding Interview, or System Design Interview (see
-`interviewConversationTypes` in `config.json`), filtered server-side. Both
-conditions matter: a live test run turned up an internal "Candidate Debrief"
-and two conversations tagged "Other" (a vendor/ATS sync and an internal
-leadership sync) that all carried a non-empty candidate field despite not
-being real interviews — the conversation_type check is what excludes those.
+**What counts as a "real miss":** a conversation must satisfy all three,
+each catching noise the others miss:
+1. Non-empty candidate list — filtered in code, since that field can't be
+   queried server-side for "is not empty."
+2. A `conversation_type` of Job Interview, Coding Interview, or System
+   Design Interview (see `interviewConversationTypes` in `config.json`),
+   filtered server-side. Excludes an internal "Candidate Debrief" and two
+   conversations tagged "Other" (a vendor/ATS sync and an internal
+   leadership sync) that all carried a non-empty candidate field despite
+   not being real interviews.
+3. A non-empty `default:candidate_application` — the conversation must link
+   back to an actual ATS (Ashby) application record, filtered in code (also
+   not queryable server-side for "is not empty"). Excludes ad hoc bookings
+   like "30 min with James (...)" and "Tamra <> Kiela : CS @ Luma Chat" —
+   real candidates, real recruiters, but never scheduled through the
+   loop-scheduling flow, so they could be one-offs rather than tracked
+   interview stages.
 
 **Help resource**: both nudge templates append a short, optional pointer to
 an internal quick-reference doc on why/how to admit Metaview (`config.json`'s

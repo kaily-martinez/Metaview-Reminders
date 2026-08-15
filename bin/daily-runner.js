@@ -18,7 +18,8 @@
  *   "fields": { "interviewer": "default:interviewer", "candidate": "default:candidate",
  *               "eventTitle": "default:calendar_event_title", "startTime": "default:start_time",
  *               "department": "OSPT:<field-id>",      // optional
- *               "conversationType": "default:conversation_type" },  // optional, needed for allowedConversationTypeIds below
+ *               "conversationType": "default:conversation_type",  // optional, needed for allowedConversationTypeIds below
+ *               "candidateApplication": "default:candidate_application" },  // optional - if set, excludes conversations with no linked ATS application (ad hoc/non-loop-scheduled bookings)
  *   "allowedConversationTypeIds": ["<uuid>", ...],     // optional - if set, only these conversation_type values count as real interviews
  *   "slackIdMap": { "jane@co.com": "U123..." },        // email -> resolved Slack user id
  *   "now": "2026-08-14T18:00:00-07:00",                // optional, defaults to real now
@@ -58,6 +59,7 @@ async function main() {
       startTime: 'default:start_time',
       department: null,
       conversationType: null,
+      candidateApplication: null,
     },
     input.fields || {}
   );

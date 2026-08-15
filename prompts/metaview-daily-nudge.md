@@ -83,6 +83,7 @@ fields: [
   "default:calendar_event_title",
   "default:start_time",
   "default:conversation_type",
+  "default:candidate_application",
   "<departmentFieldId from config>"
 ]
 limit: 200
@@ -94,22 +95,27 @@ single day, but check), paginate with `offset` until you have them all.
 This bucket mixes real missed candidate interviews with recurring internal
 syncs that were never supposed to have a bot in them, plus internal
 conversations (debriefs, vendor/leadership syncs) that can carry a
-candidate participant despite not being an interview. Two independent
-signals combine to catch both: the `conversation_type` filter above scopes
-the query to real interview types (Job Interview / Coding Interview / System
-Design Interview - see `interviewConversationTypes` in config.json), and the
-Node runner below additionally requires a non-empty `default:candidate` list
-in code (since that field can't be filtered server-side). Don't try to
-replicate either filter yourself by reasoning over the JSON — let the query
-and the runner do it deterministically.
+candidate participant despite not being an interview, plus ad hoc bookings
+("30 min with James (...)", "Tamra <> Kiela : CS @ Luma Chat") that involve
+a real candidate but were never scheduled through the ATS-linked interview
+loop. Three independent signals combine to catch all of that: the
+`conversation_type` filter above scopes the query to real interview types
+(Job Interview / Coding Interview / System Design Interview - see
+`interviewConversationTypes` in config.json), and the Node runner below
+additionally requires both a non-empty `default:candidate` list AND a
+non-empty `default:candidate_application` (the linked ATS application
+record) in code, since neither field can be filtered server-side. Don't try
+to replicate any of these filters yourself by reasoning over the JSON — let
+the query and the runner do it deterministically.
 
 Save the raw `conversations` array from the response.
 
-**Important**: `default:conversation_type` must stay in the `fields` list
-above whenever `allowedConversationTypeIds` is passed to the runner in step
-5 — if the runner can't see a conversation's type, it fails safe and drops
-that conversation rather than guessing, so a missing field here silently
-zeroes out the whole run instead of loudly erring.
+**Important**: `default:conversation_type` and `default:candidate_application`
+must stay in the `fields` list above whenever `allowedConversationTypeIds`
+is passed to the runner in step 5 — if the runner can't see a
+conversation's type, it fails safe and drops that conversation rather than
+guessing, so a missing field here silently zeroes out the whole run instead
+of loudly erring.
 
 ## 4. Resolve Slack IDs for interviewers
 
@@ -134,7 +140,8 @@ Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
     "eventTitle": "default:calendar_event_title",
     "startTime": "default:start_time",
     "department": "<departmentFieldId from config>",
-    "conversationType": "default:conversation_type"
+    "conversationType": "default:conversation_type",
+    "candidateApplication": "default:candidate_application"
   },
   "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
   "slackIdMap": { ...from step 4... },

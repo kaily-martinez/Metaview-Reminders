@@ -34,7 +34,8 @@
  *   "recordedConversations": [ <raw Metaview rows, only_show_recorded_conversations: true,
  *                               same fields as the daily nudge query> ],
  *   "fields": { "candidate": "default:candidate", "department": "OSPT:<field-id>",
- *               "conversationType": "default:conversation_type" },  // optional, needed for allowedConversationTypeIds below
+ *               "conversationType": "default:conversation_type",  // optional, needed for allowedConversationTypeIds below
+ *               "candidateApplication": "default:candidate_application" },  // optional - if set, excludes conversations with no linked ATS application (ad hoc/non-loop-scheduled bookings)
  *   "allowedConversationTypeIds": ["<uuid>", ...],     // optional - if set, only these conversation_type values count as real interviews
  *   "history": [ { "weekStartISO": "2026-08-03", "weekEndISO": "2026-08-09",
  *                   "scheduled": N, "missed": N, "missRate": N } ... ],  // ascending, oldest first
@@ -71,7 +72,10 @@ async function main() {
   const raw = await readStdin();
   const input = JSON.parse(raw || '{}');
 
-  const fields = Object.assign({ candidate: 'default:candidate', department: null, conversationType: null }, input.fields || {});
+  const fields = Object.assign(
+    { candidate: 'default:candidate', department: null, conversationType: null, candidateApplication: null },
+    input.fields || {}
+  );
   const now = new Date();
   const allowedConversationTypeIds = input.allowedConversationTypeIds || null;
 

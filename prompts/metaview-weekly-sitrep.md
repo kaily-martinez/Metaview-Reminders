@@ -70,6 +70,7 @@ filters: [
 fields: [
   "default:candidate",
   "default:conversation_type",
+  "default:candidate_application",
   "<departmentFieldId from config>"
 ]
 limit: 200
@@ -77,16 +78,17 @@ limit: 200
 
 Paginate with `offset` if `total_count` exceeds 200. Save the raw
 `conversations` array as `recordedConversations` — this, filtered for a
-non-empty candidate list and an allowed conversation_type (both done by the
-runner, not by you), is this week's recorded real candidate interviews. Using
-the same conversation_type + candidate filters here as in the daily job keeps
-"scheduled" and "missed" counting the same thing.
+non-empty candidate list, an allowed conversation_type, and a linked ATS
+application (all done by the runner, not by you), is this week's recorded
+real candidate interviews. Using the same filters here as in the daily job
+keeps "scheduled" and "missed" counting the same thing.
 
-**Important**: `default:conversation_type` must stay in the `fields` list
-above whenever `allowedConversationTypeIds` is passed to the runner in step
-4 — if the runner can't see a conversation's type, it fails safe and drops
-that conversation rather than guessing, so a missing field here silently
-zeroes out `recordedConversations` instead of loudly erring.
+**Important**: `default:conversation_type` and `default:candidate_application`
+must stay in the `fields` list above whenever `allowedConversationTypeIds`
+is passed to the runner in step 4 — if the runner can't see a
+conversation's type, it fails safe and drops that conversation rather than
+guessing, so a missing field here silently zeroes out `recordedConversations`
+instead of loudly erring.
 
 ## 4. Run the weekly runner
 
@@ -103,7 +105,8 @@ Write a JSON file (e.g. `/tmp/weekly-input.json`):
   "fields": {
     "candidate": "default:candidate",
     "department": "<departmentFieldId from config>",
-    "conversationType": "default:conversation_type"
+    "conversationType": "default:conversation_type",
+    "candidateApplication": "default:candidate_application"
   },
   "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
   "history": [ ...state/weekly-history.json content... ],

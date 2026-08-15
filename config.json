@@ -8,7 +8,8 @@
     "eventTitle": "default:calendar_event_title",
     "startTime": "default:start_time",
     "department": "OSPT:451a0128-1a7a-11f0-910a-bfcaaf3ed43b",
-    "conversationType": "default:conversation_type"
+    "conversationType": "default:conversation_type",
+    "candidateApplication": "default:candidate_application"
   },
   "interviewConversationTypes": [
     { "id": "22eae796-087b-11ef-9815-5f761d7a35b3", "label": "Job Interview" },

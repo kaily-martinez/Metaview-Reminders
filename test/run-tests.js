@@ -14,6 +14,7 @@ const FIELDS = {
   startTime: 'default:start_time',
   department: 'OSPT:dept-field-id',
   conversationType: 'default:conversation_type',
+  candidateApplication: 'default:candidate_application',
 };
 
 const JOB_INTERVIEW_TYPE_ID = '22eae796-087b-11ef-9815-5f761d7a35b3';
@@ -60,6 +61,7 @@ test('filterRealMisses drops a candidate-attached conversation whose type is not
     }),
     row(2, {
       [FIELDS.candidate]: [participant('Ryan Pak')],
+      [FIELDS.candidateApplication]: [{ value: 'app-1', label: 'Ryan Pak - Sales Manager' }],
       [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
       [FIELDS.conversationType]: scalar(JOB_INTERVIEW_TYPE_ID),
     }),
@@ -73,6 +75,7 @@ test('filterRealMisses ignores conversationType allowlist when not provided (bac
   const rows = [
     row(1, {
       [FIELDS.candidate]: [participant('Jim Saraco')],
+      [FIELDS.candidateApplication]: [{ value: 'app-1', label: 'Jim Saraco - App' }],
       [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
       [FIELDS.conversationType]: scalar(CANDIDATE_DEBRIEF_TYPE_ID),
     }),
@@ -102,11 +105,49 @@ test('filterRealMisses fails safe (drops everything) if conversation_type was ne
 test('filterRealMisses drops conversations with an empty candidate list', () => {
   const rows = [
     row(1, { [FIELDS.candidate]: [], [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00') }),
-    row(2, { [FIELDS.candidate]: [participant('Alex Chen')], [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00') }),
+    row(2, {
+      [FIELDS.candidate]: [participant('Alex Chen')],
+      [FIELDS.candidateApplication]: [{ value: 'app-1', label: 'Alex Chen - App' }],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
   ];
   const result = filterRealMisses(rows, FIELDS, { now: NOW });
   assert.strictEqual(result.length, 1);
   assert.strictEqual(result[0].id, 2);
+});
+
+test('filterRealMisses drops a conversation with no linked ATS application (ad hoc, non-loop-scheduled booking)', () => {
+  // Mirrors live data: "30 min with James (...)" and "Tamra <> Kiela : CS @ Luma Chat"
+  // both had a real candidate but an empty default:candidate_application -
+  // no job requisition link, i.e. not scheduled through Ashby.
+  const rows = [
+    row(1, {
+      [FIELDS.candidate]: [participant('Saman Forouzandeh')],
+      [FIELDS.candidateApplication]: [],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
+    row(2, {
+      [FIELDS.candidate]: [participant('Ryan Pak')],
+      [FIELDS.candidateApplication]: [{ value: 'app-1', label: 'Ryan Pak - Sales Manager' }],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
+  ];
+  const result = filterRealMisses(rows, FIELDS, { now: NOW });
+  assert.strictEqual(result.length, 1);
+  assert.strictEqual(result[0].id, 2);
+});
+
+test('filterRealMisses ignores candidateApplication when not configured (back-compat)', () => {
+  const rows = [
+    row(1, {
+      [FIELDS.candidate]: [participant('Saman Forouzandeh')],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+      // no candidateApplication field at all
+    }),
+  ];
+  const fieldsWithoutApplication = { ...FIELDS, candidateApplication: undefined };
+  const result = filterRealMisses(rows, fieldsWithoutApplication, { now: NOW });
+  assert.strictEqual(result.length, 1);
 });
 
 test('filterRealMisses skips events that have not happened yet', () => {
