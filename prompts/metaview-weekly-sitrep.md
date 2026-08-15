@@ -32,22 +32,21 @@ compute local calendar dates:
 
 Get real current time via Bash (`date`) rather than guessing.
 
-## 2. Pull this week's log entries and check for replies
+## 2. Pull this week's log entries
 
 From the full log, filter entries whose `startTime` falls within
 `[weekStartISO, weekEndISO]` (inclusive, local calendar date) → these are
 `weekLogEntries`. Also filter entries within `[trailingStartISO, weekEndISO]`
 → `trailing4WeeksLogEntries` (this naturally includes `weekLogEntries`).
 
-For each entry in `weekLogEntries` that has a `channelId` and `messageTs`:
-call `slack_read_thread` with `channel_id: entry.channelId`,
-`message_ts: entry.messageTs`. Look at the replies (messages after the
-parent, excluding the parent itself). If there's at least one reply from the
-interviewer, take the earliest one's text as `rawReplyText` for that entry.
-If there's no reply yet, set `rawReplyText` to `null`. Attach this
-`rawReplyText` field onto each entry object in `weekLogEntries` (the Node
-runner in step 4 will parse it against the a/b/c/d template — don't parse it
-yourself).
+Replies are no longer checked here — the daily nudge job (see
+`prompts/metaview-daily-nudge.md` step 3) resolves each entry's `reason` and
+`replyRaw` the day the reply comes in, using both `slack_read_thread` and
+`slack_read_channel` so plain and threaded replies both get caught, and
+persists them straight into `state/sit-rep-log.json`. So `weekLogEntries`
+and `trailing4WeeksLogEntries` already carry whatever `reason`/`replyRaw`
+exist as of this run — pass them into step 4 as-is, with no `rawReplyText`
+field to attach and no live Slack reply-check to do.
 
 ## 3. Query Metaview for this week's recorded real interviews
 
@@ -99,7 +98,7 @@ Write a JSON file (e.g. `/tmp/weekly-input.json`):
   "weekStartISO": "<weekStartISO>",
   "weekEndISO": "<weekEndISO>",
   "timestamp": "<current ISO timestamp>",
-  "weekLogEntries": [ ...from step 2, each with rawReplyText attached... ],
+  "weekLogEntries": [ ...from step 2... ],
   "trailing4WeeksLogEntries": [ ...from step 2... ],
   "recordedConversations": [ ...from step 3... ],
   "fields": {
@@ -123,8 +122,10 @@ node bin/weekly-runner.js < /tmp/weekly-input.json > /tmp/weekly-output.json
 Read `/tmp/weekly-output.json`. It contains `reportSections` (each section
 pre-rendered as markdown, including a `full` field with everything joined —
 this is the whole message text), `updatedHistory` (last 5 weeks, ready to
-persist), and `updatedLogEntries` (this week's log entries with
-`reason`/`replyRaw` now resolved from `rawReplyText`).
+persist), and `updatedLogEntries` (this week's log entries, passed straight
+through unchanged — `reason`/`replyRaw` were already resolved by the daily
+job, so this step-5 write-back is mostly a no-op safety net rather than new
+data).
 
 ## 5. Persist state
 

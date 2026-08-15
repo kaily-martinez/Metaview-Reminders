@@ -6,6 +6,7 @@ const { parseReply, tallyReasons, missRate, trendArrow, byTeamRows, repeatOffend
 const { renderReportSections } = require('../lib/report-render');
 const { previousBusinessDayWindow, weekSoFarWindow, zonedMidnightToUTC } = require('../lib/schedule');
 const { groupEntriesByInterviewer, renderOutreachReport } = require('../lib/outreach');
+const { resolveFollowups } = require('../lib/followup');
 
 const FIELDS = {
   interviewer: 'default:interviewer',
@@ -455,6 +456,72 @@ test('renderOutreachReport lists single and combined misses per interviewer', ()
 test('renderOutreachReport handles a dry week gracefully', () => {
   const text = renderOutreachReport([], { weekStartLabel: 'Aug 10', weekEndLabel: 'Aug 14' });
   assert.ok(text.includes('No misses logged yet this week'));
+});
+
+const REASON_FOLLOWUPS = {
+  a: 'Reminder: please admit Metaview every time it asks to join.',
+  b: 'Try adding notes@metaview.ai as a guest on the meeting.',
+  c: 'Thanks for confirming — flag it to RecOps if notes still never show up.',
+};
+
+test('resolveFollowups queues a follow-up and resolves reason/replyRaw for a clean a/b/c reply', () => {
+  const entries = [
+    { id: '1', interviewerSlackId: 'U1', channelId: 'U1', messageTs: '100.1', reason: null, replyRaw: null, rawReplyText: 'b) tried but it didn\'t work' },
+  ];
+  const { updatedEntries, followups } = resolveFollowups(entries, REASON_FOLLOWUPS, { now: '2026-08-14T16:00:00.000Z' });
+  assert.strictEqual(updatedEntries.length, 1);
+  assert.strictEqual(updatedEntries[0].reason, 'b');
+  assert.strictEqual(updatedEntries[0].replyRaw, "b) tried but it didn't work");
+  assert.strictEqual(updatedEntries[0].followupSentAt, '2026-08-14T16:00:00.000Z');
+  assert.ok(!('rawReplyText' in updatedEntries[0]));
+  assert.strictEqual(followups.length, 1);
+  assert.deepStrictEqual(followups[0], {
+    interviewerSlackId: 'U1',
+    channelId: 'U1',
+    messageTs: '100.1',
+    reason: 'b',
+    text: REASON_FOLLOWUPS.b,
+  });
+});
+
+test('resolveFollowups resolves a reason with no configured text but queues nothing', () => {
+  const entries = [
+    { id: '2', interviewerSlackId: 'U2', channelId: 'U2', messageTs: '100.2', reason: null, replyRaw: null, rawReplyText: 'd) something else entirely' },
+  ];
+  const { updatedEntries, followups } = resolveFollowups(entries, REASON_FOLLOWUPS);
+  assert.strictEqual(updatedEntries[0].reason, 'd');
+  assert.strictEqual(updatedEntries[0].followupSentAt, undefined);
+  assert.strictEqual(followups.length, 0);
+});
+
+test('resolveFollowups skips an entry that already got a follow-up, even with new reply text', () => {
+  const entries = [
+    { id: '3', interviewerSlackId: 'U3', channelId: 'U3', messageTs: '100.3', reason: 'a', replyRaw: 'a', followupSentAt: '2026-08-13T09:00:00.000Z', rawReplyText: 'actually b now' },
+  ];
+  const { updatedEntries, followups } = resolveFollowups(entries, REASON_FOLLOWUPS);
+  assert.strictEqual(updatedEntries.length, 1);
+  assert.strictEqual(updatedEntries[0], entries[0]);
+  assert.strictEqual(followups.length, 0);
+});
+
+test('resolveFollowups passes through an entry with no reply yet, untouched', () => {
+  const entries = [
+    { id: '4', interviewerSlackId: 'U4', channelId: 'U4', messageTs: '100.4', reason: null, replyRaw: null, rawReplyText: null },
+  ];
+  const { updatedEntries, followups } = resolveFollowups(entries, REASON_FOLLOWUPS);
+  assert.strictEqual(updatedEntries.length, 1);
+  assert.strictEqual(updatedEntries[0], entries[0]);
+  assert.strictEqual(followups.length, 0);
+});
+
+test('resolveFollowups treats an unparseable reply as "other" with no follow-up', () => {
+  const entries = [
+    { id: '5', interviewerSlackId: 'U5', channelId: 'U5', messageTs: '100.5', reason: null, replyRaw: null, rawReplyText: 'not sure, will check' },
+  ];
+  const { updatedEntries, followups } = resolveFollowups(entries, REASON_FOLLOWUPS);
+  assert.strictEqual(updatedEntries[0].reason, 'other');
+  assert.strictEqual(updatedEntries[0].replyRaw, 'not sure, will check');
+  assert.strictEqual(followups.length, 0);
 });
 
 console.log(`\n${passed} test(s) passed`);

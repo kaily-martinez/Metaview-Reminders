@@ -6,7 +6,9 @@ Three jobs:
    interviews (a Monday run checks Friday, since the job doesn't run over
    the weekend) for candidate interviews where Metaview wasn't admitted, and
    DMs the internal host(s) a soft, non-accusatory Slack message asking what
-   happened.
+   happened. The same run also checks for replies to *prior* nudges and,
+   when the reply maps to a known reason, sends a short tailored follow-up
+   (see "Reason-triggered follow-ups" below).
 2. **Friday outreach list** — Fridays at 10am, posts a plain-text list of
    who's been nudged so far this week to `#metaview-alerts`. A lightweight,
    mid-week companion to the Monday report — no reply-checking or trends,
@@ -44,6 +46,34 @@ prompt works? [Quick reference](...)". Omitted entirely if `resourceUrl`
 isn't set. Both templates also name the candidate (e.g. "Recruiter Screen
 with Alex Chen") and, in the multi-miss template, tag each time with a
 timezone abbreviation (e.g. "1:30 PM PDT") so nothing's ambiguous.
+
+**Reason-triggered follow-ups**: the a/b/c/d question in the nudge isn't
+just for tallying - each reply drives a specific next step, grounded in two
+real Slack messages from the team (Maria Mediato's admit reminder and
+Richard Cho's company-wide "why Metaview matters" post, both linked in the
+by-team/reason-code discussion during setup):
+
+- **a) Forgot to admit** → a short reminder that reinforces *why* it
+  matters (accurate scorecards, and the offer-acceptance work that depends
+  on interview data) and restates the ask: admit it every single time,
+  no exceptions.
+- **b) Tried, didn't work** → the concrete fix Hakeem Saleh gave in that
+  thread - add `notes@metaview.ai` as a guest on the meeting and it'll join
+  within a few minutes - plus a nudge to flag it to RecOps if it keeps
+  happening, echoing Richard's "don't just let it slide."
+- **c) Looked like it joined fine** → an acknowledgment plus a prompt to
+  flag it to RecOps if notes never show up despite that, so a real
+  false-positive doesn't get silently repeated.
+- **d) Something else** → intentionally has no automated follow-up text;
+  it needs a human to actually read the reply and decide what's going on.
+
+This is configured in `config.json`'s `reasonFollowups` (one string per
+reason code; omit a code for no automated follow-up) and resolved daily
+(not weekly) by `lib/followup.js` / `bin/followup-runner.js`, so a
+follow-up lands promptly - the same day someone replies - rather than
+waiting for the Monday sit-rep. Follow-ups are sent as a threaded reply on
+the original nudge, and each entry only ever gets one (`followupSentAt`
+guards against re-sending if the runner runs again with stale input).
 
 ## How this is built, and why
 
@@ -87,16 +117,18 @@ state/weekly-history.json            last 5 weeks' scheduled/missed/miss-rate (f
 lib/filters.js                       real-miss filter, interviewer grouping, name/department normalization
 lib/templates.js                     DM message templates, date/time/timezone formatting
 lib/aggregate.js                     reply parsing, miss-rate math, by-team rows, repeat-offender detection
+lib/followup.js                      resolves fresh replies into reason codes + queues tailored follow-up text
 lib/report-render.js                 renders the weekly sit-rep as a markdown message
 lib/log-store.js                     read/write/upsert state/sit-rep-log.json
 lib/schedule.js                      timezone-correct business-day/week window math
 lib/outreach.js                      groups + renders the Friday outreach-list report
 bin/window.js                        prints query window bounds (previous business day / today-so-far / week-so-far)
 bin/daily-runner.js                  conversations + resolved Slack IDs -> rendered DMs + log-entry skeletons
+bin/followup-runner.js               unresolved log entries + fresh replies -> resolved reasons + queued follow-ups
 bin/append-log.js                    appends/upserts entries into state/sit-rep-log.json
 bin/outreach-runner.js               this week's log entries -> the Friday outreach-list message
 bin/weekly-runner.js                 week's log + fresh Metaview counts + history -> report message + updated state
-prompts/metaview-daily-nudge.md      claude -p prompt for the daily job
+prompts/metaview-daily-nudge.md      claude -p prompt for the daily job (nudges + reply/follow-up check)
 prompts/metaview-friday-outreach.md  claude -p prompt for the Friday outreach-list job
 prompts/metaview-weekly-sitrep.md    claude -p prompt for the weekly job
 test/run-tests.js                    assertion tests for everything in lib/
@@ -137,7 +169,11 @@ instead of an edited section.
 6. `config.json`'s `testDmUserId` defaults to the currently-authenticated
    Slack user (used for the "send yourself a test DM" step below). Change it
    if that's not you.
-7. `npm test` — confirm all `lib/` tests pass before trusting live output.
+7. `config.json`'s `reasonFollowups` holds the tailored follow-up text sent
+   per reply reason (see "Reason-triggered follow-ups" above). Update the
+   wording to match your team's voice, or drop a code's key entirely if you
+   don't want an automated follow-up for that reason.
+8. `npm test` — confirm all `lib/` tests pass before trusting live output.
 
 ## Running manually
 
@@ -172,6 +208,13 @@ ad hoc checks; the scheduled run never sets it.
       confirm they're real misses, not noise (recurring syncs, etc.).
 - [ ] Run once with `DRY_RUN=false TEST_SELF=true` to send one real DM to
       yourself and check tone/formatting render correctly in Slack.
+- [ ] Reply to that test DM with each of `a`, `b`, and `c` in turn (in
+      separate test sends, since a real entry only follows up once) and
+      confirm the right `reasonFollowups` text comes back as a threaded
+      reply on a subsequent `DRY_RUN=false` run — note that `TEST_SELF`
+      sends are never logged (see step 8 of the daily prompt), so use a
+      real (non-`TEST_SELF`) send to your own account, or a throwaway entry
+      appended directly to `state/sit-rep-log.json`, to test this end-to-end.
 - [ ] Backfill a week of dry-run data into `state/sit-rep-log.json` (or let
       a few real days accumulate), then run the Friday outreach prompt and
       the weekly prompt once manually and review both before scheduling.

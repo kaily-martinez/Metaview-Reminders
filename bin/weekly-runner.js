@@ -5,17 +5,18 @@
  * Weekly sit-rep CLI runner.
  *
  * Bridges: (a) this week's log entries (misses already sent via the daily
- * nudge, with raw Slack reply text attached by the calling prompt after it
- * read each thread), (b) a fresh Metaview query of this week's *recorded*
- * real candidate interviews, (c) trailing-4-week log entries for the
+ * nudge - reason/replyRaw are resolved daily now, as replies come in, not
+ * here; rawReplyText is only read if a caller still attaches one, for
+ * back-compat), (b) a fresh Metaview query of this week's *recorded* real
+ * candidate interviews, (c) trailing-4-week log entries for the
  * repeat-pattern section, and (d) prior weeks' summaries - into a rendered
  * report message plus updated state to persist.
  *
- * Does no network I/O itself. The calling prompt: reads Slack threads,
- * queries Metaview, feeds everything in here, then writes updatedLogEntries
- * back via bin/append-log.js, writes updatedHistory to
- * state/weekly-history.json, and posts reportSections.full as a fresh
- * message to the sit-rep channel (not a Canvas - a new message each week).
+ * Does no network I/O itself. The calling prompt: queries Metaview, feeds
+ * everything in here, then writes updatedLogEntries back via
+ * bin/append-log.js, writes updatedHistory to state/weekly-history.json,
+ * and posts reportSections.full as a fresh message to the sit-rep channel
+ * (not a Canvas - a new message each week).
  *
  * Usage: node bin/weekly-runner.js < input.json > output.json
  *

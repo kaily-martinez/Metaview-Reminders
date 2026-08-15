@@ -13,9 +13,9 @@ your working directory.
 ## 0. Load config
 
 Read `config.json`. You'll use `metaviewFields`, `departmentFieldId`,
-`interviewConversationTypes`, `resourceUrl`, and `testDmUserId` below. If
-`sitrepChannelId` is empty, that's fine — it's not used by this script (only
-the weekly one).
+`interviewConversationTypes`, `resourceUrl`, `testDmUserId`, and
+`reasonFollowups` below. If `sitrepChannelId` is empty, that's fine — it's
+not used by this script (only the weekly one).
 
 ## 1. Determine run mode
 
@@ -33,7 +33,7 @@ Run `echo "DRY_RUN=$DRY_RUN TEST_SELF=$TEST_SELF RUN_MODE=$RUN_MODE"` via Bash.
   false — a log entry under the real interviewer's name pointing at your own
   DM thread would corrupt their real miss count, and the weekly job would
   later misread whatever you reply with in your own thread as *their*
-  answer. Skip step 7 entirely in this mode.
+  answer. Skip step 8 entirely in this mode.
 - `RUN_MODE` — unset/anything else (default, used for the normal 9am
   scheduled run) checks the previous business day. `RUN_MODE=today` is a
   manual-only override for ad hoc same-day dry runs (e.g. spot-checking
@@ -56,10 +56,79 @@ node bin/window.js today-so-far --timezone=<timezone from config.json>
 ```
 
 Parse the printed `{ startISO, endISO, dateLabel }` — these are the window
-bounds for step 3, and `dateLabel` (e.g. "2026-08-14") is the day you're
-reporting on for step 8's summary.
+bounds for step 4, and `dateLabel` (e.g. "2026-08-14") is the day you're
+reporting on for step 9's summary.
 
-## 3. Query Metaview for the unrecorded bucket
+## 3. Check for replies to prior nudges and send tailored follow-ups
+
+This step is about *previously*-sent nudges, not today's — it resolves any
+reply that's come in since the last run and, when the reply maps to a known
+reason, sends a short tailored follow-up as a thread reply. It runs every
+day (not just weekly) so a follow-up lands promptly instead of up to a week
+later, and it reads `state/sit-rep-log.json` directly rather than anything
+computed in step 2.
+
+From the full log, find entries where `messageTs` is set, `reason` is null,
+and `followupSentAt` is not set — these are `unresolvedEntries` (real nudges
+that went out whose reply hasn't been resolved yet; entries never make it
+into the log at all under `DRY_RUN`/`TEST_SELF`, so this naturally excludes
+those runs' output).
+
+For each entry in `unresolvedEntries`, look for a reply from the interviewer
+that isn't from the bot itself, checking **both** of these (a single reply
+can land as a plain DM message or as a thread reply, and either one needs to
+count):
+
+- `slack_read_thread` with `channel_id: entry.channelId`,
+  `message_ts: entry.messageTs` — catches a threaded reply.
+- `slack_read_channel` with `channel_id: entry.channelId`,
+  `oldest: entry.messageTs` — catches a plain reply typed straight into the
+  DM, which `slack_read_thread` alone would miss.
+
+Take the earliest non-bot message found across either call as
+`rawReplyText` for that entry (`null` if neither call turns one up). Attach
+`rawReplyText` onto each entry — don't parse it yourself, the runner below
+does that against the a/b/c/d template.
+
+Write a JSON file (e.g. `/tmp/followup-input.json`):
+
+```json
+{
+  "entries": [ ...unresolvedEntries, each with rawReplyText attached... ],
+  "reasonFollowups": { ...reasonFollowups from config.json... },
+  "now": "<current ISO timestamp>"
+}
+```
+
+Then run:
+
+```
+node bin/followup-runner.js < /tmp/followup-input.json > /tmp/followup-output.json
+```
+
+Read `/tmp/followup-output.json`. It contains `updatedEntries` (each entry
+with `reason`/`replyRaw` resolved wherever a reply came in, and
+`followupSentAt` set on any entry that got a follow-up queued — an entry
+whose reason has no configured follow-up text, e.g. "d) something else",
+still gets `reason` resolved but nothing queued, since that needs a human's
+judgment) and `followups` (the messages to actually send: `channelId`,
+`messageTs` to reply into, and `text`).
+
+- If `DRY_RUN=true`: print each queued follow-up (who it's for, the thread
+  it would reply into, and `text`). Do not call Slack and do not persist
+  `updatedEntries` — move on to step 4.
+- Otherwise: for each entry in `followups`, call `slack_send_message` with
+  `channel_id` = `channelId`, `message` = `text`, and `thread_ts` =
+  `messageTs` (a threaded reply on the original nudge, not a new top-level
+  message). Then write `/tmp/followup-log-entries.json` as
+  `{ "entries": <updatedEntries> }` and run
+  `node bin/append-log.js state/sit-rep-log.json < /tmp/followup-log-entries.json`
+  to persist the resolved reasons back into the log — do this for every
+  entry in `updatedEntries`, not just the ones with a follow-up queued, so a
+  resolved-but-unqueued reason (like "d") also stops showing up in
+  tomorrow's `unresolvedEntries`.
+
+## 4. Query Metaview for the unrecorded bucket
 
 Call `search_conversations` with:
 
@@ -112,12 +181,12 @@ Save the raw `conversations` array from the response.
 
 **Important**: `default:conversation_type` and `default:candidate_application`
 must stay in the `fields` list above whenever `allowedConversationTypeIds`
-is passed to the runner in step 5 — if the runner can't see a
+is passed to the runner in step 6 — if the runner can't see a
 conversation's type, it fails safe and drops that conversation rather than
 guessing, so a missing field here silently zeroes out the whole run instead
 of loudly erring.
 
-## 4. Resolve Slack IDs for interviewers
+## 5. Resolve Slack IDs for interviewers
 
 Collect every unique interviewer email from the raw conversations (from each
 `default:interviewer` entry). For any interviewer object that doesn't already
@@ -127,13 +196,13 @@ the resolved results. Skip (don't error on) anyone you can't find — they'll
 show up in the runner's `unresolved` list and you'll report them at the end
 instead of silently dropping them.
 
-## 5. Run the daily runner
+## 6. Run the daily runner
 
 Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
 
 ```json
 {
-  "conversations": [ ...raw conversations from step 3... ],
+  "conversations": [ ...raw conversations from step 4... ],
   "fields": {
     "interviewer": "default:interviewer",
     "candidate": "default:candidate",
@@ -144,7 +213,7 @@ Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
     "candidateApplication": "default:candidate_application"
   },
   "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
-  "slackIdMap": { ...from step 4... },
+  "slackIdMap": { ...from step 5... },
   "now": "<current ISO timestamp>",
   "timezone": "<timezone from config.json>",
   "resourceUrl": "<resourceUrl from config.json>"
@@ -162,7 +231,7 @@ interviewer, already grouped and template-rendered — single-miss or
 multi-miss template chosen automatically), and `unresolved` (interviewers
 whose Slack ID couldn't be resolved).
 
-## 6. Send (or print) the messages
+## 7. Send (or print) the messages
 
 For each entry in `messages`:
 
@@ -179,9 +248,9 @@ For each entry in `messages`:
   into one DM), set `messageTs` to the ts you just got back and `sentAt` to
   the current ISO timestamp. Leave `channelId` as the entry's real
   `interviewerSlackId` regardless of where you actually sent it in
-  `TEST_SELF` mode — see step 7.
+  `TEST_SELF` mode — see step 8.
 
-## 7. Persist the log (skip entirely if `DRY_RUN=true` OR `TEST_SELF=true`)
+## 8. Persist the log (skip entirely if `DRY_RUN=true` OR `TEST_SELF=true`)
 
 A `TEST_SELF` send goes to your own DM, not the interviewer's — logging it
 under their name would point the weekly reply-check at the wrong thread and
@@ -196,11 +265,13 @@ every entry (across all sent messages) into one array and write it to e.g.
 node bin/append-log.js state/sit-rep-log.json < /tmp/daily-log-entries.json
 ```
 
-## 8. Report a summary
+## 9. Report a summary
 
 Print a short summary: which day this run covered (`dateLabel` from step 2),
 how many raw conversations came back, how many survived the
 real-candidate-interview filter, how many DMs were sent (or would be sent,
-in dry-run), and list anyone in `unresolved` by name/email so a human can
-add their Slack mapping. Do not print full message text again if you
-already printed it in step 6.
+in dry-run), how many prior-nudge replies were resolved and how many
+tailored follow-ups were sent (or would be sent, in dry-run) from step 3,
+and list anyone in `unresolved` by name/email so a human can add their
+Slack mapping. Do not print full message text again if you already printed
+it in step 7.
