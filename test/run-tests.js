@@ -481,7 +481,25 @@ test('resolveFollowups queues a follow-up and resolves reason/replyRaw for a cle
     messageTs: '100.1',
     reason: 'b',
     text: REASON_FOLLOWUPS.b,
+    replyIsThreaded: true,
   });
+});
+
+test('resolveFollowups mirrors a plain (non-threaded) reply with a plain follow-up', () => {
+  const entries = [
+    { id: '1b', interviewerSlackId: 'U1', channelId: 'U1', messageTs: '100.1', reason: null, replyRaw: null, rawReplyText: 'a) forgot', replyIsThreaded: false },
+  ];
+  const { updatedEntries, followups } = resolveFollowups(entries, REASON_FOLLOWUPS);
+  assert.ok(!('replyIsThreaded' in updatedEntries[0]));
+  assert.strictEqual(followups[0].replyIsThreaded, false);
+});
+
+test('resolveFollowups defaults to a threaded follow-up when replyIsThreaded is unset', () => {
+  const entries = [
+    { id: '1c', interviewerSlackId: 'U1', channelId: 'U1', messageTs: '100.1', reason: null, replyRaw: null, rawReplyText: 'a) forgot' },
+  ];
+  const { followups } = resolveFollowups(entries, REASON_FOLLOWUPS);
+  assert.strictEqual(followups[0].replyIsThreaded, true);
 });
 
 test('resolveFollowups resolves a reason with no configured text but queues nothing', () => {

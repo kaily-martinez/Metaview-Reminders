@@ -12,10 +12,17 @@
  *
  * Input JSON shape:
  * {
- *   "entries": [ <unresolved log entries, each with rawReplyText attached> ],
+ *   "entries": [ <unresolved log entries, each with rawReplyText attached,
+ *                 and replyIsThreaded: true/false depending on whether the
+ *                 reply came from slack_read_thread or slack_read_channel> ],
  *   "reasonFollowups": { "a": "...", "b": "...", "c": "..." },
  *   "now": "2026-08-14T16:00:00.000Z"
  * }
+ *
+ * Each item in the output's `followups` carries the same `replyIsThreaded`
+ * flag, so the calling prompt sends the follow-up the same way the person
+ * replied - a threaded reply back for a threaded reply in, a plain message
+ * for a plain reply in.
  */
 
 const { resolveFollowups } = require('../lib/followup');

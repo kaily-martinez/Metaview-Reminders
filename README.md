@@ -71,9 +71,11 @@ This is configured in `config.json`'s `reasonFollowups` (one string per
 reason code; omit a code for no automated follow-up) and resolved daily
 (not weekly) by `lib/followup.js` / `bin/followup-runner.js`, so a
 follow-up lands promptly - the same day someone replies - rather than
-waiting for the Monday sit-rep. Follow-ups are sent as a threaded reply on
-the original nudge, and each entry only ever gets one (`followupSentAt`
-guards against re-sending if the runner runs again with stale input).
+waiting for the Monday sit-rep. A follow-up is sent the same way the person
+replied: a threaded reply back for a threaded reply in, a plain message for
+a plain reply in (`replyIsThreaded` on each queued follow-up, defaulting to
+threaded if unset). Each entry only ever gets one (`followupSentAt` guards
+against re-sending if the runner runs again with stale input).
 
 ## How this is built, and why
 

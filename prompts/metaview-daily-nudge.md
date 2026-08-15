@@ -63,10 +63,11 @@ reporting on for step 9's summary.
 
 This step is about *previously*-sent nudges, not today's — it resolves any
 reply that's come in since the last run and, when the reply maps to a known
-reason, sends a short tailored follow-up as a thread reply. It runs every
-day (not just weekly) so a follow-up lands promptly instead of up to a week
-later, and it reads `state/sit-rep-log.json` directly rather than anything
-computed in step 2.
+reason, sends a short tailored follow-up back the same way the person
+replied (threaded reply for a threaded reply, plain message for a plain
+one). It runs every day (not just weekly) so a follow-up lands promptly
+instead of up to a week later, and it reads `state/sit-rep-log.json`
+directly rather than anything computed in step 2.
 
 From the full log, find entries where `messageTs` is set, `reason` is null,
 and `followupSentAt` is not set — these are `unresolvedEntries` (real nudges
@@ -86,15 +87,18 @@ count):
   DM, which `slack_read_thread` alone would miss.
 
 Take the earliest non-bot message found across either call as
-`rawReplyText` for that entry (`null` if neither call turns one up). Attach
-`rawReplyText` onto each entry — don't parse it yourself, the runner below
-does that against the a/b/c/d template.
+`rawReplyText` for that entry (`null` if neither call turns one up), and
+note which call it came from as `replyIsThreaded` (`true` if it came from
+`slack_read_thread`, `false` if it came from `slack_read_channel`; leave
+unset if neither call found anything). Attach both `rawReplyText` and
+`replyIsThreaded` onto each entry — don't parse the reply text yourself,
+the runner below does that against the a/b/c/d template.
 
 Write a JSON file (e.g. `/tmp/followup-input.json`):
 
 ```json
 {
-  "entries": [ ...unresolvedEntries, each with rawReplyText attached... ],
+  "entries": [ ...unresolvedEntries, each with rawReplyText and replyIsThreaded attached... ],
   "reasonFollowups": { ...reasonFollowups from config.json... },
   "now": "<current ISO timestamp>"
 }
@@ -112,15 +116,17 @@ with `reason`/`replyRaw` resolved wherever a reply came in, and
 whose reason has no configured follow-up text, e.g. "d) something else",
 still gets `reason` resolved but nothing queued, since that needs a human's
 judgment) and `followups` (the messages to actually send: `channelId`,
-`messageTs` to reply into, and `text`).
+`messageTs`, `replyIsThreaded`, and `text`).
 
-- If `DRY_RUN=true`: print each queued follow-up (who it's for, the thread
-  it would reply into, and `text`). Do not call Slack and do not persist
+- If `DRY_RUN=true`: print each queued follow-up (who it's for, whether it'd
+  go threaded or plain, and `text`). Do not call Slack and do not persist
   `updatedEntries` — move on to step 4.
 - Otherwise: for each entry in `followups`, call `slack_send_message` with
-  `channel_id` = `channelId`, `message` = `text`, and `thread_ts` =
-  `messageTs` (a threaded reply on the original nudge, not a new top-level
-  message). Then write `/tmp/followup-log-entries.json` as
+  `channel_id` = `channelId` and `message` = `text` — additionally passing
+  `thread_ts` = `messageTs` only if `replyIsThreaded` is `true` (mirroring
+  how the person replied: a threaded reply back for a threaded reply in, a
+  plain message for a plain reply in, so it doesn't read as ignoring how
+  they chose to respond). Then write `/tmp/followup-log-entries.json` as
   `{ "entries": <updatedEntries> }` and run
   `node bin/append-log.js state/sit-rep-log.json < /tmp/followup-log-entries.json`
   to persist the resolved reasons back into the log — do this for every
