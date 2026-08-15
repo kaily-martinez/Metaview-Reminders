@@ -187,3 +187,14 @@ Replace `/path/to/this/repo` with the real path once you know where this
 will run, and make sure that machine's Claude Code has the Metaview/Slack
 MCP servers configured (cron runs headless — there's no interactive
 approval, so tool calls need to be pre-approved for that environment).
+
+## Backlog / parked ideas
+
+- **CHRO-level summary (Richard Cho)**: the current weekly post is built for
+  Josh Gill (Head of RecOps/Talent Engineering/People Systems) — the actual
+  operational owner, who wants the full detail (by-team, reason codes,
+  repeat pattern) to act on. A CHRO wants something much lighter and
+  separate: one line + trend direction, no names, no tables, low cadence
+  (e.g. monthly) — not a seat in the operational channel. Parked until
+  Kaily decides whether that should be its own scheduled post/DM or folded
+  into something Richard already reads. Not built yet.
