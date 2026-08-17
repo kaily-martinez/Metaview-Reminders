@@ -19,7 +19,7 @@ Three jobs:
    week, not an editable document — manual commentary goes as a thread
    reply on that week's post.
 
-**What counts as a "real miss":** a conversation must satisfy all three,
+**What counts as a "real miss":** a conversation must satisfy all four,
 each catching noise the others miss:
 1. Non-empty candidate list — filtered in code, since that field can't be
    queried server-side for "is not empty."
@@ -36,6 +36,17 @@ each catching noise the others miss:
    real candidates, real recruiters, but never scheduled through the
    loop-scheduling flow, so they could be one-offs rather than tracked
    interview stages.
+4. Not already recorded — its `id` must not appear in a fresh
+   `only_show_recorded_conversations: true` query for the same window,
+   filtered in code via `filterRealMisses`'s `excludeConversationIds`. This
+   one is load-bearing, not just noise-reduction: live testing found that
+   Metaview's `only_show_recorded_conversations: false` does **not** mean
+   "only unrecorded" — it returns recorded and unrecorded conversations
+   alike (confirmed: a conversation with a real recording came back
+   identically under both `true` and `false`). Without this exclusion, a
+   completely normal, correctly-recorded interview would get nudged as if
+   it were missed. See `prompts/metaview-daily-nudge.md` step 4 for the
+   two-query fetch this requires.
 
 **Help resource**: both nudge templates append a short, optional pointer to
 the team's "Metaview: Admit & Submit" Notion page (`config.json`'s

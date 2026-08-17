@@ -14,7 +14,18 @@
  *
  * Input JSON shape:
  * {
- *   "conversations": [ <raw Metaview search_conversations rows> ],
+ *   "conversations": [ <raw Metaview search_conversations rows, fetched with
+ *                       only_show_recorded_conversations: false - despite the
+ *                       name, this returns BOTH recorded and unrecorded
+ *                       conversations for the window, not just unrecorded
+ *                       ones (confirmed via live testing)> ],
+ *   "recordedConversations": [ <raw rows for the SAME window/filters, fetched
+ *                               with only_show_recorded_conversations: true -
+ *                               this one really is recorded-only. Their ids
+ *                               are excluded from `conversations` above, since
+ *                               that's the only way to get the true unrecorded
+ *                               set - see lib/filters.js's filterRealMisses
+ *                               excludeConversationIds> ],
  *   "fields": { "interviewer": "default:interviewer", "candidate": "default:candidate",
  *               "eventTitle": "default:calendar_event_title", "startTime": "default:start_time",
  *               "department": "OSPT:<field-id>",      // optional
@@ -68,8 +79,10 @@ async function main() {
   const timeZone = input.timezone || 'America/Los_Angeles';
   const allowedConversationTypeIds = input.allowedConversationTypeIds || null;
   const resourceUrl = input.resourceUrl || null;
+  const recordedConversations = input.recordedConversations || [];
+  const excludeConversationIds = new Set(recordedConversations.map((c) => c.id));
 
-  const misses = filterRealMisses(conversations, fields, { now, allowedConversationTypeIds });
+  const misses = filterRealMisses(conversations, fields, { now, allowedConversationTypeIds, excludeConversationIds });
   const groups = groupByInterviewer(misses, fields);
 
   const messages = [];
@@ -117,6 +130,7 @@ async function main() {
   const output = {
     stats: {
       totalFetched: conversations.length,
+      excludedAsRecorded: excludeConversationIds.size,
       afterNoiseFilter: misses.length,
       groupCount: groups.length,
       messageCount: messages.length,

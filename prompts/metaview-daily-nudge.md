@@ -134,12 +134,21 @@ judgment) and `followups` (the messages to actually send: `channelId`,
   resolved-but-unqueued reason (like "d") also stops showing up in
   tomorrow's `unresolvedEntries`.
 
-## 4. Query Metaview for the unrecorded bucket
+## 4. Query Metaview for the day's conversations, both buckets
 
-Call `search_conversations` with:
+**Important — a real, confirmed API quirk**: `only_show_recorded_conversations`
+does not do what its name implies when set to `false`. Live testing showed
+`false` returns *every* conversation for the window regardless of whether it
+was recorded — it disables the recorded-only restriction rather than
+inverting it to "unrecorded only." `true` does correctly restrict to
+recorded conversations. So getting the true unrecorded set requires two
+queries and a diff, not one query with `false`.
+
+**4a. Query with `only_show_recorded_conversations: true`** (the genuinely
+recorded set for the window):
 
 ```
-only_show_recorded_conversations: false
+only_show_recorded_conversations: true
 filters: [
   {
     "field_id": "default:start_time",
@@ -164,26 +173,36 @@ fields: [
 limit: 200
 ```
 
-If `total_count` suggests more than 200 rows for the window (unlikely for a
-single day, but check), paginate with `offset` until you have them all.
+Paginate with `offset` in increments of 50 if `total_count` exceeds what
+came back (the API caps real page size at 50 regardless of `limit`). Save
+the combined `conversations` array as `recordedConversations` — and dedupe
+by `id` across pages, since a conversation can land on two consecutive
+pages at a page boundary.
 
-This bucket mixes real missed candidate interviews with recurring internal
-syncs that were never supposed to have a bot in them, plus internal
+**4b. Query with `only_show_recorded_conversations: false`**, same filters,
+fields, and window as 4a (paginating the same way). This returns *all*
+conversations for the window (recorded and unrecorded both — see the note
+above), which mixes real missed candidate interviews with recurring
+internal syncs that were never supposed to have a bot in them, internal
 conversations (debriefs, vendor/leadership syncs) that can carry a
-candidate participant despite not being an interview, plus ad hoc bookings
-("30 min with James (...)", "Tamra <> Kiela : CS @ Luma Chat") that involve
-a real candidate but were never scheduled through the ATS-linked interview
-loop. Three independent signals combine to catch all of that: the
-`conversation_type` filter above scopes the query to real interview types
-(Job Interview / Coding Interview / System Design Interview - see
-`interviewConversationTypes` in config.json), and the Node runner below
-additionally requires both a non-empty `default:candidate` list AND a
-non-empty `default:candidate_application` (the linked ATS application
-record) in code, since neither field can be filtered server-side. Don't try
-to replicate any of these filters yourself by reasoning over the JSON — let
-the query and the runner do it deterministically.
+candidate participant despite not being an interview, ad hoc bookings ("30
+min with James (...)", "Tamra <> Kiela : CS @ Luma Chat") that involve a
+real candidate but were never scheduled through the ATS-linked interview
+loop, and now also every conversation that *was* correctly recorded (since
+`false` doesn't exclude those). Save this combined, deduped array as
+`conversations`.
 
-Save the raw `conversations` array from the response.
+Four independent signals combine to narrow this down to real misses, three
+of them handled by the Node runner below (don't try to replicate any of
+this yourself by reasoning over the JSON — let the query and the runner do
+it deterministically): the `conversation_type` filter above scopes both
+queries to real interview types (Job Interview / Coding Interview / System
+Design Interview - see `interviewConversationTypes` in config.json); the
+runner requires a non-empty `default:candidate` list; the runner requires a
+non-empty `default:candidate_application` (the linked ATS application
+record); and the runner excludes any conversation in `conversations` whose
+`id` also appears in `recordedConversations` (from 4a) - this last one is
+what actually makes this the unrecorded set, given the API quirk above.
 
 **Important**: `default:conversation_type` and `default:candidate_application`
 must stay in the `fields` list above whenever `allowedConversationTypeIds`
@@ -208,7 +227,8 @@ Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
 
 ```json
 {
-  "conversations": [ ...raw conversations from step 4... ],
+  "conversations": [ ...the "conversations" array (all, from 4b) from step 4... ],
+  "recordedConversations": [ ...the "recordedConversations" array (from 4a) from step 4... ],
   "fields": {
     "interviewer": "default:interviewer",
     "candidate": "default:candidate",
@@ -278,6 +298,7 @@ how many raw conversations came back, how many survived the
 real-candidate-interview filter, how many DMs were sent (or would be sent,
 in dry-run), how many prior-nudge replies were resolved and how many
 tailored follow-ups were sent (or would be sent, in dry-run) from step 3,
+how many conversations were excluded as already-recorded (`stats.excludedAsRecorded`),
 and list anyone in `unresolved` by name/email so a human can add their
 Slack mapping. Do not print full message text again if you already printed
 it in step 7.

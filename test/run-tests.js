@@ -151,6 +151,41 @@ test('filterRealMisses ignores candidateApplication when not configured (back-co
   assert.strictEqual(result.length, 1);
 });
 
+test('filterRealMisses drops a conversation whose id is in excludeConversationIds (recorded despite only_show_recorded_conversations:false)', () => {
+  // Live testing found only_show_recorded_conversations:false does not mean
+  // "unrecorded only" - it returns recorded and unrecorded conversations
+  // alike, so callers must separately fetch the recorded set for the same
+  // window and exclude those ids here, or a normally-recorded interview
+  // would incorrectly count as a miss.
+  const rows = [
+    row(1, {
+      [FIELDS.candidate]: [participant('Ryan Pak')],
+      [FIELDS.candidateApplication]: [{ value: 'app-1', label: 'Ryan Pak - App' }],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
+    row(2, {
+      [FIELDS.candidate]: [participant('Alex Chen')],
+      [FIELDS.candidateApplication]: [{ value: 'app-2', label: 'Alex Chen - App' }],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
+  ];
+  const result = filterRealMisses(rows, FIELDS, { now: NOW, excludeConversationIds: new Set([1]) });
+  assert.strictEqual(result.length, 1);
+  assert.strictEqual(result[0].id, 2);
+});
+
+test('filterRealMisses keeps everything when excludeConversationIds is not provided (back-compat)', () => {
+  const rows = [
+    row(1, {
+      [FIELDS.candidate]: [participant('Ryan Pak')],
+      [FIELDS.candidateApplication]: [{ value: 'app-1', label: 'Ryan Pak - App' }],
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
+  ];
+  const result = filterRealMisses(rows, FIELDS, { now: NOW });
+  assert.strictEqual(result.length, 1);
+});
+
 test('filterRealMisses skips events that have not happened yet', () => {
   const rows = [row(1, { [FIELDS.candidate]: [participant('A')], [FIELDS.startTime]: scalar('2026-08-20 10:00:00-07:00') })];
   const result = filterRealMisses(rows, FIELDS, { now: NOW });
