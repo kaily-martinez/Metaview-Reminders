@@ -17,6 +17,7 @@
     { "id": "baba8c1c-fb62-11f0-b371-baf72c0cfc4f", "label": "System Design Interview" }
   ],
   "timezone": "America/Los_Angeles",
+  "excludedEventTitlePatterns": ["meet & greet", "meet and greet"],
   "resourceUrl": "https://app.notion.com/p/lumaai/Metaview-Admit-Submit-3bc8d67ac52b81cd9c68e1b97d4ebdfb",
   "reasonFollowups": {
     "a": "Totally get it, happens to the best of us! Quick context on why it matters: Metaview is what lets us write specific, accurate scorecards without relying on memory, and it feeds into using interview data to help improve our offer-acceptance rate — every missed recording is a missed data point there. Simplest fix going forward: admit it every time it asks to join, no exceptions needed on your end 🙏",

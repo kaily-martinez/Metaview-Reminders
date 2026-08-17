@@ -10,10 +10,10 @@ parent's parent directory) as your working directory.
 ## 0. Load config and state
 
 Read `config.json` (`sitrepChannelId`, `departmentFieldId`, `metaviewFields`,
-`interviewConversationTypes`, `timezone`) and `state/sit-rep-log.json` (the
-full nudge log) and `state/weekly-history.json` (an array of prior weeks'
-summaries, oldest first: `{ weekStartISO, weekEndISO, scheduled, missed,
-missRate }`).
+`interviewConversationTypes`, `excludedEventTitlePatterns`, `timezone`) and
+`state/sit-rep-log.json` (the full nudge log) and
+`state/weekly-history.json` (an array of prior weeks' summaries, oldest
+first: `{ weekStartISO, weekEndISO, scheduled, missed, missRate }`).
 
 If `config.json`'s `sitrepChannelId` is empty, stop and report that the
 Slack channel for the sit-rep hasn't been configured yet — do not guess a
@@ -68,6 +68,7 @@ filters: [
 ]
 fields: [
   "default:candidate",
+  "default:calendar_event_title",
   "default:conversation_type",
   "default:candidate_application",
   "<departmentFieldId from config>"
@@ -77,17 +78,19 @@ limit: 200
 
 Paginate with `offset` if `total_count` exceeds 200. Save the raw
 `conversations` array as `recordedConversations` — this, filtered for a
-non-empty candidate list, an allowed conversation_type, and a linked ATS
-application (all done by the runner, not by you), is this week's recorded
-real candidate interviews. Using the same filters here as in the daily job
-keeps "scheduled" and "missed" counting the same thing.
+non-empty candidate list, an allowed conversation_type, a linked ATS
+application, and (if configured) an excluded-title check (all done by the
+runner, not by you), is this week's recorded real candidate interviews.
+Using the same filters here as in the daily job keeps "scheduled" and
+"missed" counting the same thing.
 
-**Important**: `default:conversation_type` and `default:candidate_application`
-must stay in the `fields` list above whenever `allowedConversationTypeIds`
-is passed to the runner in step 4 — if the runner can't see a
-conversation's type, it fails safe and drops that conversation rather than
-guessing, so a missing field here silently zeroes out `recordedConversations`
-instead of loudly erring.
+**Important**: `default:conversation_type`, `default:candidate_application`,
+and `default:calendar_event_title` must stay in the `fields` list above
+whenever `allowedConversationTypeIds` / `excludedEventTitlePatterns` are
+passed to the runner in step 4 — if the runner can't see a conversation's
+type, it fails safe and drops that conversation rather than guessing, so a
+missing field here silently zeroes out `recordedConversations` instead of
+loudly erring.
 
 ## 4. Run the weekly runner
 
@@ -103,11 +106,13 @@ Write a JSON file (e.g. `/tmp/weekly-input.json`):
   "recordedConversations": [ ...from step 3... ],
   "fields": {
     "candidate": "default:candidate",
+    "eventTitle": "default:calendar_event_title",
     "department": "<departmentFieldId from config>",
     "conversationType": "default:conversation_type",
     "candidateApplication": "default:candidate_application"
   },
   "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
+  "excludedEventTitlePatterns": [ ...from config.json's excludedEventTitlePatterns... ],
   "history": [ ...state/weekly-history.json content... ],
   "timezone": "<timezone from config.json>"
 }

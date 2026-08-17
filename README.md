@@ -19,7 +19,7 @@ Three jobs:
    week, not an editable document — manual commentary goes as a thread
    reply on that week's post.
 
-**What counts as a "real miss":** a conversation must satisfy all four,
+**What counts as a "real miss":** a conversation must satisfy all five,
 each catching noise the others miss:
 1. Non-empty candidate list — filtered in code, since that field can't be
    queried server-side for "is not empty."
@@ -47,6 +47,15 @@ each catching noise the others miss:
    completely normal, correctly-recorded interview would get nudged as if
    it were missed. See `prompts/metaview-daily-nudge.md` step 4 for the
    two-query fetch this requires.
+5. Its event title doesn't match one of `config.json`'s (optional)
+   `excludedEventTitlePatterns` — a case-insensitive substring check,
+   filtered in code. Real data showed one interviewer's whole miss count
+   was almost entirely "Meet & Greet" / "Meet and Greet" events, which
+   carry the same conversation_type and a real linked application as
+   genuine interviews — title is the only signal that distinguishes them.
+   This is a policy call, not a fixed fact, so it's configured per-workspace
+   rather than hardcoded; add more patterns here as other non-interview
+   title conventions turn up (e.g. "ADMIN"/"TEST" test entries).
 
 **Help resource**: both nudge templates append a short, optional pointer to
 the team's "Metaview: Admit & Submit" Notion page (`config.json`'s
@@ -179,17 +188,22 @@ instead of an edited section.
    Debrief, Client Call, Role Intake, and Other are not. If new conversation
    types get introduced later, re-run `group_conversations` grouped by
    `default:conversation_type` to check the set is still complete.
-5. `config.json`'s `resourceUrl` points at the team's "Metaview: Admit &
+5. `config.json`'s `excludedEventTitlePatterns` holds case-insensitive event
+   title substrings that never count as a miss (currently `"meet & greet"`
+   and `"meet and greet"`, discovered from real data). Add more as other
+   non-interview title conventions turn up, or clear it if you'd rather see
+   everything.
+6. `config.json`'s `resourceUrl` points at the team's "Metaview: Admit &
    Submit" Notion page. Update or clear it if that doc moves or you'd
    rather not include the link.
-6. `config.json`'s `testDmUserId` defaults to the currently-authenticated
+7. `config.json`'s `testDmUserId` defaults to the currently-authenticated
    Slack user (used for the "send yourself a test DM" step below). Change it
    if that's not you.
-7. `config.json`'s `reasonFollowups` holds the tailored follow-up text sent
+8. `config.json`'s `reasonFollowups` holds the tailored follow-up text sent
    per reply reason (see "Reason-triggered follow-ups" above). Update the
    wording to match your team's voice, or drop a code's key entirely if you
    don't want an automated follow-up for that reason.
-8. `npm test` — confirm all `lib/` tests pass before trusting live output.
+9. `npm test` — confirm all `lib/` tests pass before trusting live output.
 
 ## Running manually
 

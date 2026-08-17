@@ -34,10 +34,12 @@
  *                                  are substituted in automatically> ],
  *   "recordedConversations": [ <raw Metaview rows, only_show_recorded_conversations: true,
  *                               same fields as the daily nudge query> ],
- *   "fields": { "candidate": "default:candidate", "department": "OSPT:<field-id>",
+ *   "fields": { "candidate": "default:candidate", "eventTitle": "default:calendar_event_title",  // optional, needed for excludedEventTitlePatterns below
+ *               "department": "OSPT:<field-id>",
  *               "conversationType": "default:conversation_type",  // optional, needed for allowedConversationTypeIds below
  *               "candidateApplication": "default:candidate_application" },  // optional - if set, excludes conversations with no linked ATS application (ad hoc/non-loop-scheduled bookings)
  *   "allowedConversationTypeIds": ["<uuid>", ...],     // optional - if set, only these conversation_type values count as real interviews
+ *   "excludedEventTitlePatterns": ["meet & greet", ...],  // optional - case-insensitive substrings; matching event titles don't count as scheduled OR missed
  *   "history": [ { "weekStartISO": "2026-08-03", "weekEndISO": "2026-08-09",
  *                   "scheduled": N, "missed": N, "missRate": N } ... ],  // ascending, oldest first
  *   "timezone": "America/Los_Angeles"   // IANA zone for the "Last updated" timestamp; defaults to America/Los_Angeles
@@ -74,11 +76,12 @@ async function main() {
   const input = JSON.parse(raw || '{}');
 
   const fields = Object.assign(
-    { candidate: 'default:candidate', department: null, conversationType: null, candidateApplication: null },
+    { candidate: 'default:candidate', eventTitle: null, department: null, conversationType: null, candidateApplication: null },
     input.fields || {}
   );
   const now = new Date();
   const allowedConversationTypeIds = input.allowedConversationTypeIds || null;
+  const excludedEventTitlePatterns = input.excludedEventTitlePatterns || null;
 
   const updatedWeekEntries = (input.weekLogEntries || []).map(resolveReply);
   const updatedById = new Map(updatedWeekEntries.map((e) => [e.id, e]));
@@ -89,6 +92,7 @@ async function main() {
     now,
     requirePast: false,
     allowedConversationTypeIds,
+    excludedEventTitlePatterns,
   });
 
   const missed = updatedWeekEntries.length;

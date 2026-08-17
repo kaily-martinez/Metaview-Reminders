@@ -186,6 +186,49 @@ test('filterRealMisses keeps everything when excludeConversationIds is not provi
   assert.strictEqual(result.length, 1);
 });
 
+test('filterRealMisses drops conversations whose event title matches an excluded pattern', () => {
+  // Real data: one interviewer's whole miss count was almost entirely
+  // "Meet & Greet" / "Meet and Greet" events, which carry the same
+  // conversation_type and a real linked application as genuine interviews -
+  // title is the only signal that distinguishes them.
+  const rows = [
+    row(1, {
+      [FIELDS.candidate]: [participant('Ryan Pak')],
+      [FIELDS.candidateApplication]: [{ value: 'app-1', label: 'Ryan Pak - App' }],
+      [FIELDS.eventTitle]: scalar('Meet & Greet'),
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
+    row(2, {
+      [FIELDS.candidate]: [participant('Ryan Pak')],
+      [FIELDS.candidateApplication]: [{ value: 'app-1', label: 'Ryan Pak - App' }],
+      [FIELDS.eventTitle]: scalar('Meet and Greet'),
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
+    row(3, {
+      [FIELDS.candidate]: [participant('Alex Chen')],
+      [FIELDS.candidateApplication]: [{ value: 'app-2', label: 'Alex Chen - App' }],
+      [FIELDS.eventTitle]: scalar('Recruiter Screen'),
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
+  ];
+  const result = filterRealMisses(rows, FIELDS, { now: NOW, excludedEventTitlePatterns: ['meet & greet', 'meet and greet'] });
+  assert.strictEqual(result.length, 1);
+  assert.strictEqual(result[0].id, 3);
+});
+
+test('filterRealMisses keeps everything when excludedEventTitlePatterns is not provided (back-compat)', () => {
+  const rows = [
+    row(1, {
+      [FIELDS.candidate]: [participant('Ryan Pak')],
+      [FIELDS.candidateApplication]: [{ value: 'app-1', label: 'Ryan Pak - App' }],
+      [FIELDS.eventTitle]: scalar('Meet & Greet'),
+      [FIELDS.startTime]: scalar('2026-08-13 10:00:00-07:00'),
+    }),
+  ];
+  const result = filterRealMisses(rows, FIELDS, { now: NOW });
+  assert.strictEqual(result.length, 1);
+});
+
 test('filterRealMisses skips events that have not happened yet', () => {
   const rows = [row(1, { [FIELDS.candidate]: [participant('A')], [FIELDS.startTime]: scalar('2026-08-20 10:00:00-07:00') })];
   const result = filterRealMisses(rows, FIELDS, { now: NOW });

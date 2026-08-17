@@ -13,9 +13,9 @@ your working directory.
 ## 0. Load config
 
 Read `config.json`. You'll use `metaviewFields`, `departmentFieldId`,
-`interviewConversationTypes`, `resourceUrl`, `testDmUserId`, and
-`reasonFollowups` below. If `sitrepChannelId` is empty, that's fine — it's
-not used by this script (only the weekly one).
+`interviewConversationTypes`, `excludedEventTitlePatterns`, `resourceUrl`,
+`testDmUserId`, and `reasonFollowups` below. If `sitrepChannelId` is empty,
+that's fine — it's not used by this script (only the weekly one).
 
 ## 1. Determine run mode
 
@@ -192,7 +192,7 @@ loop, and now also every conversation that *was* correctly recorded (since
 `false` doesn't exclude those). Save this combined, deduped array as
 `conversations`.
 
-Four independent signals combine to narrow this down to real misses, three
+Five independent signals combine to narrow this down to real misses, four
 of them handled by the Node runner below (don't try to replicate any of
 this yourself by reasoning over the JSON — let the query and the runner do
 it deterministically): the `conversation_type` filter above scopes both
@@ -200,9 +200,14 @@ queries to real interview types (Job Interview / Coding Interview / System
 Design Interview - see `interviewConversationTypes` in config.json); the
 runner requires a non-empty `default:candidate` list; the runner requires a
 non-empty `default:candidate_application` (the linked ATS application
-record); and the runner excludes any conversation in `conversations` whose
-`id` also appears in `recordedConversations` (from 4a) - this last one is
-what actually makes this the unrecorded set, given the API quirk above.
+record); the runner excludes any conversation in `conversations` whose `id`
+also appears in `recordedConversations` (from 4a) - this is what actually
+makes this the unrecorded set, given the API quirk above; and the runner
+excludes any conversation whose event title matches one of
+`excludedEventTitlePatterns` from config.json (case-insensitive substring) -
+e.g. "Meet & Greet" events carry the same conversation_type and a real
+linked application as genuine interviews, so nothing else here catches
+them, and one interviewer's whole miss count was almost entirely these.
 
 **Important**: `default:conversation_type` and `default:candidate_application`
 must stay in the `fields` list above whenever `allowedConversationTypeIds`
@@ -239,6 +244,7 @@ Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
     "candidateApplication": "default:candidate_application"
   },
   "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
+  "excludedEventTitlePatterns": [ ...from config.json's excludedEventTitlePatterns... ],
   "slackIdMap": { ...from step 5... },
   "now": "<current ISO timestamp>",
   "timezone": "<timezone from config.json>",
