@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "weekStartISO": "2026-08-10",
+    "weekEndISO": "2026-08-16",
+    "scheduled": 211,
+    "missed": 76,
+    "missRate": 36
+  }
+]
