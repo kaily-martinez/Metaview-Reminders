@@ -17,10 +17,10 @@
     { "id": "baba8c1c-fb62-11f0-b371-baf72c0cfc4f", "label": "System Design Interview" }
   ],
   "timezone": "America/Los_Angeles",
-  "resourceUrl": "https://app.notion.com/p/lumaai/Metaview-Setup-Quick-Reference-3bc8d67ac52b81cd9c68e1b97d4ebdfb",
+  "resourceUrl": "https://app.notion.com/p/lumaai/Metaview-Admit-Submit-3bc8d67ac52b81cd9c68e1b97d4ebdfb",
   "reasonFollowups": {
     "a": "Totally get it, happens to the best of us! Quick context on why it matters: Metaview is what lets us write specific, accurate scorecards without relying on memory, and it feeds into using interview data to help improve our offer-acceptance rate — every missed recording is a missed data point there. Simplest fix going forward: admit it every time it asks to join, no exceptions needed on your end 🙏",
-    "b": "Good to know — that happens sometimes, especially around rescheduled interviews (the bot occasionally doesn't request to join, or the invite link gets confused). Two things that help: 1) if it isn't showing up, add notes@metaview.ai as a guest on the meeting and it'll join within a few minutes — try to catch it early since there's a short delay; 2) if this keeps happening to you, flag it to RecOps directly instead of letting it slide — we'd rather fix the root cause than lose more recordings.",
-    "c": "Thanks for confirming! If Metaview shows as joined on your end but notes still aren't showing up on our side, that's worth flagging to RecOps directly so we can dig into what's going on — better to catch it than assume it's a one-off."
+    "b": "Good to know — that happens sometimes, especially around rescheduled interviews (the bot occasionally doesn't request to join, or the invite link gets confused). Two things that help: 1) if it isn't showing up, add notes@bot.metaview.ai as a guest on the meeting and it'll join within a few minutes — try to catch it early, since it'll leave if more than 30 minutes have passed since the scheduled start; 2) if this keeps happening to you, flag it to #hiring with the candidate name and time so we can dig into the root cause.",
+    "c": "Thanks for confirming! If Metaview shows as joined on your end but notes still aren't showing up on our side, that's worth flagging to #hiring with the candidate name and time so we can dig into what's going on — better to catch it than assume it's a one-off."
   }
 }

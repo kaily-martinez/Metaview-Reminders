@@ -38,31 +38,34 @@ each catching noise the others miss:
    interview stages.
 
 **Help resource**: both nudge templates append a short, optional pointer to
-an internal quick-reference doc on why/how to admit Metaview (`config.json`'s
+the team's "Metaview: Admit & Submit" Notion page (`config.json`'s
 `resourceUrl`) — on the theory that a lot of misses are people not knowing
 the admit prompt exists rather than actively ignoring it. It renders right
 before the closing line, e.g. "New to Metaview or forgot how the admit
-prompt works? [Quick reference](...)". Omitted entirely if `resourceUrl`
+prompt works? [Admit & Submit guide](...)". Omitted entirely if `resourceUrl`
 isn't set. Both templates also name the candidate (e.g. "Recruiter Screen
 with Alex Chen") and, in the multi-miss template, tag each time with a
 timezone abbreviation (e.g. "1:30 PM PDT") so nothing's ambiguous.
 
 **Reason-triggered follow-ups**: the a/b/c/d question in the nudge isn't
-just for tallying - each reply drives a specific next step, grounded in two
-real Slack messages from the team (Maria Mediato's admit reminder and
-Richard Cho's company-wide "why Metaview matters" post, both linked in the
-by-team/reason-code discussion during setup):
+just for tallying - each reply drives a specific next step, grounded in
+real material from the team: Maria Mediato's admit reminder and Richard
+Cho's company-wide "why Metaview matters" Slack post, and the "Metaview:
+Admit & Submit" Notion page (`config.json`'s `resourceUrl`) for the
+concrete troubleshooting steps:
 
 - **a) Forgot to admit** → a short reminder that reinforces *why* it
   matters (accurate scorecards, and the offer-acceptance work that depends
   on interview data) and restates the ask: admit it every single time,
   no exceptions.
-- **b) Tried, didn't work** → the concrete fix Hakeem Saleh gave in that
-  thread - add `notes@metaview.ai` as a guest on the meeting and it'll join
-  within a few minutes - plus a nudge to flag it to RecOps if it keeps
-  happening, echoing Richard's "don't just let it slide."
+- **b) Tried, didn't work** → the concrete fix from the Admit & Submit
+  page - add `notes@bot.metaview.ai` as a guest on the meeting and it'll
+  join within a few minutes (do this before 30 minutes pass, or Metaview
+  will have already left) - plus a nudge to flag it to `#hiring` with the
+  candidate name and time if it keeps happening, echoing Richard's "don't
+  just let it slide."
 - **c) Looked like it joined fine** → an acknowledgment plus a prompt to
-  flag it to RecOps if notes never show up despite that, so a real
+  flag it to `#hiring` if notes never show up despite that, so a real
   false-positive doesn't get silently repeated.
 - **d) Something else** → intentionally has no automated follow-up text;
   it needs a human to actually read the reply and decide what's going on.
@@ -165,9 +168,9 @@ instead of an edited section.
    Debrief, Client Call, Role Intake, and Other are not. If new conversation
    types get introduced later, re-run `group_conversations` grouped by
    `default:conversation_type` to check the set is still complete.
-5. `config.json`'s `resourceUrl` points at the team's Metaview Setup Quick
-   Reference doc. Update or clear it if that doc moves or you'd rather not
-   include the link.
+5. `config.json`'s `resourceUrl` points at the team's "Metaview: Admit &
+   Submit" Notion page. Update or clear it if that doc moves or you'd
+   rather not include the link.
 6. `config.json`'s `testDmUserId` defaults to the currently-authenticated
    Slack user (used for the "send yourself a test DM" step below). Change it
    if that's not you.

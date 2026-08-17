@@ -246,7 +246,7 @@ test('renderNudgeMessage appends a timezone abbreviation next to times in the mu
 test('renderNudgeMessage omits the resource line when no resourceUrl is configured', () => {
   const group = { interviewerName: 'Jane Doe', misses: [{ eventName: 'Onsite: Alex Chen', startTime: '2026-08-13T10:00:00-07:00' }] };
   const msg = renderNudgeMessage(group);
-  assert.ok(!msg.includes('Quick reference'));
+  assert.ok(!msg.includes('Admit & Submit guide'));
 });
 
 test('renderNudgeMessage appends a resource line in both templates when resourceUrl is configured', () => {
@@ -255,8 +255,8 @@ test('renderNudgeMessage appends a resource line in both templates when resource
     { interviewerName: 'Jane Doe', misses: [{ eventName: 'Onsite: Alex Chen', startTime: '2026-08-13T10:00:00-07:00' }] },
     { resourceUrl: url }
   );
-  assert.ok(single.includes(`[Quick reference](${url})`));
-  assert.ok(single.indexOf('Quick reference') < single.indexOf('No stress'), 'resource line should come before the closing line');
+  assert.ok(single.includes(`[Admit & Submit guide](${url})`));
+  assert.ok(single.indexOf('Admit & Submit guide') < single.indexOf('No stress'), 'resource line should come before the closing line');
 
   const multi = renderNudgeMessage(
     {
@@ -268,7 +268,7 @@ test('renderNudgeMessage appends a resource line in both templates when resource
     },
     { resourceUrl: url }
   );
-  assert.ok(multi.includes(`[Quick reference](${url})`));
+  assert.ok(multi.includes(`[Admit & Submit guide](${url})`));
 });
 
 test('renderNudgeMessage renders times in the configured company timezone, not the host machine timezone', () => {
@@ -460,7 +460,7 @@ test('renderOutreachReport handles a dry week gracefully', () => {
 
 const REASON_FOLLOWUPS = {
   a: 'Reminder: please admit Metaview every time it asks to join.',
-  b: 'Try adding notes@metaview.ai as a guest on the meeting.',
+  b: 'Try adding notes@bot.metaview.ai as a guest on the meeting.',
   c: 'Thanks for confirming — flag it to RecOps if notes still never show up.',
 };
 
