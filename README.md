@@ -57,6 +57,18 @@ each catching noise the others miss:
    rather than hardcoded; add more patterns here as other non-interview
    title conventions turn up (e.g. "ADMIN"/"TEST" test entries).
 
+**Presumed-departed interviewers are excluded automatically**: an
+interviewer who can't be resolved to a Slack user (by email, then by full
+name) is treated as no longer employed rather than as a mapping gap to
+fix — there's no DM to send someone who isn't in the workspace at all.
+This already falls out of the existing architecture rather than needing
+new filter logic: an unresolved interviewer never lands in `messages`
+(daily-runner.js), so they're never nudged, and since the weekly sit-rep's
+"missed" count only comes from what actually got logged, they never count
+against a team's miss rate either. They still get named in the daily run's
+summary for visibility, but framed as "presumed departed," not as an
+action item.
+
 **Help resource**: both nudge templates append a short, optional pointer to
 the team's "Metaview: Admit & Submit" Notion page (`config.json`'s
 `resourceUrl`) — on the theory that a lot of misses are people not knowing

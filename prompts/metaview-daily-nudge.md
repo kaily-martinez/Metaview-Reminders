@@ -220,11 +220,21 @@ of loudly erring.
 
 Collect every unique interviewer email from the raw conversations (from each
 `default:interviewer` entry). For any interviewer object that doesn't already
-carry a `slack_id`, call `slack_search_users` with their email to resolve
-their Slack user ID. Build a map `{ "email@company.com": "U123..." }` from
-the resolved results. Skip (don't error on) anyone you can't find — they'll
-show up in the runner's `unresolved` list and you'll report them at the end
-instead of silently dropping them.
+carry a `slack_id`, call `slack_search_users` with their email, and if that
+turns up nothing, also try their full name before giving up — some Metaview
+records only carry a personal email that won't match a company Slack
+account. Build a map `{ "email@company.com": "U123..." }` from the resolved
+results.
+
+Anyone still unresolved after both lookups is presumed to have left the
+company — someone no longer in the Slack workspace at all isn't a mapping
+gap to fix, they're gone, and there's no DM to send them. Skip (don't error
+on) them; the runner already excludes anyone it can't resolve from both
+nudging and the log (`unresolved` entries never appear in `messages`, so
+they're never sent to and never counted against). Report them at the end
+per step 9 as presumed-departed, not as an action item — the only reason to
+double-check one is if you have specific reason to think they're still
+actually employed.
 
 ## 6. Run the daily runner
 
@@ -261,7 +271,8 @@ node bin/daily-runner.js < /tmp/daily-input.json > /tmp/daily-output.json
 Read `/tmp/daily-output.json`. It contains `stats`, `messages` (one per
 interviewer, already grouped and template-rendered — single-miss or
 multi-miss template chosen automatically), and `unresolved` (interviewers
-whose Slack ID couldn't be resolved).
+whose Slack ID couldn't be resolved — presumed departed, per step 5; not
+included in `messages` and won't be logged).
 
 ## 7. Send (or print) the messages
 
@@ -305,6 +316,9 @@ real-candidate-interview filter, how many DMs were sent (or would be sent,
 in dry-run), how many prior-nudge replies were resolved and how many
 tailored follow-ups were sent (or would be sent, in dry-run) from step 3,
 how many conversations were excluded as already-recorded (`stats.excludedAsRecorded`),
-and list anyone in `unresolved` by name/email so a human can add their
-Slack mapping. Do not print full message text again if you already printed
+and list anyone in `unresolved` by name/email, labeled as presumed departed
+(not found in Slack under either their email or full name) rather than as
+an action item — they're already excluded from nudging and the log, no
+mapping needs fixing unless one of them turns out to still be employed.
+Do not print full message text again if you already printed
 it in step 7.
