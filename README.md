@@ -54,8 +54,10 @@ each catching noise the others miss:
    carry the same conversation_type and a real linked application as
    genuine interviews — title is the only signal that distinguishes them.
    This is a policy call, not a fixed fact, so it's configured per-workspace
-   rather than hardcoded; add more patterns here as other non-interview
-   title conventions turn up (e.g. "ADMIN"/"TEST" test entries).
+   rather than hardcoded. Also catches internal QA entries like "Hiring
+   Manager Screen - ADMIN - TEST (JG) - ADMIN - Test Job" (via the
+   `"admin - test"` pattern) - add more patterns here as other
+   non-interview title conventions turn up.
 
 **Presumed-departed interviewers are excluded automatically**: an
 interviewer who can't be resolved to a Slack user (by email, then by full
@@ -212,8 +214,9 @@ instead of an edited section.
    types get introduced later, re-run `group_conversations` grouped by
    `default:conversation_type` to check the set is still complete.
 5. `config.json`'s `excludedEventTitlePatterns` holds case-insensitive event
-   title substrings that never count as a miss (currently `"meet & greet"`
-   and `"meet and greet"`, discovered from real data). Add more as other
+   title substrings that never count as a miss (currently `"meet & greet"`,
+   `"meet and greet"`, and `"admin - test"`, all discovered from real
+   data). Add more as other
    non-interview title conventions turn up, or clear it if you'd rather see
    everything.
 6. `config.json`'s `doNotMessage` lists people (`{ name, email }`) who
