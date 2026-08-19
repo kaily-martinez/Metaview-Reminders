@@ -20,7 +20,8 @@
   "excludedEventTitlePatterns": ["meet & greet", "meet and greet", "admin - test"],
   "doNotMessage": [
     { "name": "Caroline Ingeborn", "email": "caroline@lumalabs.ai" },
-    { "name": "Amit Jain", "email": "amit@lumalabs.ai" }
+    { "name": "Amit Jain", "email": "amit@lumalabs.ai" },
+    { "name": "Andrea Lobato", "email": "andrea@lumalabs.ai" }
   ],
   "resourceUrl": "https://app.notion.com/p/lumaai/Metaview-Admit-Submit-3bc8d67ac52b81cd9c68e1b97d4ebdfb",
   "reasonFollowups": {
