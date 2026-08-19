@@ -13,9 +13,10 @@ your working directory.
 ## 0. Load config
 
 Read `config.json`. You'll use `metaviewFields`, `departmentFieldId`,
-`interviewConversationTypes`, `excludedEventTitlePatterns`, `resourceUrl`,
-`testDmUserId`, and `reasonFollowups` below. If `sitrepChannelId` is empty,
-that's fine — it's not used by this script (only the weekly one).
+`interviewConversationTypes`, `excludedEventTitlePatterns`, `doNotMessage`,
+`resourceUrl`, `testDmUserId`, and `reasonFollowups` below. If
+`sitrepChannelId` is empty, that's fine — it's not used by this script
+(only the weekly one).
 
 ## 1. Determine run mode
 
@@ -113,10 +114,12 @@ node bin/followup-runner.js < /tmp/followup-input.json > /tmp/followup-output.js
 Read `/tmp/followup-output.json`. It contains `updatedEntries` (each entry
 with `reason`/`replyRaw` resolved wherever a reply came in, and
 `followupSentAt` set on any entry that got a follow-up queued — an entry
-whose reason has no configured follow-up text, e.g. "d) something else",
-still gets `reason` resolved but nothing queued, since that needs a human's
-judgment) and `followups` (the messages to actually send: `channelId`,
-`messageTs`, `replyIsThreaded`, and `text`).
+whose reason has no configured follow-up text (this happens for
+free-text/`other` replies that don't cleanly match a/b/c/d, since
+`reasonFollowups` only has entries for those four codes) still gets
+`reason` resolved but nothing queued, since that needs a human's judgment)
+and `followups` (the messages to actually send: `channelId`, `messageTs`,
+`replyIsThreaded`, and `text`).
 
 - If `DRY_RUN=true`: print each queued follow-up (who it's for, whether it'd
   go threaded or plain, and `text`). Do not call Slack and do not persist
@@ -255,6 +258,7 @@ Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
   },
   "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
   "excludedEventTitlePatterns": [ ...from config.json's excludedEventTitlePatterns... ],
+  "doNotMessage": [ ...from config.json's doNotMessage... ],
   "slackIdMap": { ...from step 5... },
   "now": "<current ISO timestamp>",
   "timezone": "<timezone from config.json>",
@@ -270,9 +274,11 @@ node bin/daily-runner.js < /tmp/daily-input.json > /tmp/daily-output.json
 
 Read `/tmp/daily-output.json`. It contains `stats`, `messages` (one per
 interviewer, already grouped and template-rendered — single-miss or
-multi-miss template chosen automatically), and `unresolved` (interviewers
-whose Slack ID couldn't be resolved — presumed departed, per step 5; not
-included in `messages` and won't be logged).
+multi-miss template chosen automatically), `unresolved` (interviewers whose
+Slack ID couldn't be resolved — presumed departed, per step 5; not included
+in `messages` and won't be logged), and `skipped` (interviewers matched
+against config.json's `doNotMessage` list — a real miss, so it still needs
+to be logged for the weekly report, but no DM should ever be sent to them).
 
 ## 7. Send (or print) the messages
 
@@ -301,7 +307,9 @@ attribute whatever you reply with to them. So in either `DRY_RUN=true` or
 `TEST_SELF=true` mode, stop here: do not call `bin/append-log.js`.
 
 Only when both are false (a real scheduled or manual live run), collect
-every entry (across all sent messages) into one array and write it to e.g.
+every entry across all sent messages **and** every entry in `skipped`
+(do-not-message people still need to be logged for the weekly report, even
+though they never got a DM) into one array, and write it to e.g.
 `/tmp/daily-log-entries.json` as `{ "entries": [...] }`, then run:
 
 ```
@@ -320,5 +328,7 @@ and list anyone in `unresolved` by name/email, labeled as presumed departed
 (not found in Slack under either their email or full name) rather than as
 an action item — they're already excluded from nudging and the log, no
 mapping needs fixing unless one of them turns out to still be employed.
-Do not print full message text again if you already printed
-it in step 7.
+Also list anyone in `skipped` by name (`stats.skippedAsDoNotMessageCount`)
+— these are config.json's `doNotMessage` list, logged for the report but
+deliberately never sent a DM. Do not print full message text again if you
+already printed it in step 7.

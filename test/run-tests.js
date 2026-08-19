@@ -1,6 +1,6 @@
 'use strict';
 const assert = require('assert');
-const { filterRealMisses, groupByInterviewer, firstName } = require('../lib/filters');
+const { filterRealMisses, groupByInterviewer, firstName, isDoNotMessage } = require('../lib/filters');
 const { renderNudgeMessage } = require('../lib/templates');
 const { parseReply, tallyReasons, missRate, trendArrow, byTeamRows, repeatOffenders } = require('../lib/aggregate');
 const { renderReportSections } = require('../lib/report-render');
@@ -272,6 +272,30 @@ test('firstName extracts the first token', () => {
   assert.strictEqual(firstName(null), 'there');
 });
 
+test('isDoNotMessage matches by email case-insensitively', () => {
+  const doNotMessage = [{ name: 'Caroline Ingeborn', email: 'caroline@lumalabs.ai' }];
+  const group = { interviewerName: 'Caroline Ingeborn', interviewerEmail: 'Caroline@LumaLabs.ai' };
+  assert.strictEqual(isDoNotMessage(group, doNotMessage), true);
+});
+
+test('isDoNotMessage falls back to name match when no email is available', () => {
+  const doNotMessage = [{ name: 'Amit Jain', email: 'amit@lumalabs.ai' }];
+  const group = { interviewerName: 'Amit Jain', interviewerEmail: null };
+  assert.strictEqual(isDoNotMessage(group, doNotMessage), true);
+});
+
+test('isDoNotMessage does not match an unrelated interviewer', () => {
+  const doNotMessage = [{ name: 'Amit Jain', email: 'amit@lumalabs.ai' }];
+  const group = { interviewerName: 'Jane Doe', interviewerEmail: 'jane@lumalabs.ai' };
+  assert.strictEqual(isDoNotMessage(group, doNotMessage), false);
+});
+
+test('isDoNotMessage returns false when the list is empty or unset', () => {
+  const group = { interviewerName: 'Jane Doe', interviewerEmail: 'jane@lumalabs.ai' };
+  assert.strictEqual(isDoNotMessage(group, []), false);
+  assert.strictEqual(isDoNotMessage(group, null), false);
+});
+
 test('renderNudgeMessage uses the single-miss template for one miss', () => {
   const group = { interviewerName: 'Jane Doe', misses: [{ eventName: 'Onsite: Alex Chen', startTime: '2026-08-13T10:00:00-07:00' }] };
   const msg = renderNudgeMessage(group);
@@ -324,7 +348,7 @@ test('renderNudgeMessage appends a timezone abbreviation next to times in the mu
 test('renderNudgeMessage omits the resource line when no resourceUrl is configured', () => {
   const group = { interviewerName: 'Jane Doe', misses: [{ eventName: 'Onsite: Alex Chen', startTime: '2026-08-13T10:00:00-07:00' }] };
   const msg = renderNudgeMessage(group);
-  assert.ok(!msg.includes('Admit & Submit guide'));
+  assert.ok(!msg.includes('Admit & Submit Guide'));
 });
 
 test('renderNudgeMessage appends a resource line in both templates when resourceUrl is configured', () => {
@@ -333,8 +357,8 @@ test('renderNudgeMessage appends a resource line in both templates when resource
     { interviewerName: 'Jane Doe', misses: [{ eventName: 'Onsite: Alex Chen', startTime: '2026-08-13T10:00:00-07:00' }] },
     { resourceUrl: url }
   );
-  assert.ok(single.includes(`[Admit & Submit guide](${url})`));
-  assert.ok(single.indexOf('Admit & Submit guide') < single.indexOf('No stress'), 'resource line should come before the closing line');
+  assert.ok(single.includes(`[Metaview: Admit & Submit Guide](${url})`));
+  assert.ok(single.indexOf('Admit & Submit Guide') < single.indexOf('No stress'), 'resource line should come before the closing line');
 
   const multi = renderNudgeMessage(
     {
@@ -346,7 +370,7 @@ test('renderNudgeMessage appends a resource line in both templates when resource
     },
     { resourceUrl: url }
   );
-  assert.ok(multi.includes(`[Admit & Submit guide](${url})`));
+  assert.ok(multi.includes(`[Metaview: Admit & Submit Guide](${url})`));
 });
 
 test('renderNudgeMessage renders times in the configured company timezone, not the host machine timezone', () => {

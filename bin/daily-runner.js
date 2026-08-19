@@ -33,6 +33,7 @@
  *               "candidateApplication": "default:candidate_application" },  // optional - if set, excludes conversations with no linked ATS application (ad hoc/non-loop-scheduled bookings)
  *   "allowedConversationTypeIds": ["<uuid>", ...],     // optional - if set, only these conversation_type values count as real interviews
  *   "excludedEventTitlePatterns": ["meet & greet", ...], // optional - case-insensitive substrings; matching event titles never count as misses
+ *   "doNotMessage": [{ "name": "...", "email": "..." }, ...], // optional - these people's misses still count toward the report, but never get a DM (see lib/filters.js's isDoNotMessage)
  *   "slackIdMap": { "jane@co.com": "U123..." },        // email -> resolved Slack user id
  *   "now": "2026-08-14T18:00:00-07:00",                // optional, defaults to real now
  *   "timezone": "America/Los_Angeles",                 // IANA zone for displayed dates/times; defaults to America/Los_Angeles
@@ -40,7 +41,7 @@
  * }
  */
 
-const { filterRealMisses, groupByInterviewer, firstName } = require('../lib/filters');
+const { filterRealMisses, groupByInterviewer, firstName, isDoNotMessage } = require('../lib/filters');
 const { renderNudgeMessage, formatDate } = require('../lib/templates');
 
 function readStdin() {
@@ -83,14 +84,36 @@ async function main() {
   const resourceUrl = input.resourceUrl || null;
   const recordedConversations = input.recordedConversations || [];
   const excludeConversationIds = new Set(recordedConversations.map((c) => c.id));
+  const doNotMessage = input.doNotMessage || [];
 
   const misses = filterRealMisses(conversations, fields, { now, allowedConversationTypeIds, excludeConversationIds, excludedEventTitlePatterns });
   const groups = groupByInterviewer(misses, fields);
 
   const messages = [];
   const unresolved = [];
+  const skipped = [];
 
   for (const group of groups) {
+    if (isDoNotMessage(group, doNotMessage)) {
+      const entries = group.misses.map((m) => ({
+        id: `${m.conversationId ?? slugify(m.eventName)}-${slugify(group.interviewerEmail || group.interviewerName)}`,
+        conversationId: m.conversationId,
+        interviewerName: group.interviewerName,
+        interviewerSlackId: group.interviewerSlackId || null,
+        department: m.department || group.department || null,
+        eventName: m.eventName,
+        startTime: m.startTime,
+        date: formatDate(m.startTime, timeZone),
+        channelId: null,
+        messageTs: null,
+        sentAt: null,
+        reason: null,
+        replyRaw: null,
+      }));
+      skipped.push({ interviewerName: group.interviewerName, interviewerEmail: group.interviewerEmail, entries });
+      continue;
+    }
+
     const slackId = group.interviewerSlackId || (group.interviewerEmail && slackIdMap[group.interviewerEmail]) || null;
     if (!slackId) {
       unresolved.push({
@@ -137,9 +160,11 @@ async function main() {
       groupCount: groups.length,
       messageCount: messages.length,
       unresolvedCount: unresolved.length,
+      skippedAsDoNotMessageCount: skipped.length,
     },
     messages,
     unresolved,
+    skipped,
   };
 
   process.stdout.write(JSON.stringify(output, null, 2) + '\n');

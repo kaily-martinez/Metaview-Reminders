@@ -69,6 +69,16 @@ against a team's miss rate either. They still get named in the daily run's
 summary for visibility, but framed as "presumed departed," not as an
 action item.
 
+**Named people can be excluded from nudging without being excluded from
+the report**: `config.json`'s `doNotMessage` (a list of `{ name, email }`)
+is for people who should never get a DM - typically because they're too
+senior for an automated bot nudge - but whose misses should still count
+toward the by-team/repeat-offender/miss-rate numbers, unlike everything
+above (which drops the miss entirely). `lib/filters.js`'s `isDoNotMessage`
+matches by email first, falling back to name. `bin/daily-runner.js` routes
+a match into a `skipped` bucket instead of `messages` - still logged
+(with no `messageTs`/`channelId`, since no DM went out), just never sent.
+
 **Help resource**: both nudge templates append a short, optional pointer to
 the team's "Metaview: Admit & Submit" Notion page (`config.json`'s
 `resourceUrl`) — on the theory that a lot of misses are people not knowing
@@ -99,8 +109,9 @@ concrete troubleshooting steps:
 - **c) Looked like it joined fine** → an acknowledgment plus a prompt to
   flag it to `#hiring` if notes never show up despite that, so a real
   false-positive doesn't get silently repeated.
-- **d) Something else** → intentionally has no automated follow-up text;
-  it needs a human to actually read the reply and decide what's going on.
+- **d) Something else** → asks for more context and offers help
+  troubleshooting, since there's no way to know what happened without it -
+  a human still needs to actually read whatever they send back.
 
 This is configured in `config.json`'s `reasonFollowups` (one string per
 reason code; omit a code for no automated follow-up) and resolved daily
@@ -205,17 +216,20 @@ instead of an edited section.
    and `"meet and greet"`, discovered from real data). Add more as other
    non-interview title conventions turn up, or clear it if you'd rather see
    everything.
-6. `config.json`'s `resourceUrl` points at the team's "Metaview: Admit &
+6. `config.json`'s `doNotMessage` lists people (`{ name, email }`) who
+   should never get a nudge DM but whose misses should still count toward
+   the report. Empty by default; add names as they come up.
+7. `config.json`'s `resourceUrl` points at the team's "Metaview: Admit &
    Submit" Notion page. Update or clear it if that doc moves or you'd
    rather not include the link.
-7. `config.json`'s `testDmUserId` defaults to the currently-authenticated
+8. `config.json`'s `testDmUserId` defaults to the currently-authenticated
    Slack user (used for the "send yourself a test DM" step below). Change it
    if that's not you.
-8. `config.json`'s `reasonFollowups` holds the tailored follow-up text sent
+9. `config.json`'s `reasonFollowups` holds the tailored follow-up text sent
    per reply reason (see "Reason-triggered follow-ups" above). Update the
    wording to match your team's voice, or drop a code's key entirely if you
    don't want an automated follow-up for that reason.
-9. `npm test` — confirm all `lib/` tests pass before trusting live output.
+10. `npm test` — confirm all `lib/` tests pass before trusting live output.
 
 ## Running manually
 
