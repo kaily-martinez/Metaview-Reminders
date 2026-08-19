@@ -1151,8 +1151,9 @@
     "channelId": "U0AJF0KHD89",
     "messageTs": "1787104930.223679",
     "sentAt": "2026-08-19T02:02:45.842Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "d",
+    "replyRaw": "d) the candidate didn't show up and we rescheduled",
+    "followupSentAt": "2026-08-19T02:17:54.009Z"
   },
   {
     "id": "479288355-u0ag909m66a",
@@ -1167,7 +1168,8 @@
     "messageTs": "1787104931.899889",
     "sentAt": "2026-08-19T02:02:45.842Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "479288355-u0acdkq8t6c",
@@ -1182,7 +1184,8 @@
     "messageTs": "1787104934.650999",
     "sentAt": "2026-08-19T02:02:45.842Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "480113304-u0acdkq8t6c",
@@ -1197,7 +1200,8 @@
     "messageTs": "1787104934.650999",
     "sentAt": "2026-08-19T02:02:45.842Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "480113309-u0abl0cpam8",
@@ -1212,7 +1216,8 @@
     "messageTs": "1787104936.919019",
     "sentAt": "2026-08-19T02:02:45.842Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "477237413-u08jlpvb020",
@@ -1227,7 +1232,8 @@
     "messageTs": "1787104939.966489",
     "sentAt": "2026-08-19T02:02:45.842Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "481012625-u09ar6ppnlu",
@@ -1242,7 +1248,8 @@
     "messageTs": "1787104941.421529",
     "sentAt": "2026-08-19T02:02:45.842Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "477821894-u0a8kckvauc",
@@ -1256,8 +1263,9 @@
     "channelId": "U0A8KCKVAUC",
     "messageTs": "1787104943.896279",
     "sentAt": "2026-08-19T02:02:45.842Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "d",
+    "replyRaw": "D) calls didn't happen",
+    "followupSentAt": "2026-08-19T02:17:54.009Z"
   },
   {
     "id": "477434679-u0a8kckvauc",
@@ -1271,8 +1279,9 @@
     "channelId": "U0A8KCKVAUC",
     "messageTs": "1787104943.896279",
     "sentAt": "2026-08-19T02:02:45.842Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "d",
+    "replyRaw": "D) calls didn't happen",
+    "followupSentAt": "2026-08-19T02:17:54.009Z"
   },
   {
     "id": "480822842-u0aczerd221",
@@ -1286,8 +1295,8 @@
     "channelId": "U0ACZERD221",
     "messageTs": "1787104946.135789",
     "sentAt": "2026-08-19T02:02:45.842Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "I don't like notes"
   },
   {
     "id": "482101598-u0a727zgfjr",
@@ -1302,7 +1311,8 @@
     "messageTs": "1787104948.168589",
     "sentAt": "2026-08-19T02:02:45.842Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "477237417-u081xq46dlg",
@@ -1317,6 +1327,7 @@
     "messageTs": "1787104950.137029",
     "sentAt": "2026-08-19T02:02:45.842Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   }
 ]
