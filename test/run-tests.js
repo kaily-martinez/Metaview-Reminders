@@ -277,7 +277,7 @@ test('renderNudgeMessage uses the single-miss template for one miss', () => {
   const msg = renderNudgeMessage(group);
   assert.ok(msg.includes('Hey Jane —'));
   assert.ok(msg.includes('Onsite: Alex Chen'));
-  assert.ok(msg.includes('a) Forgot to admit it when it asked to join'));
+  assert.ok(msg.includes('a) Forgot to admit Metaview'));
 });
 
 test('renderNudgeMessage includes the candidate name in both templates when present', () => {
@@ -375,6 +375,8 @@ test('renderNudgeMessage uses the multi-miss template for 2+ misses', () => {
   assert.ok(msg.includes("wasn't able to join a couple of your calls"));
   assert.ok(msg.includes('• Interview A'));
   assert.ok(msg.includes('• Interview B'));
+  // a/b/c/d always listed one per line, never inlined into one sentence.
+  assert.ok(msg.includes('a) Forgot to admit Metaview\nb) Tried to admit Metaview'));
 });
 
 test('parseReply matches a/b/c/d with common separators', () => {
