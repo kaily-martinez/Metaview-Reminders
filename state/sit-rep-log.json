@@ -1342,8 +1342,8 @@
     "channelId": "U0ABL0CPAM8",
     "messageTs": "1787245659.087519",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Meta view wasn't even dialed into the room for zhenyu"
   },
   {
     "id": "480988090-u0abl0cpam8",
@@ -1357,8 +1357,8 @@
     "channelId": "U0ABL0CPAM8",
     "messageTs": "1787245659.087519",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Meta view wasn't even dialed into the room for zhenyu"
   },
   {
     "id": "477685648-u0acdkpnpeu",
@@ -1372,8 +1372,8 @@
     "channelId": "U0ACDKPNPEU",
     "messageTs": "1787245661.865809",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "hm"
   },
   {
     "id": "480988094-u0alhjhg9tp",
@@ -1387,8 +1387,8 @@
     "channelId": "U0ALHJHG9TP",
     "messageTs": "1787245664.667539",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "• Shelly Pham interview was cancelled\n• Srikanth was lunch buddy so we didn't take it in a meeting room"
   },
   {
     "id": "479275626-u0alhjhg9tp",
@@ -1402,8 +1402,8 @@
     "channelId": "U0ALHJHG9TP",
     "messageTs": "1787245664.667539",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "• Shelly Pham interview was cancelled\n• Srikanth was lunch buddy so we didn't take it in a meeting room"
   },
   {
     "id": "480988094-u0bck12dsjk",
@@ -1417,8 +1417,8 @@
     "channelId": "U0BCK12DSJK",
     "messageTs": "1787245705.681729",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hi Kaily, this interview was moved to August 31 as Shelley was ill (food poisoning if I remember correctly)."
   },
   {
     "id": "481048234-u0b71en2e06",
@@ -1433,7 +1433,8 @@
     "messageTs": "1787245670.727789",
     "sentAt": "2026-08-20T17:08:30.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "479275637-u0918gghk96",
@@ -1447,8 +1448,8 @@
     "channelId": "U0918GGHK96",
     "messageTs": "1787245673.029939",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "hmmm I thought I joined the meeting. Maybe I joined but forgot to admit"
   },
   {
     "id": "478704546-u0a8kckvauc",
@@ -1463,7 +1464,8 @@
     "messageTs": "1787245683.337789",
     "sentAt": "2026-08-20T17:08:30.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "482704049-u0ar7v2l51t",
@@ -1477,8 +1479,8 @@
     "channelId": "U0AR7V2L51T",
     "messageTs": "1787245686.188509",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "The candidate rescheduled"
   },
   {
     "id": "480988098-u09t3c45xbl",
@@ -1492,8 +1494,8 @@
     "channelId": "U09T3C45XBL",
     "messageTs": "1787245689.742309",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hey Kaily, the interview with Shelley did not happen because I believe the candidate was feeling unwell. It was removed from my calendar"
   },
   {
     "id": "480988098-u0arhugnxg9",
@@ -1508,7 +1510,8 @@
     "messageTs": "1787245692.114849",
     "sentAt": "2026-08-20T17:08:30.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "480988121-u0bc7gxh8kx",
@@ -1523,7 +1526,8 @@
     "messageTs": "1787245695.626969",
     "sentAt": "2026-08-20T17:08:30.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "480508834-u0a727zgfjr",
@@ -1537,6 +1541,156 @@
     "channelId": "U0A727ZGFJR",
     "messageTs": "1787245697.553009",
     "sentAt": "2026-08-20T17:08:30.000Z",
+    "reason": "other",
+    "replyRaw": "It was doubled book so no interview happened"
+  },
+  {
+    "id": "480615550-u0a727zgfjr",
+    "conversationId": 480615550,
+    "interviewerName": "Nicole Szeto",
+    "interviewerSlackId": "U0A727ZGFJR",
+    "department": "Product",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-20 20:00:00+00:00",
+    "date": "Aug 20",
+    "channelId": "U0A727ZGFJR",
+    "messageTs": "1787332232.486479",
+    "sentAt": "2026-08-21T17:10:52.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "482566049-u0a727zgfjr",
+    "conversationId": 482566049,
+    "interviewerName": "Nicole Szeto",
+    "interviewerSlackId": "U0A727ZGFJR",
+    "department": "Product",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-20 16:30:00+00:00",
+    "date": "Aug 20",
+    "channelId": "U0A727ZGFJR",
+    "messageTs": "1787332232.486479",
+    "sentAt": "2026-08-21T17:10:52.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483479268-u0ajf0khd89",
+    "conversationId": 483479268,
+    "interviewerName": "James Huang",
+    "interviewerSlackId": "U0AJF0KHD89",
+    "department": "Forward Deployed Engineering",
+    "eventName": "30 min with James (Henry Chen)",
+    "startTime": "2026-08-20 18:30:00+00:00",
+    "date": "Aug 20",
+    "channelId": "U0AJF0KHD89",
+    "messageTs": "1787332239.378299",
+    "sentAt": "2026-08-21T17:10:52.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483450447-u0ajwab4vt2",
+    "conversationId": 483450447,
+    "interviewerName": "Hakeem Saleh",
+    "interviewerSlackId": "U0AJWAB4VT2",
+    "department": "Model Fine-Tuning",
+    "eventName": "Ryan / Hakeem, Luma Offer",
+    "startTime": "2026-08-20 16:30:00+00:00",
+    "date": "Aug 20",
+    "channelId": "U0AJWAB4VT2",
+    "messageTs": "1787332241.536139",
+    "sentAt": "2026-08-21T17:10:52.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483489309-u0ahs3yt2q5",
+    "conversationId": 483489309,
+    "interviewerName": "Akshat Tripathi",
+    "interviewerSlackId": "U0AHS3YT2Q5",
+    "department": "Inference Optimization",
+    "eventName": "Backend Architecture/System Design",
+    "startTime": "2026-08-20 11:00:00+00:00",
+    "date": "Aug 20",
+    "channelId": "U0AHS3YT2Q5",
+    "messageTs": "1787332243.729809",
+    "sentAt": "2026-08-21T17:10:52.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483489309-u07l8mterug",
+    "conversationId": 483489309,
+    "interviewerName": "Anton Lvov",
+    "interviewerSlackId": "U07L8MTERUG",
+    "department": "Inference Optimization",
+    "eventName": "Backend Architecture/System Design",
+    "startTime": "2026-08-20 11:00:00+00:00",
+    "date": "Aug 20",
+    "channelId": "U07L8MTERUG",
+    "messageTs": "1787332246.843439",
+    "sentAt": "2026-08-21T17:10:52.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "480135469-u0a8kckvauc",
+    "conversationId": 480135469,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-20 08:30:00+00:00",
+    "date": "Aug 20",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1787332248.496499",
+    "sentAt": "2026-08-21T17:10:52.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "482678087-caroline-lumalabs-ai",
+    "conversationId": 482678087,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Product Management",
+    "eventName": "Luma & You",
+    "startTime": "2026-08-20 22:00:00+00:00",
+    "date": "Aug 20",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483531774-caroline-lumalabs-ai",
+    "conversationId": 483531774,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Product Management",
+    "eventName": "Luma & You",
+    "startTime": "2026-08-20 21:00:00+00:00",
+    "date": "Aug 20",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "482609926-caroline-lumalabs-ai",
+    "conversationId": 482609926,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Product Management",
+    "eventName": "Untitled interview",
+    "startTime": "2026-08-20 20:30:00+00:00",
+    "date": "Aug 20",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
     "reason": null,
     "replyRaw": null
   }
