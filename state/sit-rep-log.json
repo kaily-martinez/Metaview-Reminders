@@ -1342,8 +1342,8 @@
     "channelId": "U0ABL0CPAM8",
     "messageTs": "1787245659.087519",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Meta view wasn't even dialed into the room for zhenyu"
   },
   {
     "id": "480988090-u0abl0cpam8",
@@ -1357,8 +1357,8 @@
     "channelId": "U0ABL0CPAM8",
     "messageTs": "1787245659.087519",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Meta view wasn't even dialed into the room for zhenyu"
   },
   {
     "id": "477685648-u0acdkpnpeu",
@@ -1372,8 +1372,8 @@
     "channelId": "U0ACDKPNPEU",
     "messageTs": "1787245661.865809",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "hm"
   },
   {
     "id": "480988094-u0alhjhg9tp",
@@ -1387,8 +1387,8 @@
     "channelId": "U0ALHJHG9TP",
     "messageTs": "1787245664.667539",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "• Shelly Pham interview was cancelled\n• Srikanth was lunch buddy so we didn't take it in a meeting room"
   },
   {
     "id": "479275626-u0alhjhg9tp",
@@ -1402,8 +1402,8 @@
     "channelId": "U0ALHJHG9TP",
     "messageTs": "1787245664.667539",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "• Shelly Pham interview was cancelled\n• Srikanth was lunch buddy so we didn't take it in a meeting room"
   },
   {
     "id": "480988094-u0bck12dsjk",
@@ -1417,8 +1417,8 @@
     "channelId": "U0BCK12DSJK",
     "messageTs": "1787245705.681729",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hi Kaily, this interview was moved to August 31 as Shelley was ill (food poisoning if I remember correctly)."
   },
   {
     "id": "481048234-u0b71en2e06",
@@ -1433,7 +1433,8 @@
     "messageTs": "1787245670.727789",
     "sentAt": "2026-08-20T17:08:30.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "479275637-u0918gghk96",
@@ -1447,8 +1448,8 @@
     "channelId": "U0918GGHK96",
     "messageTs": "1787245673.029939",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "hmmm I thought I joined the meeting. Maybe I joined but forgot to admit"
   },
   {
     "id": "478704546-u0a8kckvauc",
@@ -1463,7 +1464,8 @@
     "messageTs": "1787245683.337789",
     "sentAt": "2026-08-20T17:08:30.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "482704049-u0ar7v2l51t",
@@ -1477,8 +1479,8 @@
     "channelId": "U0AR7V2L51T",
     "messageTs": "1787245686.188509",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "The candidate rescheduled"
   },
   {
     "id": "480988098-u09t3c45xbl",
@@ -1492,8 +1494,8 @@
     "channelId": "U09T3C45XBL",
     "messageTs": "1787245689.742309",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hey Kaily, the interview with Shelley did not happen because I believe the candidate was feeling unwell. It was removed from my calendar"
   },
   {
     "id": "480988098-u0arhugnxg9",
@@ -1508,7 +1510,8 @@
     "messageTs": "1787245692.114849",
     "sentAt": "2026-08-20T17:08:30.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "480988121-u0bc7gxh8kx",
@@ -1523,7 +1526,8 @@
     "messageTs": "1787245695.626969",
     "sentAt": "2026-08-20T17:08:30.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "480508834-u0a727zgfjr",
@@ -1537,6 +1541,126 @@
     "channelId": "U0A727ZGFJR",
     "messageTs": "1787245697.553009",
     "sentAt": "2026-08-20T17:08:30.000Z",
+    "reason": "other",
+    "replyRaw": "It was doubled book so no interview happened"
+  },
+  {
+    "id": "483941090-u0a727zgfjr",
+    "conversationId": 483941090,
+    "interviewerName": "Nicole Szeto",
+    "interviewerSlackId": "U0A727ZGFJR",
+    "department": "Product Design",
+    "eventName": "RPS Nicole - Anthony King - Product Designer",
+    "startTime": "2026-08-21 21:30:00+00:00",
+    "date": "Aug 21",
+    "channelId": "U0A727ZGFJR",
+    "messageTs": "1787591341.191569",
+    "sentAt": "2026-08-24T17:03:49.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483474892-u0a727zgfjr",
+    "conversationId": 483474892,
+    "interviewerName": "Nicole Szeto",
+    "interviewerSlackId": "U0A727ZGFJR",
+    "department": "Product Design",
+    "eventName": "RPS Nicole",
+    "startTime": "2026-08-21 20:00:00+00:00",
+    "date": "Aug 21",
+    "channelId": "U0A727ZGFJR",
+    "messageTs": "1787591341.191569",
+    "sentAt": "2026-08-24T17:03:49.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "480922590-u0a727zgfjr",
+    "conversationId": 480922590,
+    "interviewerName": "Nicole Szeto",
+    "interviewerSlackId": "U0A727ZGFJR",
+    "department": "Product Design",
+    "eventName": "Recruiter Phone Screen",
+    "startTime": "2026-08-21 17:30:00+00:00",
+    "date": "Aug 21",
+    "channelId": "U0A727ZGFJR",
+    "messageTs": "1787591341.191569",
+    "sentAt": "2026-08-24T17:03:49.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483609954-u0aaq4md5g8",
+    "conversationId": 483609954,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Enterprise",
+    "eventName": "Untitled interview",
+    "startTime": "2026-08-21 20:30:00+00:00",
+    "date": "Aug 21",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1787591343.496819",
+    "sentAt": "2026-08-24T17:03:49.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483489288-u0arhugnxg9",
+    "conversationId": 483489288,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": "U0ARHUGNXG9",
+    "department": "Product Management",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-08-21 19:00:00+00:00",
+    "date": "Aug 21",
+    "channelId": "U0ARHUGNXG9",
+    "messageTs": "1787591345.928739",
+    "sentAt": "2026-08-24T17:03:49.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483207191-u0arhugnxg9",
+    "conversationId": 483207191,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": "U0ARHUGNXG9",
+    "department": "Product Management",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-08-21 18:00:00+00:00",
+    "date": "Aug 21",
+    "channelId": "U0ARHUGNXG9",
+    "messageTs": "1787591345.928739",
+    "sentAt": "2026-08-24T17:03:49.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483342447-u0ad43h4jg1",
+    "conversationId": 483342447,
+    "interviewerName": "Dan Greenwood",
+    "interviewerSlackId": "U0AD43H4JG1",
+    "department": "Customer Success",
+    "eventName": "Untitled interview",
+    "startTime": "2026-08-21 11:00:00+00:00",
+    "date": "Aug 21",
+    "channelId": "U0AD43H4JG1",
+    "messageTs": "1787591348.174309",
+    "sentAt": "2026-08-24T17:03:49.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "480148291-u0a8kckvauc",
+    "conversationId": 480148291,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-21 09:00:00+00:00",
+    "date": "Aug 21",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1787591350.285389",
+    "sentAt": "2026-08-24T17:03:49.000Z",
     "reason": null,
     "replyRaw": null
   }
