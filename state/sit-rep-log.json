@@ -1557,7 +1557,8 @@
     "messageTs": "1787677715.447179",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "479426010-u0a8kckvauc",
@@ -1572,7 +1573,8 @@
     "messageTs": "1787677715.447179",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "481745150-u0a8kckvauc",
@@ -1587,7 +1589,8 @@
     "messageTs": "1787677715.447179",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "482220366-u0a8kckvauc",
@@ -1602,7 +1605,8 @@
     "messageTs": "1787677715.447179",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "480769028-u0a8kckvauc",
@@ -1617,7 +1621,8 @@
     "messageTs": "1787677715.447179",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "479193648-u0agpv23dq9",
@@ -1631,8 +1636,8 @@
     "channelId": "U0AGPV23DQ9",
     "messageTs": "1787677717.894169",
     "sentAt": "2026-08-25T17:08:54.756Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Oh it was rescheduled!"
   },
   {
     "id": "483489293-u0a727zgfjr",
@@ -1647,7 +1652,8 @@
     "messageTs": "1787677720.145249",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483001799-u0aaq4md5g8",
@@ -1661,8 +1667,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1787677722.480609",
     "sentAt": "2026-08-25T17:08:54.756Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "she cancelled on me cause she didn't want to commute to RWC"
   },
   {
     "id": "484080653-u09ar6ppnlu",
@@ -1677,7 +1683,8 @@
     "messageTs": "1787677725.210329",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "482204083-u09ar6ppnlu",
@@ -1692,7 +1699,8 @@
     "messageTs": "1787677725.210329",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483802578-u0ad43h4jg1",
@@ -1707,7 +1715,8 @@
     "messageTs": "1787677727.374069",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483429879-u0ad43h4jg1",
@@ -1722,7 +1731,8 @@
     "messageTs": "1787677727.374069",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "482955103-u0ad43h4jg1",
@@ -1737,7 +1747,8 @@
     "messageTs": "1787677727.374069",
     "sentAt": "2026-08-25T17:08:54.756Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483958450-andrea-lumalabs-ai",
@@ -1763,6 +1774,231 @@
     "eventName": "Hiring Manager Interview-Andrea",
     "startTime": "2026-08-24 17:30:00+00:00",
     "date": "Aug 24",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "479909042-u0a8kckvauc",
+    "conversationId": 479909042,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-25 22:30:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1787763936.532249",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "482234383-u0a8kckvauc",
+    "conversationId": 482234383,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-25 10:00:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1787763936.532249",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "482417844-u0a8kckvauc",
+    "conversationId": 482417844,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-25 08:30:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1787763936.532249",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483571482-u0aaq4md5g8",
+    "conversationId": 483571482,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Enterprise",
+    "eventName": "Untitled interview",
+    "startTime": "2026-08-25 21:30:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1787763940.063449",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483104017-u0aaq4md5g8",
+    "conversationId": 483104017,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Legal",
+    "eventName": "Recruiter Screen (RPS) Davis",
+    "startTime": "2026-08-25 21:00:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1787763940.063449",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485273618-u0aaq4md5g8",
+    "conversationId": 485273618,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Forward Deployed Creative",
+    "eventName": "Untitled interview",
+    "startTime": "2026-08-25 21:00:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1787763940.063449",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485317183-u0agpv23dq9",
+    "conversationId": 485317183,
+    "interviewerName": "Ariel Ren",
+    "interviewerSlackId": "U0AGPV23DQ9",
+    "department": "Foundation Models",
+    "eventName": "Untitled interview",
+    "startTime": "2026-08-25 21:30:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0AGPV23DQ9",
+    "messageTs": "1787763942.099679",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "484021079-u0948lj7jer",
+    "conversationId": 484021079,
+    "interviewerName": "Shyamal Buch",
+    "interviewerSlackId": "U0948LJ7JER",
+    "department": "Foundation Models",
+    "eventName": "Luma & You",
+    "startTime": "2026-08-25 20:00:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0948LJ7JER",
+    "messageTs": "1787763944.190329",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483090303-u0948lj7jer",
+    "conversationId": 483090303,
+    "interviewerName": "Shyamal Buch",
+    "interviewerSlackId": "U0948LJ7JER",
+    "department": "Foundation Models",
+    "eventName": "Luma & You",
+    "startTime": "2026-08-25 17:00:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0948LJ7JER",
+    "messageTs": "1787763944.190329",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483875255-u0a727zgfjr",
+    "conversationId": 483875255,
+    "interviewerName": "Nicole Szeto",
+    "interviewerSlackId": "U0A727ZGFJR",
+    "department": "Product Design",
+    "eventName": "RPS Nicole",
+    "startTime": "2026-08-25 20:00:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0A727ZGFJR",
+    "messageTs": "1787763947.194269",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485385688-u0a727zgfjr",
+    "conversationId": 485385688,
+    "interviewerName": "Nicole Szeto",
+    "interviewerSlackId": "U0A727ZGFJR",
+    "department": "Product",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-25 19:00:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0A727ZGFJR",
+    "messageTs": "1787763947.194269",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "484033073-u09ar6ppnlu",
+    "conversationId": 484033073,
+    "interviewerName": "Andy Flack",
+    "interviewerSlackId": "U09AR6PPNLU",
+    "department": "Product Management",
+    "eventName": "Recruiter Phone Screen",
+    "startTime": "2026-08-25 17:00:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U09AR6PPNLU",
+    "messageTs": "1787763949.172329",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "484045149-u0ar7v2l51t",
+    "conversationId": 484045149,
+    "interviewerName": "Mishita Kumar",
+    "interviewerSlackId": "U0AR7V2L51T",
+    "department": "Product Management",
+    "eventName": "Recruiter Phone Screen(Mishita)",
+    "startTime": "2026-08-25 17:00:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0AR7V2L51T",
+    "messageTs": "1787763951.533629",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485161280-u0ad43h4jg1",
+    "conversationId": 485161280,
+    "interviewerName": "Dan Greenwood",
+    "interviewerSlackId": "U0AD43H4JG1",
+    "department": "Customer Success",
+    "eventName": "Untitled interview",
+    "startTime": "2026-08-25 14:30:00+00:00",
+    "date": "Aug 25",
+    "channelId": "U0AD43H4JG1",
+    "messageTs": "1787763953.668939",
+    "sentAt": "2026-08-26T17:05:59.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "484308686-andrea-lumalabs-ai",
+    "conversationId": 484308686,
+    "interviewerName": "Andrea Lobato",
+    "interviewerSlackId": null,
+    "department": "Legal",
+    "eventName": "Hiring Manager Interview-Andrea",
+    "startTime": "2026-08-25 22:00:00+00:00",
+    "date": "Aug 25",
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
