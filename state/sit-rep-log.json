@@ -1247,8 +1247,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1787104941.421529",
     "sentAt": "2026-08-19T02:02:45.842Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "d",
+    "replyRaw": "d) This is a screen that Mishita did, not me",
     "rawReplyText": null
   },
   {
@@ -1682,8 +1682,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1787677725.210329",
     "sentAt": "2026-08-25T17:08:54.756Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "d",
+    "replyRaw": "d) This is a screen that Mishita did, not me",
     "rawReplyText": null
   },
   {
@@ -1698,8 +1698,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1787677725.210329",
     "sentAt": "2026-08-25T17:08:54.756Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "d",
+    "replyRaw": "d) This is a screen that Mishita did, not me",
     "rawReplyText": null
   },
   {
@@ -1793,7 +1793,8 @@
     "messageTs": "1787763936.532249",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "482234383-u0a8kckvauc",
@@ -1808,7 +1809,8 @@
     "messageTs": "1787763936.532249",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "482417844-u0a8kckvauc",
@@ -1823,7 +1825,8 @@
     "messageTs": "1787763936.532249",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483571482-u0aaq4md5g8",
@@ -1838,7 +1841,8 @@
     "messageTs": "1787763940.063449",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483104017-u0aaq4md5g8",
@@ -1853,7 +1857,8 @@
     "messageTs": "1787763940.063449",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "485273618-u0aaq4md5g8",
@@ -1868,7 +1873,8 @@
     "messageTs": "1787763940.063449",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "485317183-u0agpv23dq9",
@@ -1883,7 +1889,8 @@
     "messageTs": "1787763942.099679",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "484021079-u0948lj7jer",
@@ -1897,8 +1904,8 @@
     "channelId": "U0948LJ7JER",
     "messageTs": "1787763944.190329",
     "sentAt": "2026-08-26T17:05:59.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "a",
+    "replyRaw": "a) for both"
   },
   {
     "id": "483090303-u0948lj7jer",
@@ -1912,8 +1919,8 @@
     "channelId": "U0948LJ7JER",
     "messageTs": "1787763944.190329",
     "sentAt": "2026-08-26T17:05:59.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "a",
+    "replyRaw": "a) for both"
   },
   {
     "id": "483875255-u0a727zgfjr",
@@ -1928,7 +1935,8 @@
     "messageTs": "1787763947.194269",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "485385688-u0a727zgfjr",
@@ -1943,7 +1951,8 @@
     "messageTs": "1787763947.194269",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "484033073-u09ar6ppnlu",
@@ -1957,8 +1966,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1787763949.172329",
     "sentAt": "2026-08-26T17:05:59.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "d",
+    "replyRaw": "d) This is a screen that Mishita did, not me"
   },
   {
     "id": "484045149-u0ar7v2l51t",
@@ -1972,8 +1981,8 @@
     "channelId": "U0AR7V2L51T",
     "messageTs": "1787763951.533629",
     "sentAt": "2026-08-26T17:05:59.000Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "c",
+    "replyRaw": "c"
   },
   {
     "id": "485161280-u0ad43h4jg1",
@@ -1988,7 +1997,8 @@
     "messageTs": "1787763953.668939",
     "sentAt": "2026-08-26T17:05:59.000Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "484308686-andrea-lumalabs-ai",
@@ -2002,6 +2012,156 @@
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "482417849-u0a8kckvauc",
+    "conversationId": 482417849,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-27 06:00:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1787850465.670899",
+    "sentAt": "2026-08-27T17:15:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485412794-u0a8kckvauc",
+    "conversationId": 485412794,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-26 16:00:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1787850465.670899",
+    "sentAt": "2026-08-27T17:15:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483130124-u0aaq4md5g8",
+    "conversationId": 483130124,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Legal",
+    "eventName": "Recruiter Screen (RPS) Davis",
+    "startTime": "2026-08-26 23:00:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1787850469.002549",
+    "sentAt": "2026-08-27T17:15:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483117257-u0aaq4md5g8",
+    "conversationId": 483117257,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Enterprise",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-26 22:00:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1787850469.002549",
+    "sentAt": "2026-08-27T17:15:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "484247493-u0ar7v2l51t",
+    "conversationId": 484247493,
+    "interviewerName": "Mishita Kumar",
+    "interviewerSlackId": "U0AR7V2L51T",
+    "department": "Product Management",
+    "eventName": "Recruiter Phone Screen(Mishita)",
+    "startTime": "2026-08-26 21:30:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0AR7V2L51T",
+    "messageTs": "1787850471.163419",
+    "sentAt": "2026-08-27T17:15:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483545114-u0a727zgfjr",
+    "conversationId": 483545114,
+    "interviewerName": "Nicole Szeto",
+    "interviewerSlackId": "U0A727ZGFJR",
+    "department": "Product Design",
+    "eventName": "RPS Nicole",
+    "startTime": "2026-08-26 20:30:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0A727ZGFJR",
+    "messageTs": "1787850473.347469",
+    "sentAt": "2026-08-27T17:15:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485302630-u0ajf0khd89",
+    "conversationId": 485302630,
+    "interviewerName": "James Huang",
+    "interviewerSlackId": "U0AJF0KHD89",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-26 18:30:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0AJF0KHD89",
+    "messageTs": "1787850475.480989",
+    "sentAt": "2026-08-27T17:15:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485399202-u0acdkp008y",
+    "conversationId": 485399202,
+    "interviewerName": "Adrian Tovalin",
+    "interviewerSlackId": "U0ACDKP008Y",
+    "department": "Legal",
+    "eventName": "Adrian (Strategy & Ops)",
+    "startTime": "2026-08-26 17:45:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0ACDKP008Y",
+    "messageTs": "1787850478.208229",
+    "sentAt": "2026-08-27T17:15:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485372044-u0acdkp008y",
+    "conversationId": 485372044,
+    "interviewerName": "Adrian Tovalin",
+    "interviewerSlackId": "U0ACDKP008Y",
+    "department": "Legal",
+    "eventName": "Adrian (Strategy & Ops)",
+    "startTime": "2026-08-26 17:00:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0ACDKP008Y",
+    "messageTs": "1787850478.208229",
+    "sentAt": "2026-08-27T17:15:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485161284-u0ad43h4jg1",
+    "conversationId": 485161284,
+    "interviewerName": "Dan Greenwood",
+    "interviewerSlackId": "U0AD43H4JG1",
+    "department": "Customer Success",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-26 10:00:00+00:00",
+    "date": "Aug 26",
+    "channelId": "U0AD43H4JG1",
+    "messageTs": "1787850479.982649",
+    "sentAt": "2026-08-27T17:15:00.000Z",
     "reason": null,
     "replyRaw": null
   }
