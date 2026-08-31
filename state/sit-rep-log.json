@@ -1682,8 +1682,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1787677725.210329",
     "sentAt": "2026-08-25T17:08:54.756Z",
-    "reason": "d",
-    "replyRaw": "d) This is a screen that Mishita did, not me",
+    "reason": null,
+    "replyRaw": null,
     "rawReplyText": null
   },
   {
@@ -1698,8 +1698,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1787677725.210329",
     "sentAt": "2026-08-25T17:08:54.756Z",
-    "reason": "d",
-    "replyRaw": "d) This is a screen that Mishita did, not me",
+    "reason": null,
+    "replyRaw": null,
     "rawReplyText": null
   },
   {
@@ -1840,8 +1840,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1787763940.063449",
     "sentAt": "2026-08-26T17:05:59.000Z",
-    "reason": "other",
-    "replyRaw": "my wifi went out and needed to reschedule",
+    "reason": null,
+    "replyRaw": null,
     "rawReplyText": null
   },
   {
@@ -1856,8 +1856,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1787763940.063449",
     "sentAt": "2026-08-26T17:05:59.000Z",
-    "reason": "other",
-    "replyRaw": "my wifi went out and needed to reschedule",
+    "reason": null,
+    "replyRaw": null,
     "rawReplyText": null
   },
   {
@@ -1872,8 +1872,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1787763940.063449",
     "sentAt": "2026-08-26T17:05:59.000Z",
-    "reason": "other",
-    "replyRaw": "my wifi went out and needed to reschedule",
+    "reason": null,
+    "replyRaw": null,
     "rawReplyText": null
   },
   {
