@@ -2188,7 +2188,8 @@
     "messageTs": "1787936940.218279",
     "sentAt": "2026-08-28T17:09:21.367Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "482566042-u0a8kckvauc",
@@ -2203,7 +2204,8 @@
     "messageTs": "1787936940.218279",
     "sentAt": "2026-08-28T17:09:21.367Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483156059-u0aaq4md5g8",
@@ -2218,7 +2220,8 @@
     "messageTs": "1787936942.651549",
     "sentAt": "2026-08-28T17:09:21.367Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "485683345-u0aaq4md5g8",
@@ -2233,7 +2236,8 @@
     "messageTs": "1787936942.651549",
     "sentAt": "2026-08-28T17:09:21.367Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "484909047-u09ar6ppnlu",
@@ -2248,7 +2252,8 @@
     "messageTs": "1787936944.793499",
     "sentAt": "2026-08-28T17:09:21.367Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "484880294-u0a727zgfjr",
@@ -2262,8 +2267,8 @@
     "channelId": "U0A727ZGFJR",
     "messageTs": "1787936947.523769",
     "sentAt": "2026-08-28T17:09:21.367Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Rui and Cassie's interview was cancelled due to headcount"
   },
   {
     "id": "483958470-u0a727zgfjr",
@@ -2277,8 +2282,8 @@
     "channelId": "U0A727ZGFJR",
     "messageTs": "1787936947.523769",
     "sentAt": "2026-08-28T17:09:21.367Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Rui and Cassie's interview was cancelled due to headcount"
   },
   {
     "id": "485793571-u0a727zgfjr",
@@ -2292,8 +2297,8 @@
     "channelId": "U0A727ZGFJR",
     "messageTs": "1787936947.523769",
     "sentAt": "2026-08-28T17:09:21.367Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Rui and Cassie's interview was cancelled due to headcount"
   },
   {
     "id": "485619112-u0amyaa5sbc",
@@ -2307,8 +2312,8 @@
     "channelId": "U0AMYAA5SBC",
     "messageTs": "1787936949.787229",
     "sentAt": "2026-08-28T17:09:21.367Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "My Mac crashed after I entered the meeting and allowed metavirw in with the candidate so might be that, but it was in the meeting when I rejoined"
   },
   {
     "id": "486176384-u0acdkp008y",
@@ -2323,7 +2328,8 @@
     "messageTs": "1787936952.335559",
     "sentAt": "2026-08-28T17:09:21.367Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "482940341-u0ad43h4jg1",
@@ -2337,6 +2343,97 @@
     "channelId": "U0AD43H4JG1",
     "messageTs": "1787936953.809819",
     "sentAt": "2026-08-28T17:09:21.367Z",
+    "reason": null,
+    "replyRaw": null,
+    "rawReplyText": null
+  },
+  {
+    "id": "485668298-u0aaq4md5g8",
+    "conversationId": 485668298,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Forward Deployed Creative",
+    "eventName": "Interview",
+    "startTime": "2026-08-28 20:30:00+00:00",
+    "date": "Aug 28",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1788196231.128899",
+    "sentAt": "2026-08-31T17:10:42.140244Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483104025-u0aaq4md5g8",
+    "conversationId": 483104025,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Legal",
+    "eventName": "Recruiter Screen (RPS) Davis",
+    "startTime": "2026-08-28 18:30:00+00:00",
+    "date": "Aug 28",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1788196231.128899",
+    "sentAt": "2026-08-31T17:10:42.140244Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483104024-u0arhugnxg9",
+    "conversationId": 483104024,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": "U0ARHUGNXG9",
+    "department": "Product Management",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-08-28 19:00:00+00:00",
+    "date": "Aug 28",
+    "channelId": "U0ARHUGNXG9",
+    "messageTs": "1788196233.308739",
+    "sentAt": "2026-08-31T17:10:42.140244Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "482535130-u0a8kckvauc",
+    "conversationId": 482535130,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-08-28 09:30:00+00:00",
+    "date": "Aug 28",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1788196235.501499",
+    "sentAt": "2026-08-31T17:10:42.140244Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485668303-u0a0e4ucjcx",
+    "conversationId": 485668303,
+    "interviewerName": "Trevor Cloak",
+    "interviewerSlackId": "U0A0E4UCJCX",
+    "department": "Customer Success",
+    "eventName": "Untitled interview",
+    "startTime": "2026-08-28 09:00:00+00:00",
+    "date": "Aug 28",
+    "channelId": "U0A0E4UCJCX",
+    "messageTs": "1788196237.358479",
+    "sentAt": "2026-08-31T17:10:42.140244Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485426365-andrea-lumalabs-ai",
+    "conversationId": 485426365,
+    "interviewerName": "Andrea Lobato",
+    "interviewerSlackId": null,
+    "department": "Legal",
+    "eventName": "Hiring Manager Interview-Andrea",
+    "startTime": "2026-08-28 21:30:00+00:00",
+    "date": "Aug 28",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
     "reason": null,
     "replyRaw": null
   }
