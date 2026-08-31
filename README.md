@@ -91,7 +91,7 @@ isn't set. Both templates also name the candidate (e.g. "Recruiter Screen
 with Alex Chen") and, in the multi-miss template, tag each time with a
 timezone abbreviation (e.g. "1:30 PM PDT") so nothing's ambiguous.
 
-**Reason-triggered follow-ups**: the a/b/c/d question in the nudge isn't
+**Reason-triggered follow-ups**: the a/b/c/d/e question in the nudge isn't
 just for tallying - each reply drives a specific next step, grounded in
 real material from the team: Maria Mediato's admit reminder and Richard
 Cho's company-wide "why Metaview matters" Slack post, and the "Metaview:
@@ -114,6 +114,17 @@ concrete troubleshooting steps:
 - **d) Something else** → asks for more context and offers help
   troubleshooting, since there's no way to know what happened without it -
   a human still needs to actually read whatever they send back.
+- **e) Cancelled/rescheduled - no call happened** → a quick acknowledgment
+  that this doesn't count against them. Added after live data showed a real
+  chunk of "misses" were actually calls that never happened at all (no-shows,
+  cancellations, reschedules) - Metaview has no field that distinguishes
+  this ahead of time (checked `list_fields` for anything like a meeting
+  status; nothing exists), so the reply is the only signal. Unlike a/b/c/d,
+  this reason is also excluded from the miss-rate/by-team/repeat-offender
+  math in the weekly sit-rep (`bin/weekly-runner.js` filters `reason: 'e'`
+  entries out before computing those, though they still show up in the
+  reason breakdown for visibility) - a call that never happened was never a
+  real compliance failure, so it shouldn't inflate the miss rate.
 
 This is configured in `config.json`'s `reasonFollowups` (one string per
 reason code; omit a code for no automated follow-up) and resolved daily

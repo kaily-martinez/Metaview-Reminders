@@ -88,6 +88,14 @@ async function main() {
 
   const trailing4Weeks = (input.trailing4WeeksLogEntries || []).map((e) => updatedById.get(e.id) || e);
 
+  // A reason "e" reply means the call was cancelled/rescheduled - there was
+  // never anything to admit Metaview into, so it isn't a real miss. It still
+  // shows up in tallyReasons below (the full, unfiltered set) for visibility,
+  // but it's excluded from the miss-rate/by-team/repeat-offender math, which
+  // uses this filtered set instead.
+  const realMissWeekEntries = updatedWeekEntries.filter((e) => e.reason !== 'e');
+  const realMissTrailing4Weeks = trailing4Weeks.filter((e) => e.reason !== 'e');
+
   const recordedReal = filterRealMisses(input.recordedConversations || [], fields, {
     now,
     requirePast: false,
@@ -95,7 +103,7 @@ async function main() {
     excludedEventTitlePatterns,
   });
 
-  const missed = updatedWeekEntries.length;
+  const missed = realMissWeekEntries.length;
   const scheduled = recordedReal.length + missed;
   const thisWeekMissRate = missRate(missed, scheduled);
 
@@ -108,12 +116,12 @@ async function main() {
 
   const byTeam = byTeamRows(
     recordedReal,
-    updatedWeekEntries,
+    realMissWeekEntries,
     (r) => deptLabel(r, fields.department) || 'Unknown',
     (m) => m.department || 'Unknown'
   );
 
-  const offenders = repeatOffenders(trailing4Weeks);
+  const offenders = repeatOffenders(realMissTrailing4Weeks);
 
   const summary = {
     weekStartISO: input.weekStartISO,

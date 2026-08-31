@@ -93,7 +93,7 @@ note which call it came from as `replyIsThreaded` (`true` if it came from
 `slack_read_thread`, `false` if it came from `slack_read_channel`; leave
 unset if neither call found anything). Attach both `rawReplyText` and
 `replyIsThreaded` onto each entry — don't parse the reply text yourself,
-the runner below does that against the a/b/c/d template.
+the runner below does that against the a/b/c/d/e template.
 
 Write a JSON file (e.g. `/tmp/followup-input.json`):
 
@@ -115,9 +115,11 @@ Read `/tmp/followup-output.json`. It contains `updatedEntries` (each entry
 with `reason`/`replyRaw` resolved wherever a reply came in, and
 `followupSentAt` set on any entry that got a follow-up queued — an entry
 whose reason has no configured follow-up text (this happens for
-free-text/`other` replies that don't cleanly match a/b/c/d, since
-`reasonFollowups` only has entries for those four codes) still gets
-`reason` resolved but nothing queued, since that needs a human's judgment)
+free-text/`other` replies that don't cleanly match a/b/c/d/e, and for any
+code `reasonFollowups` doesn't have an entry for - currently all of them,
+since auto-sends are paused, see `reasonFollowupsPaused` in config.json)
+still gets `reason` resolved but nothing queued, since that needs a
+human's judgment)
 and `followups` (the messages to actually send: `channelId`, `messageTs`,
 `replyIsThreaded`, and `text`).
 

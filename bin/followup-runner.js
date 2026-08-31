@@ -3,7 +3,7 @@
 
 /**
  * Resolves fresh Slack replies (fetched live by the calling prompt via
- * slack_read_channel / slack_read_thread) into a/b/c/d reason codes, and
+ * slack_read_channel / slack_read_thread) into a/b/c/d/e reason codes, and
  * queues any configured follow-up text - e.g. the notes@bot.metaview.ai
  * guest tip for a "b) tried but didn't work" reply. Runs as part of the daily
  * job so a follow-up lands the same day someone replies.

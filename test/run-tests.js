@@ -403,11 +403,12 @@ test('renderNudgeMessage uses the multi-miss template for 2+ misses', () => {
   assert.ok(msg.includes('a) Forgot to admit Metaview\nb) Tried to admit Metaview'));
 });
 
-test('parseReply matches a/b/c/d with common separators', () => {
+test('parseReply matches a/b/c/d/e with common separators', () => {
   assert.strictEqual(parseReply('a) forgot to admit it').code, 'a');
   assert.strictEqual(parseReply('B').code, 'b');
   assert.strictEqual(parseReply('c. joined fine').code, 'c');
   assert.strictEqual(parseReply('d - laptop died').code, 'd');
+  assert.strictEqual(parseReply('e) got rescheduled').code, 'e');
 });
 
 test('parseReply treats non-matching text as other/free-text', () => {
@@ -422,20 +423,24 @@ test('parseReply treats no reply as null/null', () => {
   assert.strictEqual(r.raw, null);
 });
 
-test('tallyReasons counts a/b/c/d/no-reply/other correctly with percentages', () => {
+test('tallyReasons counts a/b/c/d/e/no-reply/other correctly with percentages', () => {
   const entries = [
     { reason: 'a', replyRaw: 'a) forgot' },
     { reason: 'a', replyRaw: 'a) forgot again' },
     { reason: 'b', replyRaw: 'b) tried' },
+    { reason: 'e', replyRaw: 'e) cancelled' },
     { reason: null, replyRaw: null },
   ];
   const tally = tallyReasons(entries);
-  assert.strictEqual(tally.total, 4);
+  assert.strictEqual(tally.total, 5);
   assert.strictEqual(tally.counts.a, 2);
   assert.strictEqual(tally.counts.b, 1);
+  assert.strictEqual(tally.counts.e, 1);
   assert.strictEqual(tally.counts.noReply, 1);
   const aRow = tally.breakdown.find((b) => b.key === 'a');
-  assert.strictEqual(aRow.pct, 50);
+  assert.strictEqual(aRow.pct, 40);
+  const eRow = tally.breakdown.find((b) => b.key === 'e');
+  assert.ok(eRow.reason.includes('excluded from miss rate'));
 });
 
 test('missRate handles zero scheduled without dividing by zero', () => {
