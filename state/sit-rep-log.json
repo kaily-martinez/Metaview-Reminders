@@ -2449,8 +2449,8 @@
     "channelId": "U0ABL0CPAM8",
     "messageTs": "1788282660.919189",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "there was no meeting in the room. i tjhink the room canceled the invite because no one was checked in"
   },
   {
     "id": "488194089-u0ajf0khd89",
@@ -2464,8 +2464,8 @@
     "channelId": "U0AJF0KHD89",
     "messageTs": "1788282663.673979",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "They are all no show so"
   },
   {
     "id": "485372053-u0aby8mt517",
@@ -2479,8 +2479,8 @@
     "channelId": "U0ABY8MT517",
     "messageTs": "1788282665.903809",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "i forgot to admit it — sorry . it’s just a hard thing for me to remember in a 1:1 physical meeting"
   },
   {
     "id": "485372057-u09n9s0pxh8",
@@ -2494,8 +2494,8 @@
     "channelId": "U09N9S0PXH8",
     "messageTs": "1788282668.074619",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hey, I am not sure. I usually admit both meta view and the candidate at the same time. Often it's metaview before the candidate. \n\nI find the green notification button that says “admit” distracting so I like to address that during calls."
   },
   {
     "id": "485372057-u0an9kypdhn",
@@ -2509,8 +2509,8 @@
     "channelId": "U0AN9KYPDHN",
     "messageTs": "1788282670.320539",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hey Kaily - I wasn't actually on the invite for that meeting."
   },
   {
     "id": "485372057-u0anpbp72ls",
@@ -2524,8 +2524,8 @@
     "channelId": "U0ANPBP72LS",
     "messageTs": "1788282672.988729",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "is this a bot?"
   },
   {
     "id": "485372055-u0acdkpnpeu",
@@ -2539,8 +2539,8 @@
     "channelId": "U0ACDKPNPEU",
     "messageTs": "1788282675.037529",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "i think metaview was in the call when i started the interview\nbut it was left overr from the previous interview\nand i think left the call after a few minutes"
   },
   {
     "id": "483444967-u0aaq4md5g8",
@@ -2554,8 +2554,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1788282677.346389",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "hi bot. she rescheduled"
   },
   {
     "id": "487004876-u0a8kckvauc",
@@ -2569,8 +2569,8 @@
     "channelId": "U0A8KCKVAUC",
     "messageTs": "1788282680.711989",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "hey you"
   },
   {
     "id": "487209192-u0a8kckvauc",
@@ -2584,8 +2584,8 @@
     "channelId": "U0A8KCKVAUC",
     "messageTs": "1788282680.711989",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "hey you"
   },
   {
     "id": "487017052-u0a8kckvauc",
@@ -2599,8 +2599,8 @@
     "channelId": "U0A8KCKVAUC",
     "messageTs": "1788282680.711989",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "hey you"
   },
   {
     "id": "486694071-u0b0duvj9qe",
@@ -2614,8 +2614,8 @@
     "channelId": "U0B0DUVJ9QE",
     "messageTs": "1788282683.284629",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "1/"
   },
   {
     "id": "483958449-u0ar7v2l51t",
@@ -2629,8 +2629,8 @@
     "channelId": "U0AR7V2L51T",
     "messageTs": "1788282685.491079",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "TC never joined"
   },
   {
     "id": "487017053-u0a727zgfjr",
@@ -2645,7 +2645,8 @@
     "messageTs": "1788282687.818689",
     "sentAt": "2026-09-01T17:11:39.770Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483342445-u0ad43h4jg1",
@@ -2660,7 +2661,8 @@
     "messageTs": "1788282689.840699",
     "sentAt": "2026-09-01T17:11:39.770Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483342455-u0ad43h4jg1",
@@ -2675,7 +2677,8 @@
     "messageTs": "1788282689.840699",
     "sentAt": "2026-09-01T17:11:39.770Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "487040573-andrea-lumalabs-ai",
@@ -2689,6 +2692,201 @@
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "486315641-u0b0duvj9qe",
+    "conversationId": 486315641,
+    "interviewerName": "Andrea Cutright",
+    "interviewerSlackId": "U0B0DUVJ9QE",
+    "department": "Growth",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-01 20:00:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0B0DUVJ9QE",
+    "messageTs": "1788369055.207369",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488181334-u09t1fvbx2t",
+    "conversationId": 488181334,
+    "interviewerName": "Kaily Martinez",
+    "interviewerSlackId": "U09T1FVBX2T",
+    "department": "Recruiting",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-01 19:30:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U09T1FVBX2T",
+    "messageTs": "1788369057.443869",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488181334-u08cgsplrmy",
+    "conversationId": 488181334,
+    "interviewerName": "Josh Gill",
+    "interviewerSlackId": "U08CGSPLRMY",
+    "department": "Recruiting",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-01 19:30:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U08CGSPLRMY",
+    "messageTs": "1788369059.725469",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488181334-u0asp3yjbgu",
+    "conversationId": 488181334,
+    "interviewerName": "Makaila McLeod",
+    "interviewerSlackId": "U0ASP3YJBGU",
+    "department": "Recruiting",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-01 19:30:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0ASP3YJBGU",
+    "messageTs": "1788369061.787619",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488181334-u0bc7gxh8kx",
+    "conversationId": 488181334,
+    "interviewerName": "Aaron Fried",
+    "interviewerSlackId": "U0BC7GXH8KX",
+    "department": "Recruiting",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-01 19:30:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0BC7GXH8KX",
+    "messageTs": "1788369063.944169",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488154420-u0ac1j651gf",
+    "conversationId": 488154420,
+    "interviewerName": "Sumeet Malik",
+    "interviewerSlackId": "U0AC1J651GF",
+    "department": "Product",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-09-01 17:00:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0AC1J651GF",
+    "messageTs": "1788369066.608269",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485273619-u09n9s0pxh8",
+    "conversationId": 485273619,
+    "interviewerName": "Brennan Lowe",
+    "interviewerSlackId": "U09N9S0PXH8",
+    "department": "Forward Deployed Creative",
+    "eventName": "Case Study Exercise",
+    "startTime": "2026-09-01 17:00:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U09N9S0PXH8",
+    "messageTs": "1788369069.091399",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485273619-u0an9kypdhn",
+    "conversationId": 485273619,
+    "interviewerName": "Matt Parish",
+    "interviewerSlackId": "U0AN9KYPDHN",
+    "department": "Forward Deployed Creative",
+    "eventName": "Case Study Exercise",
+    "startTime": "2026-09-01 17:00:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0AN9KYPDHN",
+    "messageTs": "1788369071.109589",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485273619-u0anpbp72ls",
+    "conversationId": 485273619,
+    "interviewerName": "Hans Weiss",
+    "interviewerSlackId": "U0ANPBP72LS",
+    "department": "Forward Deployed Creative",
+    "eventName": "Case Study Exercise",
+    "startTime": "2026-09-01 17:00:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0ANPBP72LS",
+    "messageTs": "1788369073.176229",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488154435-u0a727zgfjr",
+    "conversationId": 488154435,
+    "interviewerName": "Nicole Szeto",
+    "interviewerSlackId": "U0A727ZGFJR",
+    "department": "Product",
+    "eventName": "Szeto",
+    "startTime": "2026-09-01 15:30:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0A727ZGFJR",
+    "messageTs": "1788369075.394249",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "486884407-u0ad43h4jg1",
+    "conversationId": 486884407,
+    "interviewerName": "Dan Greenwood",
+    "interviewerSlackId": "U0AD43H4JG1",
+    "department": "Executive Leadership",
+    "eventName": "Intro Chat with Recruiter",
+    "startTime": "2026-09-01 11:30:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0AD43H4JG1",
+    "messageTs": "1788369078.667999",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483429870-u0ad43h4jg1",
+    "conversationId": 483429870,
+    "interviewerName": "Dan Greenwood",
+    "interviewerSlackId": "U0AD43H4JG1",
+    "department": "Executive Leadership",
+    "eventName": "Intro Chat with Recruiter",
+    "startTime": "2026-09-01 08:15:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0AD43H4JG1",
+    "messageTs": "1788369078.667999",
+    "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "482417846-u0a8kckvauc",
+    "conversationId": 482417846,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-09-01 10:30:00+00:00",
+    "date": "Sep 1",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1788369080.742019",
+    "sentAt": "2026-09-02T17:11:27.781Z",
     "reason": null,
     "replyRaw": null
   }
