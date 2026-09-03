@@ -2707,8 +2707,8 @@
     "channelId": "U0B0DUVJ9QE",
     "messageTs": "1788369055.207369",
     "sentAt": "2026-09-02T17:11:27.781Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "We rescheduled"
   },
   {
     "id": "488181334-u09t1fvbx2t",
@@ -2723,7 +2723,8 @@
     "messageTs": "1788369057.443869",
     "sentAt": "2026-09-02T17:11:27.781Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488181334-u08cgsplrmy",
@@ -2738,7 +2739,8 @@
     "messageTs": "1788369059.725469",
     "sentAt": "2026-09-02T17:11:27.781Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488181334-u0asp3yjbgu",
@@ -2752,8 +2754,8 @@
     "channelId": "U0ASP3YJBGU",
     "messageTs": "1788369061.787619",
     "sentAt": "2026-09-02T17:11:27.781Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "e",
+    "replyRaw": "e"
   },
   {
     "id": "488181334-u0bc7gxh8kx",
@@ -2768,7 +2770,8 @@
     "messageTs": "1788369063.944169",
     "sentAt": "2026-09-02T17:11:27.781Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488154420-u0ac1j651gf",
@@ -2782,8 +2785,8 @@
     "channelId": "U0AC1J651GF",
     "messageTs": "1788369066.608269",
     "sentAt": "2026-09-02T17:11:27.781Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hi Kaily! Hassan was added to my calendar by mistake. That was a RPS which I believe Nicole was conducting."
   },
   {
     "id": "485273619-u09n9s0pxh8",
@@ -2798,7 +2801,8 @@
     "messageTs": "1788369069.091399",
     "sentAt": "2026-09-02T17:11:27.781Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "485273619-u0an9kypdhn",
@@ -2812,8 +2816,8 @@
     "channelId": "U0AN9KYPDHN",
     "messageTs": "1788369071.109589",
     "sentAt": "2026-09-02T17:11:27.781Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "that meeting was cancelled as well."
   },
   {
     "id": "485273619-u0anpbp72ls",
@@ -2828,7 +2832,8 @@
     "messageTs": "1788369073.176229",
     "sentAt": "2026-09-02T17:11:27.781Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488154435-u0a727zgfjr",
@@ -2843,7 +2848,8 @@
     "messageTs": "1788369075.394249",
     "sentAt": "2026-09-02T17:11:27.781Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "486884407-u0ad43h4jg1",
@@ -2857,8 +2863,8 @@
     "channelId": "U0AD43H4JG1",
     "messageTs": "1788369078.667999",
     "sentAt": "2026-09-02T17:11:27.781Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hey Kaily,\nApologies\nBeen a pretty full on week so far - I'll work through tomorrow 1 by 1.\nThanks\nDan"
   },
   {
     "id": "483429870-u0ad43h4jg1",
@@ -2872,8 +2878,8 @@
     "channelId": "U0AD43H4JG1",
     "messageTs": "1788369078.667999",
     "sentAt": "2026-09-02T17:11:27.781Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hey Kaily,\nApologies\nBeen a pretty full on week so far - I'll work through tomorrow 1 by 1.\nThanks\nDan"
   },
   {
     "id": "482417846-u0a8kckvauc",
@@ -2887,6 +2893,142 @@
     "channelId": "U0A8KCKVAUC",
     "messageTs": "1788369080.742019",
     "sentAt": "2026-09-02T17:11:27.781Z",
+    "reason": null,
+    "replyRaw": null,
+    "rawReplyText": null
+  },
+  {
+    "id": "488168108-u0ar9plpdja",
+    "conversationId": 488168108,
+    "interviewerName": "Peter Foster",
+    "interviewerSlackId": "U0AR9PLPDJA",
+    "department": "Customer Success",
+    "eventName": "Final Hiring Manager Interview",
+    "startTime": "2026-09-02 23:00:00+00:00",
+    "date": "Sep 2",
+    "channelId": "U0AR9PLPDJA",
+    "messageTs": "1788455523.797509",
+    "sentAt": "2026-09-03T17:12:16.787Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488231462-u0ar9plpdja",
+    "conversationId": 488231462,
+    "interviewerName": "Peter Foster",
+    "interviewerSlackId": "U0AR9PLPDJA",
+    "department": "Customer Success",
+    "eventName": "Final Hiring Manager Interview",
+    "startTime": "2026-09-02 22:00:00+00:00",
+    "date": "Sep 2",
+    "channelId": "U0AR9PLPDJA",
+    "messageTs": "1788455523.797509",
+    "sentAt": "2026-09-03T17:12:16.787Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483272779-u0aaq4md5g8",
+    "conversationId": 483272779,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Legal",
+    "eventName": "Recruiter Screen (RPS) Davis",
+    "startTime": "2026-09-02 23:00:00+00:00",
+    "date": "Sep 2",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1788455526.702429",
+    "sentAt": "2026-09-03T17:12:16.787Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "486253268-u0b0duvj9qe",
+    "conversationId": 486253268,
+    "interviewerName": "Andrea Cutright",
+    "interviewerSlackId": "U0B0DUVJ9QE",
+    "department": "Growth",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-02 21:00:00+00:00",
+    "date": "Sep 2",
+    "channelId": "U0B0DUVJ9QE",
+    "messageTs": "1788455529.390789",
+    "sentAt": "2026-09-03T17:12:16.787Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488959752-u0b0duvj9qe",
+    "conversationId": 488959752,
+    "interviewerName": "Andrea Cutright",
+    "interviewerSlackId": "U0B0DUVJ9QE",
+    "department": "Growth",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-02 17:30:00+00:00",
+    "date": "Sep 2",
+    "channelId": "U0B0DUVJ9QE",
+    "messageTs": "1788455529.390789",
+    "sentAt": "2026-09-03T17:12:16.787Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "485793573-u0b0duvj9qe",
+    "conversationId": 485793573,
+    "interviewerName": "Andrea Cutright",
+    "interviewerSlackId": "U0B0DUVJ9QE",
+    "department": "Growth",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-02 17:00:00+00:00",
+    "date": "Sep 2",
+    "channelId": "U0B0DUVJ9QE",
+    "messageTs": "1788455529.390789",
+    "sentAt": "2026-09-03T17:12:16.787Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488206711-u09ar6ppnlu",
+    "conversationId": 488206711,
+    "interviewerName": "Andy Flack",
+    "interviewerSlackId": "U09AR6PPNLU",
+    "department": "Product Management",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-02 18:00:00+00:00",
+    "date": "Sep 2",
+    "channelId": "U09AR6PPNLU",
+    "messageTs": "1788455531.323909",
+    "sentAt": "2026-09-03T17:12:16.787Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "486620682-caroline-lumalabs-ai",
+    "conversationId": 486620682,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Customer Success",
+    "eventName": "Luma & You",
+    "startTime": "2026-09-02 21:00:00+00:00",
+    "date": "Sep 2",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488168109-caroline-lumalabs-ai",
+    "conversationId": 488168109,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Customer Success",
+    "eventName": "Luma & You",
+    "startTime": "2026-09-02 18:00:00+00:00",
+    "date": "Sep 2",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
     "reason": null,
     "replyRaw": null
   }
