@@ -2660,8 +2660,8 @@
     "channelId": "U0AD43H4JG1",
     "messageTs": "1788282689.840699",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "Hey Kaily,\nApologies\nBeen a pretty full on week so far - I'll work through tomorrow 1 by 1.\nThanks\nDan",
     "rawReplyText": null
   },
   {
@@ -2676,8 +2676,8 @@
     "channelId": "U0AD43H4JG1",
     "messageTs": "1788282689.840699",
     "sentAt": "2026-09-01T17:11:39.770Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "Hey Kaily,\nApologies\nBeen a pretty full on week so far - I'll work through tomorrow 1 by 1.\nThanks\nDan",
     "rawReplyText": null
   },
   {
@@ -2738,8 +2738,8 @@
     "channelId": "U08CGSPLRMY",
     "messageTs": "1788369059.725469",
     "sentAt": "2026-09-02T17:11:27.781Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "Hahaha yes gimme a min and I'll grab laptop",
     "rawReplyText": null
   },
   {
@@ -2893,8 +2893,8 @@
     "channelId": "U0A8KCKVAUC",
     "messageTs": "1788369080.742019",
     "sentAt": "2026-09-02T17:11:27.781Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "Can you send me the recording of Tyler's preso? I'm heading out early today (7pm) for the 3 day holiday. Feel bad i'm missing it",
     "rawReplyText": null
   },
   {
@@ -3048,8 +3048,8 @@
     "channelId": "U0AJWAB4VT2",
     "messageTs": "1788541924.127259",
     "sentAt": "2026-09-04T17:12:18.593Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "e!"
   },
   {
     "id": "485288357-u0aaq4md5g8",
@@ -3064,7 +3064,8 @@
     "messageTs": "1788541926.727259",
     "sentAt": "2026-09-04T17:12:18.593Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488523092-u07j99m6fk4",
@@ -3078,8 +3079,8 @@
     "channelId": "U07J99M6FK4",
     "messageTs": "1788541928.941279",
     "sentAt": "2026-09-04T17:12:18.593Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "for this one, i scheduled the meeting directly with yibo. this is not using ashby so that's why"
   },
   {
     "id": "488842711-u0ad43h4jg1",
@@ -3094,7 +3095,8 @@
     "messageTs": "1788541931.044179",
     "sentAt": "2026-09-04T17:12:18.593Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488181331-caroline-lumalabs-ai",
@@ -3105,6 +3107,171 @@
     "eventName": "Hiring Manager Screen - Caroline, COO",
     "startTime": "2026-09-03 23:30:00+00:00",
     "date": "Sep 3",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489436707-u09ar6ppnlu",
+    "conversationId": 489436707,
+    "interviewerName": "Andy Flack",
+    "interviewerSlackId": "U09AR6PPNLU",
+    "department": "Product Management",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-09-04 22:30:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U09AR6PPNLU",
+    "messageTs": "1788800979.190269",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "483545124-u0aaq4md5g8",
+    "conversationId": 483545124,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Product Management",
+    "eventName": "Recruiter Phone Screen",
+    "startTime": "2026-09-04 22:30:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1788800983.024179",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488218920-u0aaq4md5g8",
+    "conversationId": 488218920,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Enterprise",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-09-04 21:00:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1788800983.024179",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "487519340-u0aaq4md5g8",
+    "conversationId": 487519340,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Forward Deployed Creative",
+    "eventName": "Prep Call",
+    "startTime": "2026-09-04 19:00:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1788800983.024179",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489114393-u0aaq4md5g8",
+    "conversationId": 489114393,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Enterprise",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-09-04 16:30:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1788800983.024179",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "486215597-u0ar9plpdja",
+    "conversationId": 486215597,
+    "interviewerName": "Peter Foster",
+    "interviewerSlackId": "U0AR9PLPDJA",
+    "department": "Product Management",
+    "eventName": "Commercial Motion & Cross-Functional Leadership",
+    "startTime": "2026-09-04 20:00:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U0AR9PLPDJA",
+    "messageTs": "1788800985.133899",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489252748-u0a0e4ucjcx",
+    "conversationId": 489252748,
+    "interviewerName": "Trevor Cloak",
+    "interviewerSlackId": "U0A0E4UCJCX",
+    "department": "Executive Leadership",
+    "eventName": "Executive Interview with Trevor Cloak",
+    "startTime": "2026-09-04 12:30:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U0A0E4UCJCX",
+    "messageTs": "1788800987.915039",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489238969-u09rv2s0wpj",
+    "conversationId": 489238969,
+    "interviewerName": "Jason Day",
+    "interviewerSlackId": "U09RV2S0WPJ",
+    "department": "Executive Leadership",
+    "eventName": "Executive Interview with Head of EMEA",
+    "startTime": "2026-09-04 12:30:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U09RV2S0WPJ",
+    "messageTs": "1788800990.172549",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488552586-u0a8kckvauc",
+    "conversationId": 488552586,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen - FDE",
+    "startTime": "2026-09-04 12:30:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1788800992.560399",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "487097498-u0a8kckvauc",
+    "conversationId": 487097498,
+    "interviewerName": "Devin Collins",
+    "interviewerSlackId": "U0A8KCKVAUC",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Recruiter Screen - FDE",
+    "startTime": "2026-09-04 09:00:00+00:00",
+    "date": "Sep 4",
+    "channelId": "U0A8KCKVAUC",
+    "messageTs": "1788800992.560399",
+    "sentAt": "2026-09-07T17:09:59.158Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488140286-caroline-lumalabs-ai",
+    "conversationId": 488140286,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Brand",
+    "eventName": "Hiring Manager Screen - Caroline, COO",
+    "startTime": "2026-09-04 17:30:00+00:00",
+    "date": "Sep 4",
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
