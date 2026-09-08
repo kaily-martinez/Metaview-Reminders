@@ -2251,8 +2251,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1787936944.793499",
     "sentAt": "2026-08-28T17:09:21.367Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "Thanks for flagging - we just added the Product Thinking session for a specific candidate so I'll go ahead and delete it now. Pls just schedule Jay for the Memo Defense round. Thanks",
     "rawReplyText": null
   },
   {
@@ -3002,8 +3002,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1788455531.323909",
     "sentAt": "2026-09-03T17:12:16.787Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "Thanks for flagging - we just added the Product Thinking session for a specific candidate so I'll go ahead and delete it now. Pls just schedule Jay for the Memo Defense round. Thanks",
     "rawReplyText": null
   },
   {
@@ -3063,8 +3063,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1788541926.727259",
     "sentAt": "2026-09-04T17:12:18.593Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I know but I think that he sent it to his personal and he put a note in his work calendar for the wrong time",
     "rawReplyText": null
   },
   {
@@ -3094,8 +3094,8 @@
     "channelId": "U0AD43H4JG1",
     "messageTs": "1788541931.044179",
     "sentAt": "2026-09-04T17:12:18.593Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "e",
+    "replyRaw": "E. Candidate needed to move",
     "rawReplyText": null
   },
   {
@@ -3126,7 +3126,8 @@
     "messageTs": "1788800979.190269",
     "sentAt": "2026-09-07T17:09:59.158Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "483545124-u0aaq4md5g8",
@@ -3140,8 +3141,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1788800983.024179",
     "sentAt": "2026-09-07T17:09:59.158Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "I know but I think that he sent it to his personal and he put a note in his work calendar for the wrong time"
   },
   {
     "id": "488218920-u0aaq4md5g8",
@@ -3155,8 +3156,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1788800983.024179",
     "sentAt": "2026-09-07T17:09:59.158Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "I know but I think that he sent it to his personal and he put a note in his work calendar for the wrong time"
   },
   {
     "id": "487519340-u0aaq4md5g8",
@@ -3170,8 +3171,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1788800983.024179",
     "sentAt": "2026-09-07T17:09:59.158Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "I know but I think that he sent it to his personal and he put a note in his work calendar for the wrong time"
   },
   {
     "id": "489114393-u0aaq4md5g8",
@@ -3185,8 +3186,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1788800983.024179",
     "sentAt": "2026-09-07T17:09:59.158Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "I know but I think that he sent it to his personal and he put a note in his work calendar for the wrong time"
   },
   {
     "id": "486215597-u0ar9plpdja",
@@ -3200,8 +3201,8 @@
     "channelId": "U0AR9PLPDJA",
     "messageTs": "1788800985.133899",
     "sentAt": "2026-09-07T17:09:59.158Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "c",
+    "replyRaw": "C"
   },
   {
     "id": "489252748-u0a0e4ucjcx",
@@ -3215,8 +3216,8 @@
     "channelId": "U0A0E4UCJCX",
     "messageTs": "1788800987.915039",
     "sentAt": "2026-09-07T17:09:59.158Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Claire was a no show"
   },
   {
     "id": "489238969-u09rv2s0wpj",
@@ -3231,7 +3232,8 @@
     "messageTs": "1788800990.172549",
     "sentAt": "2026-09-07T17:09:59.158Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488552586-u0a8kckvauc",
@@ -3245,8 +3247,8 @@
     "channelId": "U0A8KCKVAUC",
     "messageTs": "1788800992.560399",
     "sentAt": "2026-09-07T17:09:59.158Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "I miss my friend Kaily and am tired of you baby bot. Sorrynotsorry"
   },
   {
     "id": "487097498-u0a8kckvauc",
@@ -3260,8 +3262,8 @@
     "channelId": "U0A8KCKVAUC",
     "messageTs": "1788800992.560399",
     "sentAt": "2026-09-07T17:09:59.158Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "I miss my friend Kaily and am tired of you baby bot. Sorrynotsorry"
   },
   {
     "id": "488140286-caroline-lumalabs-ai",
@@ -3275,6 +3277,21 @@
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "490940742-u0amyaa5sbc",
+    "conversationId": 490940742,
+    "interviewerName": "Andrew Maeer",
+    "interviewerSlackId": "U0AMYAA5SBC",
+    "department": "Forward Deployed Creative",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-07 14:00:00+00:00",
+    "date": "Sep 7",
+    "channelId": "U0AMYAA5SBC",
+    "messageTs": "1788887184.512969",
+    "sentAt": "2026-09-08T17:06:24.000Z",
     "reason": null,
     "replyRaw": null
   }
