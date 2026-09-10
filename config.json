@@ -17,7 +17,7 @@
     { "id": "baba8c1c-fb62-11f0-b371-baf72c0cfc4f", "label": "System Design Interview" }
   ],
   "timezone": "America/Los_Angeles",
-  "excludedEventTitlePatterns": ["meet & greet", "meet and greet", "admin - test"],
+  "excludedEventTitlePatterns": ["meet & greet", "meet and greet", "admin - test", "lunch"],
   "doNotMessage": [
     { "name": "Caroline Ingeborn", "email": "caroline@lumalabs.ai" },
     { "name": "Amit Jain", "email": "amit@lumalabs.ai" },

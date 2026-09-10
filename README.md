@@ -56,8 +56,13 @@ each catching noise the others miss:
    This is a policy call, not a fixed fact, so it's configured per-workspace
    rather than hardcoded. Also catches internal QA entries like "Hiring
    Manager Screen - ADMIN - TEST (JG) - ADMIN - Test Job" (via the
-   `"admin - test"` pattern) - add more patterns here as other
-   non-interview title conventions turn up.
+   `"admin - test"` pattern), and onsite loop blocks like "Lunch" (via the
+   `"lunch"` pattern) - onsite schedules routinely include a lunch slot with
+   an interviewer attached, which Metaview records as its own conversation
+   with a real conversation_type and linked application like any other loop
+   stage, even though there's no interview happening and nothing to admit a
+   bot into. Add more patterns here as other non-interview title conventions
+   turn up.
 
 **Presumed-departed interviewers are excluded automatically**: an
 interviewer who can't be resolved to a Slack user (by email, then by full
@@ -226,8 +231,8 @@ instead of an edited section.
    `default:conversation_type` to check the set is still complete.
 5. `config.json`'s `excludedEventTitlePatterns` holds case-insensitive event
    title substrings that never count as a miss (currently `"meet & greet"`,
-   `"meet and greet"`, and `"admin - test"`, all discovered from real
-   data). Add more as other
+   `"meet and greet"`, `"admin - test"`, and `"lunch"`, all discovered from
+   real data). Add more as other
    non-interview title conventions turn up, or clear it if you'd rather see
    everything.
 6. `config.json`'s `doNotMessage` lists people (`{ name, email }`) who
