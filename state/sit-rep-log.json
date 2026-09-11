@@ -1527,8 +1527,8 @@
     "channelId": "U0BC7GXH8KX",
     "messageTs": "1787245695.626969",
     "sentAt": "2026-08-20T17:08:30.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I'm so sorry to hear you aren't feeling well. Please rest up and get better soon. :heart::heart::heart:",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -2143,8 +2143,8 @@
     "channelId": "U0ACDKP008Y",
     "messageTs": "1787850478.208229",
     "sentAt": "2026-08-27T17:07:58.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I've noticed that folks tend to act stressed when I've enabled both the bot and Google notes, so I usually leave the Google notes and leave Metaview off",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -2160,8 +2160,8 @@
     "channelId": "U0ACDKP008Y",
     "messageTs": "1787850478.208229",
     "sentAt": "2026-08-27T17:07:58.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I've noticed that folks tend to act stressed when I've enabled both the bot and Google notes, so I usually leave the Google notes and leave Metaview off",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -2333,8 +2333,8 @@
     "channelId": "U0ACDKP008Y",
     "messageTs": "1787936952.335559",
     "sentAt": "2026-08-28T17:09:12.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I've noticed that folks tend to act stressed when I've enabled both the bot and Google notes, so I usually leave the Google notes and leave Metaview off",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -2778,8 +2778,8 @@
     "channelId": "U0BC7GXH8KX",
     "messageTs": "1788369063.944169",
     "sentAt": "2026-09-02T17:11:03.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I'm so sorry to hear you aren't feeling well. Please rest up and get better soon. :heart::heart::heart:",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -3325,8 +3325,8 @@
     "channelId": "U0AN9KYPDHN",
     "messageTs": "1788973680.006159",
     "sentAt": "2026-09-09T17:08:22.921Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "the meeting was postponed"
   },
   {
     "id": "485868382-u0ajwab4vt2",
@@ -3340,8 +3340,8 @@
     "channelId": "U0AJWAB4VT2",
     "messageTs": "1788973682.333209",
     "sentAt": "2026-09-09T17:08:22.921Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "It's always e"
   },
   {
     "id": "486120482-u09n9s0pxh8",
@@ -3356,7 +3356,8 @@
     "messageTs": "1788973684.625239",
     "sentAt": "2026-09-09T17:08:22.921Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "486120482-u0bg5t6llpr",
@@ -3371,7 +3372,8 @@
     "messageTs": "1788973686.919089",
     "sentAt": "2026-09-09T17:08:22.921Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "486120482-u09ny2gt0qh",
@@ -3385,8 +3387,8 @@
     "channelId": "U09NY2GT0QH",
     "messageTs": "1788973689.436299",
     "sentAt": "2026-09-09T17:08:22.921Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hi! The interview was rescheduled y <@U0AMYAA5SBC|Andrew Maeer>"
   },
   {
     "id": "489450831-u0a7c87vdpa",
@@ -3401,7 +3403,8 @@
     "messageTs": "1788973691.924609",
     "sentAt": "2026-09-09T17:08:22.921Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488870125-u0a0e4ucjcx",
@@ -3415,6 +3418,171 @@
     "channelId": "U0A0E4UCJCX",
     "messageTs": "1788973694.607409",
     "sentAt": "2026-09-09T17:08:22.921Z",
+    "reason": "other",
+    "replyRaw": "the person was a no show"
+  },
+  {
+    "id": "491510612-u0aaq4md5g8",
+    "conversationId": 491510612,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Enterprise",
+    "eventName": "Recruiter Screen",
+    "startTime": "2026-09-10 23:30:00+00:00",
+    "date": "Sep 10",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1789146645.572029",
+    "sentAt": "2026-09-11T17:11:10.082Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "487075046-u0aaq4md5g8",
+    "conversationId": 487075046,
+    "interviewerName": "Davis M",
+    "interviewerSlackId": "U0AAQ4MD5G8",
+    "department": "Product Management",
+    "eventName": "Recruiter Phone Screen",
+    "startTime": "2026-09-10 22:30:00+00:00",
+    "date": "Sep 10",
+    "channelId": "U0AAQ4MD5G8",
+    "messageTs": "1789146645.572029",
+    "sentAt": "2026-09-11T17:11:10.082Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "491526395-u09ar6ppnlu",
+    "conversationId": 491526395,
+    "interviewerName": "Andy Flack",
+    "interviewerSlackId": "U09AR6PPNLU",
+    "department": "Product Management",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-10 22:00:00+00:00",
+    "date": "Sep 10",
+    "channelId": "U09AR6PPNLU",
+    "messageTs": "1789146648.090029",
+    "sentAt": "2026-09-11T17:11:10.082Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488687445-u0abl0cpam8",
+    "conversationId": 488687445,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Product Management",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-10 21:15:00+00:00",
+    "date": "Sep 10",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1789146650.508539",
+    "sentAt": "2026-09-11T17:11:10.082Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489077001-u0ac1j651gf",
+    "conversationId": 489077001,
+    "interviewerName": "Sumeet Malik",
+    "interviewerSlackId": "U0AC1J651GF",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-10 21:00:00+00:00",
+    "date": "Sep 10",
+    "channelId": "U0AC1J651GF",
+    "messageTs": "1789146653.013829",
+    "sentAt": "2026-09-11T17:11:10.082Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "491588719-u0ar7v2l51t",
+    "conversationId": 491588719,
+    "interviewerName": "Mishita Kumar",
+    "interviewerSlackId": "U0AR7V2L51T",
+    "department": "Product Management",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-10 17:00:00+00:00",
+    "date": "Sep 10",
+    "channelId": "U0AR7V2L51T",
+    "messageTs": "1789146655.329579",
+    "sentAt": "2026-09-11T17:11:10.082Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489006442-u0948lj7jer",
+    "conversationId": 489006442,
+    "interviewerName": "Shyamal Buch",
+    "interviewerSlackId": "U0948LJ7JER",
+    "department": "Training Compute",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-10 16:30:00+00:00",
+    "date": "Sep 10",
+    "channelId": "U0948LJ7JER",
+    "messageTs": "1789146657.788169",
+    "sentAt": "2026-09-11T17:11:10.082Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "487893311-u0acdkn2v0q",
+    "conversationId": 487893311,
+    "interviewerName": "Sharang Pai",
+    "interviewerSlackId": "U0ACDKN2V0Q",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Technical Deep Dive - FDE",
+    "startTime": "2026-09-10 16:00:00+00:00",
+    "date": "Sep 10",
+    "channelId": "U0ACDKN2V0Q",
+    "messageTs": "1789146660.351959",
+    "sentAt": "2026-09-11T17:11:10.082Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "487893311-u0bck12dsjk",
+    "conversationId": 487893311,
+    "interviewerName": "Shumin Zhang",
+    "interviewerSlackId": "U0BCK12DSJK",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Technical Deep Dive - FDE",
+    "startTime": "2026-09-10 16:00:00+00:00",
+    "date": "Sep 10",
+    "channelId": "U0BCK12DSJK",
+    "messageTs": "1789146662.434029",
+    "sentAt": "2026-09-11T17:11:10.082Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "491999865-andrea-lumalabs-ai",
+    "conversationId": 491999865,
+    "interviewerName": "Andrea Lobato",
+    "interviewerSlackId": null,
+    "department": "Legal",
+    "eventName": "Hiring Manager Interview-Andrea",
+    "startTime": "2026-09-10 20:30:00+00:00",
+    "date": "Sep 10",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "492257028-caroline-lumalabs-ai",
+    "conversationId": 492257028,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Product Management",
+    "eventName": "Luma & You",
+    "startTime": "2026-09-10 19:15:00+00:00",
+    "date": "Sep 10",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
     "reason": null,
     "replyRaw": null
   }
