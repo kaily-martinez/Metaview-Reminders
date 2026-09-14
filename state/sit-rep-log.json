@@ -3141,8 +3141,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1788800979.190269",
     "sentAt": "2026-09-07T17:09:39.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "e",
+    "replyRaw": "e",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -3433,8 +3433,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1789146645.572029",
     "sentAt": "2026-09-11T17:11:10.082Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "bot, anna didn't join, working on rescheduling"
   },
   {
     "id": "487075046-u0aaq4md5g8",
@@ -3448,8 +3448,8 @@
     "channelId": "U0AAQ4MD5G8",
     "messageTs": "1789146645.572029",
     "sentAt": "2026-09-11T17:11:10.082Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "bot, anna didn't join, working on rescheduling"
   },
   {
     "id": "491526395-u09ar6ppnlu",
@@ -3463,8 +3463,8 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1789146648.090029",
     "sentAt": "2026-09-11T17:11:10.082Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "e",
+    "replyRaw": "e"
   },
   {
     "id": "488687445-u0abl0cpam8",
@@ -3479,7 +3479,8 @@
     "messageTs": "1789146650.508539",
     "sentAt": "2026-09-11T17:11:10.082Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "489077001-u0ac1j651gf",
@@ -3493,8 +3494,8 @@
     "channelId": "U0AC1J651GF",
     "messageTs": "1789146653.013829",
     "sentAt": "2026-09-11T17:11:10.082Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Candidate need to reschedule so we've moved this to next week."
   },
   {
     "id": "491588719-u0ar7v2l51t",
@@ -3508,8 +3509,8 @@
     "channelId": "U0AR7V2L51T",
     "messageTs": "1789146655.329579",
     "sentAt": "2026-09-11T17:11:10.082Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "c",
+    "replyRaw": "c"
   },
   {
     "id": "489006442-u0948lj7jer",
@@ -3523,8 +3524,8 @@
     "channelId": "U0948LJ7JER",
     "messageTs": "1789146657.788169",
     "sentAt": "2026-09-11T17:11:10.082Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "the interview didnt happen. <@U0ASP3YJBGU|Makaila McLeod> forgot to reschedule when the candidate asked, and i was just chilling in the room for 10 mins"
   },
   {
     "id": "487893311-u0acdkn2v0q",
@@ -3538,8 +3539,8 @@
     "channelId": "U0ACDKN2V0Q",
     "messageTs": "1789146660.351959",
     "sentAt": "2026-09-11T17:11:10.082Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "konstantin gatlin's interview was cancelled"
   },
   {
     "id": "487893311-u0bck12dsjk",
@@ -3554,7 +3555,8 @@
     "messageTs": "1789146662.434029",
     "sentAt": "2026-09-11T17:11:10.082Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "491999865-andrea-lumalabs-ai",
@@ -3583,6 +3585,171 @@
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "486189695-u05b4aaty73",
+    "conversationId": 486189695,
+    "interviewerName": "Matt Tancik",
+    "interviewerSlackId": "U05B4AATY73",
+    "department": "Product Management",
+    "eventName": "Research Collaboration",
+    "startTime": "2026-09-11 22:45:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U05B4AATY73",
+    "messageTs": "1789406116.248019",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488231459-u05b4aaty73",
+    "conversationId": 488231459,
+    "interviewerName": "Matt Tancik",
+    "interviewerSlackId": "U05B4AATY73",
+    "department": "Product Management",
+    "eventName": "Research Collaboration",
+    "startTime": "2026-09-11 20:30:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U05B4AATY73",
+    "messageTs": "1789406116.248019",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488243384-u0ag909m66a",
+    "conversationId": 488243384,
+    "interviewerName": "Avni Kakkar",
+    "interviewerSlackId": "U0AG909M66A",
+    "department": "Product Management",
+    "eventName": "Product execution",
+    "startTime": "2026-09-11 20:30:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U0AG909M66A",
+    "messageTs": "1789406118.739719",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "492570933-u0ar7v2l51t",
+    "conversationId": 492570933,
+    "interviewerName": "Mishita Kumar",
+    "interviewerSlackId": "U0AR7V2L51T",
+    "department": "Product Management",
+    "eventName": "Recruiter Phone Screen",
+    "startTime": "2026-09-11 20:00:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U0AR7V2L51T",
+    "messageTs": "1789406121.131249",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488231456-u0abl0cpam8",
+    "conversationId": 488231456,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Product Management",
+    "eventName": "Shipping Research & Execution",
+    "startTime": "2026-09-11 19:15:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1789406124.401609",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488243385-u0abl0cpam8",
+    "conversationId": 488243385,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Product Management",
+    "eventName": "Technical collaboration & platform",
+    "startTime": "2026-09-11 18:00:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1789406124.401609",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "492706276-u0abl0cpam8",
+    "conversationId": 492706276,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Product Management",
+    "eventName": "Technical Partnership & Platform Reality",
+    "startTime": "2026-09-11 16:15:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1789406124.401609",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489464471-u0arhugnxg9",
+    "conversationId": 489464471,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": "U0ARHUGNXG9",
+    "department": "Product Management",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-11 17:30:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U0ARHUGNXG9",
+    "messageTs": "1789406127.063129",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "487893322-u0arhugnxg9",
+    "conversationId": 487893322,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": "U0ARHUGNXG9",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Product Thinking - FDE",
+    "startTime": "2026-09-11 16:00:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U0ARHUGNXG9",
+    "messageTs": "1789406127.063129",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "492451145-u0948lj7jer",
+    "conversationId": 492451145,
+    "interviewerName": "Shyamal Buch",
+    "interviewerSlackId": "U0948LJ7JER",
+    "department": "Training Compute",
+    "eventName": "Luma & You",
+    "startTime": "2026-09-11 16:30:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U0948LJ7JER",
+    "messageTs": "1789406129.266279",
+    "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "490288736-u09ar6ppnlu",
+    "conversationId": 490288736,
+    "interviewerName": "Andy Flack",
+    "interviewerSlackId": "U09AR6PPNLU",
+    "department": "Product Management",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-11 16:00:00+00:00",
+    "date": "Sep 11",
+    "channelId": "U09AR6PPNLU",
+    "messageTs": "1789406131.417749",
+    "sentAt": "2026-09-14T17:15:38.784Z",
     "reason": null,
     "replyRaw": null
   }
