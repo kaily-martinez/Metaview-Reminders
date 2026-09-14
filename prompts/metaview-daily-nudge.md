@@ -14,7 +14,8 @@ your working directory.
 
 Read `config.json`. You'll use `metaviewFields`, `departmentFieldId`,
 `interviewConversationTypes`, `excludedEventTitlePatterns`, `doNotMessage`,
-`resourceUrl`, `testDmUserId`, and `reasonFollowups` below. If
+`excludedInterviewers`, `resourceUrl`, `testDmUserId`, and `reasonFollowups`
+below. If
 `sitrepChannelId` is empty, that's fine — it's not used by this script
 (only the weekly one).
 
@@ -261,6 +262,7 @@ Write a JSON file (e.g. `/tmp/daily-input.json`) with this shape:
   "allowedConversationTypeIds": [ ...ids from config.json's interviewConversationTypes... ],
   "excludedEventTitlePatterns": [ ...from config.json's excludedEventTitlePatterns... ],
   "doNotMessage": [ ...from config.json's doNotMessage... ],
+  "excludedInterviewers": [ ...from config.json's excludedInterviewers... ],
   "slackIdMap": { ...from step 5... },
   "now": "<current ISO timestamp>",
   "timezone": "<timezone from config.json>",
@@ -278,9 +280,15 @@ Read `/tmp/daily-output.json`. It contains `stats`, `messages` (one per
 interviewer, already grouped and template-rendered — single-miss or
 multi-miss template chosen automatically), `unresolved` (interviewers whose
 Slack ID couldn't be resolved — presumed departed, per step 5; not included
-in `messages` and won't be logged), and `skipped` (interviewers matched
-against config.json's `doNotMessage` list — a real miss, so it still needs
-to be logged for the weekly report, but no DM should ever be sent to them).
+in `messages` and won't be logged), `skipped` (interviewers matched against
+config.json's `doNotMessage` list — a real miss, so it still needs to be
+logged for the weekly report, but no DM should ever be sent to them), and
+`excludedFromReport` (interviewers matched against config.json's
+`excludedInterviewers` list — internal recruiting/People Ops staff who
+already know Metaview needs to be admitted and whose misses are usually a
+cancellation/reschedule rather than a real gap; unlike `skipped`, these are
+dropped entirely — no DM, and never logged, so they don't count toward the
+report at all).
 
 ## 7. Send (or print) the messages
 
@@ -332,5 +340,7 @@ an action item — they're already excluded from nudging and the log, no
 mapping needs fixing unless one of them turns out to still be employed.
 Also list anyone in `skipped` by name (`stats.skippedAsDoNotMessageCount`)
 — these are config.json's `doNotMessage` list, logged for the report but
-deliberately never sent a DM. Do not print full message text again if you
-already printed it in step 7.
+deliberately never sent a DM. Also list anyone in `excludedFromReport` by
+name (`stats.excludedFromReportCount`) — config.json's `excludedInterviewers`
+list, dropped entirely from both messaging and the report. Do not print full
+message text again if you already printed it in step 7.

@@ -1,6 +1,6 @@
 'use strict';
 const assert = require('assert');
-const { filterRealMisses, groupByInterviewer, firstName, isDoNotMessage } = require('../lib/filters');
+const { filterRealMisses, groupByInterviewer, firstName, isDoNotMessage, isExcludedInterviewer } = require('../lib/filters');
 const { renderNudgeMessage } = require('../lib/templates');
 const { parseReply, tallyReasons, missRate, trendArrow, byTeamRows, repeatOffenders } = require('../lib/aggregate');
 const { renderReportSections } = require('../lib/report-render');
@@ -294,6 +294,36 @@ test('isDoNotMessage returns false when the list is empty or unset', () => {
   const group = { interviewerName: 'Jane Doe', interviewerEmail: 'jane@lumalabs.ai' };
   assert.strictEqual(isDoNotMessage(group, []), false);
   assert.strictEqual(isDoNotMessage(group, null), false);
+});
+
+test('isExcludedInterviewer matches by exact email case-insensitively', () => {
+  const excludedInterviewers = [{ name: 'Nicole Szeto', email: 'nicole@lumalabs.ai' }];
+  const group = { interviewerName: 'Nicole Szeto', interviewerEmail: 'Nicole@LumaLabs.ai' };
+  assert.strictEqual(isExcludedInterviewer(group, excludedInterviewers), true);
+});
+
+test('isExcludedInterviewer matches a configured first name against a full real name', () => {
+  const excludedInterviewers = [{ name: 'davis' }];
+  const group = { interviewerName: 'Davis Momii', interviewerEmail: 'davis@lumalabs.ai' };
+  assert.strictEqual(isExcludedInterviewer(group, excludedInterviewers), true);
+});
+
+test('isExcludedInterviewer matches a configured initial-truncated name', () => {
+  const excludedInterviewers = [{ name: 'Aaron F' }];
+  const group = { interviewerName: 'Aaron Fried', interviewerEmail: 'aaron.fried@lumalabs.ai' };
+  assert.strictEqual(isExcludedInterviewer(group, excludedInterviewers), true);
+});
+
+test('isExcludedInterviewer does not match an unrelated interviewer', () => {
+  const excludedInterviewers = [{ name: 'Nicole Szeto' }];
+  const group = { interviewerName: 'Jane Doe', interviewerEmail: 'jane@lumalabs.ai' };
+  assert.strictEqual(isExcludedInterviewer(group, excludedInterviewers), false);
+});
+
+test('isExcludedInterviewer returns false when the list is empty or unset', () => {
+  const group = { interviewerName: 'Jane Doe', interviewerEmail: 'jane@lumalabs.ai' };
+  assert.strictEqual(isExcludedInterviewer(group, []), false);
+  assert.strictEqual(isExcludedInterviewer(group, null), false);
 });
 
 test('renderNudgeMessage uses the single-miss template for one miss', () => {

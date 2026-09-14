@@ -81,6 +81,25 @@ matches by email first, falling back to name. `bin/daily-runner.js` routes
 a match into a `skipped` bucket instead of `messages` - still logged
 (with no `messageTs`/`channelId`, since no DM went out), just never sent.
 
+**Internal recruiting/People Ops staff are excluded from the report
+entirely**: `config.json`'s `excludedInterviewers` (a list of `{ name,
+email }`, email optional) is for people who show up as "interviewer" mostly
+through a scheduling/coordination role rather than as the actual panel
+interviewer — recruiters, coordinators, sourcers — who already know Metaview
+needs to be admitted, and whose misses are usually a cancelled or
+rescheduled call rather than a real gap. Unlike `doNotMessage` (still
+counted, just not messaged), a match here is dropped entirely: no DM, and
+never logged, so it's the same "not a real miss" treatment as
+`excludedEventTitlePatterns`/`excludeConversationIds` in `filterRealMisses` —
+just keyed on the person instead of the conversation. `lib/filters.js`'s
+`isExcludedInterviewer` matches by exact email, or a case-insensitive
+substring match on name in either direction (looser than `isDoNotMessage`'s
+exact-name match, since these names were configured as whatever was on hand
+— a first name, an initial — not necessarily Metaview's full display name).
+`bin/daily-runner.js` routes a match into an `excludedFromReport` bucket,
+listed in the daily summary for visibility but never touching `messages`,
+`skipped`, or the log.
+
 **Help resource**: both nudge templates append a short, optional pointer to
 the team's "Metaview: Admit & Submit" Notion page (`config.json`'s
 `resourceUrl`) — on the theory that a lot of misses are people not knowing
@@ -233,6 +252,10 @@ instead of an edited section.
 6. `config.json`'s `doNotMessage` lists people (`{ name, email }`) who
    should never get a nudge DM but whose misses should still count toward
    the report. Empty by default; add names as they come up.
+6a. `config.json`'s `excludedInterviewers` lists internal recruiting/People
+    Ops staff (`{ name, email }`, email optional) whose misses are dropped
+    entirely — no DM, not counted anywhere. Currently seeded with the team's
+    recruiters, coordinators, and sourcers. Add more names as they come up.
 7. `config.json`'s `resourceUrl` points at the team's "Metaview: Admit &
    Submit" Notion page. Update or clear it if that doc moves or you'd
    rather not include the link.

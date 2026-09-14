@@ -34,6 +34,7 @@
  *   "allowedConversationTypeIds": ["<uuid>", ...],     // optional - if set, only these conversation_type values count as real interviews
  *   "excludedEventTitlePatterns": ["meet & greet", ...], // optional - case-insensitive substrings; matching event titles never count as misses
  *   "doNotMessage": [{ "name": "...", "email": "..." }, ...], // optional - these people's misses still count toward the report, but never get a DM (see lib/filters.js's isDoNotMessage)
+ *   "excludedInterviewers": [{ "name": "...", "email": "..." }, ...], // optional - these people's misses are dropped entirely: no DM, not logged, not counted anywhere (see lib/filters.js's isExcludedInterviewer)
  *   "slackIdMap": { "jane@co.com": "U123..." },        // email -> resolved Slack user id
  *   "now": "2026-08-14T18:00:00-07:00",                // optional, defaults to real now
  *   "timezone": "America/Los_Angeles",                 // IANA zone for displayed dates/times; defaults to America/Los_Angeles
@@ -41,7 +42,7 @@
  * }
  */
 
-const { filterRealMisses, groupByInterviewer, firstName, isDoNotMessage } = require('../lib/filters');
+const { filterRealMisses, groupByInterviewer, firstName, isDoNotMessage, isExcludedInterviewer } = require('../lib/filters');
 const { renderNudgeMessage, formatDate } = require('../lib/templates');
 
 function readStdin() {
@@ -85,6 +86,7 @@ async function main() {
   const recordedConversations = input.recordedConversations || [];
   const excludeConversationIds = new Set(recordedConversations.map((c) => c.id));
   const doNotMessage = input.doNotMessage || [];
+  const excludedInterviewers = input.excludedInterviewers || [];
 
   const misses = filterRealMisses(conversations, fields, { now, allowedConversationTypeIds, excludeConversationIds, excludedEventTitlePatterns });
   const groups = groupByInterviewer(misses, fields);
@@ -92,8 +94,18 @@ async function main() {
   const messages = [];
   const unresolved = [];
   const skipped = [];
+  const excludedFromReport = [];
 
   for (const group of groups) {
+    if (isExcludedInterviewer(group, excludedInterviewers)) {
+      excludedFromReport.push({
+        interviewerName: group.interviewerName,
+        interviewerEmail: group.interviewerEmail,
+        missCount: group.misses.length,
+      });
+      continue;
+    }
+
     if (isDoNotMessage(group, doNotMessage)) {
       const entries = group.misses.map((m) => ({
         id: `${m.conversationId ?? slugify(m.eventName)}-${slugify(group.interviewerEmail || group.interviewerName)}`,
@@ -161,10 +173,12 @@ async function main() {
       messageCount: messages.length,
       unresolvedCount: unresolved.length,
       skippedAsDoNotMessageCount: skipped.length,
+      excludedFromReportCount: excludedFromReport.length,
     },
     messages,
     unresolved,
     skipped,
+    excludedFromReport,
   };
 
   process.stdout.write(JSON.stringify(output, null, 2) + '\n');
