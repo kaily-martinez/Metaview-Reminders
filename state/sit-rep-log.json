@@ -3600,8 +3600,8 @@
     "channelId": "U05B4AATY73",
     "messageTs": "1789406116.248019",
     "sentAt": "2026-09-14T17:15:38.784Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "d",
+    "replyRaw": "d) I like going on walks around RWC with candidates"
   },
   {
     "id": "488231459-u05b4aaty73",
@@ -3615,8 +3615,8 @@
     "channelId": "U05B4AATY73",
     "messageTs": "1789406116.248019",
     "sentAt": "2026-09-14T17:15:38.784Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "d",
+    "replyRaw": "d) I like going on walks around RWC with candidates"
   },
   {
     "id": "488243384-u0ag909m66a",
@@ -3631,7 +3631,8 @@
     "messageTs": "1789406118.739719",
     "sentAt": "2026-09-14T17:15:38.784Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "492570933-u0ar7v2l51t",
@@ -3646,7 +3647,8 @@
     "messageTs": "1789406121.131249",
     "sentAt": "2026-09-14T17:15:38.784Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488231456-u0abl0cpam8",
@@ -3661,7 +3663,8 @@
     "messageTs": "1789406124.401609",
     "sentAt": "2026-09-14T17:15:38.784Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488243385-u0abl0cpam8",
@@ -3676,7 +3679,8 @@
     "messageTs": "1789406124.401609",
     "sentAt": "2026-09-14T17:15:38.784Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "492706276-u0abl0cpam8",
@@ -3691,7 +3695,8 @@
     "messageTs": "1789406124.401609",
     "sentAt": "2026-09-14T17:15:38.784Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "489464471-u0arhugnxg9",
@@ -3706,7 +3711,8 @@
     "messageTs": "1789406127.063129",
     "sentAt": "2026-09-14T17:15:38.784Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "487893322-u0arhugnxg9",
@@ -3721,7 +3727,8 @@
     "messageTs": "1789406127.063129",
     "sentAt": "2026-09-14T17:15:38.784Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "492451145-u0948lj7jer",
@@ -3736,7 +3743,8 @@
     "messageTs": "1789406129.266279",
     "sentAt": "2026-09-14T17:15:38.784Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "490288736-u09ar6ppnlu",
@@ -3750,6 +3758,171 @@
     "channelId": "U09AR6PPNLU",
     "messageTs": "1789406131.417749",
     "sentAt": "2026-09-14T17:15:38.784Z",
+    "reason": "other",
+    "replyRaw": "are you in office now?"
+  },
+  {
+    "id": "492985573-u099lhbaw4t",
+    "conversationId": 492985573,
+    "interviewerName": "Ann-Marie Harbour",
+    "interviewerSlackId": "U099LHBAW4T",
+    "department": "Product Management",
+    "eventName": "Wrap Up",
+    "startTime": "2026-09-15 00:00:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U099LHBAW4T",
+    "messageTs": "1789492136.228639",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489552241-u0abl0cpam8",
+    "conversationId": 489552241,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Product Management",
+    "eventName": "Technical collaboration & platform",
+    "startTime": "2026-09-14 20:45:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1789492139.412639",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "494194992-u0abl0cpam8",
+    "conversationId": 494194992,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Forward Deployed Engineering",
+    "eventName": "FDE + L&Y - FDE",
+    "startTime": "2026-09-14 17:30:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1789492139.412639",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "492609169-u0a0rndmf60",
+    "conversationId": 492609169,
+    "interviewerName": "Jacob Russo",
+    "interviewerSlackId": "U0A0RNDMF60",
+    "department": "Content & Socials",
+    "eventName": "Team Chat",
+    "startTime": "2026-09-14 20:00:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U0A0RNDMF60",
+    "messageTs": "1789492142.237139",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489552252-u0acdkq8t6c",
+    "conversationId": 489552252,
+    "interviewerName": "Greg Arroyo",
+    "interviewerSlackId": "U0ACDKQ8T6C",
+    "department": "Product Management",
+    "eventName": "Trust, autonomy & product craft",
+    "startTime": "2026-09-14 20:00:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U0ACDKQ8T6C",
+    "messageTs": "1789492145.148869",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "492609172-u0b4338amge",
+    "conversationId": 492609172,
+    "interviewerName": "Julia Harris",
+    "interviewerSlackId": "U0B4338AMGE",
+    "department": "Content & Socials",
+    "eventName": "Live Practical",
+    "startTime": "2026-09-14 16:45:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U0B4338AMGE",
+    "messageTs": "1789492147.767779",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "492745984-u0ar7v2l51t",
+    "conversationId": 492745984,
+    "interviewerName": "Mishita Kumar",
+    "interviewerSlackId": "U0AR7V2L51T",
+    "department": "Product Management",
+    "eventName": "Recruiter Phone Screen",
+    "startTime": "2026-09-14 16:30:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U0AR7V2L51T",
+    "messageTs": "1789492150.718519",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489020418-u0b46h3k866",
+    "conversationId": 489020418,
+    "interviewerName": "Raj Makda",
+    "interviewerSlackId": "U0B46H3K866",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Product Thinking - FDE",
+    "startTime": "2026-09-14 16:00:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U0B46H3K866",
+    "messageTs": "1789492153.573509",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489020418-u0arhugnxg9",
+    "conversationId": 489020418,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": "U0ARHUGNXG9",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Product Thinking - FDE",
+    "startTime": "2026-09-14 16:00:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U0ARHUGNXG9",
+    "messageTs": "1789492156.485949",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489239005-u0a0e4ucjcx",
+    "conversationId": 489239005,
+    "interviewerName": "Trevor Cloak",
+    "interviewerSlackId": "U0A0E4UCJCX",
+    "department": "Customer Success",
+    "eventName": "Interview with Trevor Cloak",
+    "startTime": "2026-09-14 09:00:00+00:00",
+    "date": "Sep 14",
+    "channelId": "U0A0E4UCJCX",
+    "messageTs": "1789492159.251939",
+    "sentAt": "2026-09-15T17:09:27.236Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489552260-caroline-lumalabs-ai",
+    "conversationId": 489552260,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Product Management",
+    "eventName": "Luma & You",
+    "startTime": "2026-09-14 23:15:00+00:00",
+    "date": "Sep 14",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
     "reason": null,
     "replyRaw": null
   }
