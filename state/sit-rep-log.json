@@ -3774,7 +3774,8 @@
     "messageTs": "1789492136.228639",
     "sentAt": "2026-09-15T17:09:27.236Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "489552241-u0abl0cpam8",
@@ -3789,7 +3790,8 @@
     "messageTs": "1789492139.412639",
     "sentAt": "2026-09-15T17:09:27.236Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "494194992-u0abl0cpam8",
@@ -3804,7 +3806,8 @@
     "messageTs": "1789492139.412639",
     "sentAt": "2026-09-15T17:09:27.236Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "492609169-u0a0rndmf60",
@@ -3818,8 +3821,8 @@
     "channelId": "U0A0RNDMF60",
     "messageTs": "1789492142.237139",
     "sentAt": "2026-09-15T17:09:27.236Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Metaview never tried to join"
   },
   {
     "id": "489552252-u0acdkq8t6c",
@@ -3833,8 +3836,8 @@
     "channelId": "U0ACDKQ8T6C",
     "messageTs": "1789492145.148869",
     "sentAt": "2026-09-15T17:09:27.236Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "probably forgot to admit Metaview, since that was an in person interview.\n\nShould that be setup by someone like Aaron before or when the candidate enters the room, or is each interviewer supposed to turn that on in the room?\n\nI always make sure it is on for remote, but I think in person it is usually on already by the time I join."
   },
   {
     "id": "492609172-u0b4338amge",
@@ -3848,8 +3851,8 @@
     "channelId": "U0B4338AMGE",
     "messageTs": "1789492147.767779",
     "sentAt": "2026-09-15T17:09:27.236Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hi!! User error! I forgot I needed to record that part because I was in and out of the room."
   },
   {
     "id": "492745984-u0ar7v2l51t",
@@ -3864,7 +3867,8 @@
     "messageTs": "1789492150.718519",
     "sentAt": "2026-09-15T17:09:27.236Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "489020418-u0b46h3k866",
@@ -3878,8 +3882,8 @@
     "channelId": "U0B46H3K866",
     "messageTs": "1789492153.573509",
     "sentAt": "2026-09-15T17:09:27.236Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Hi Kaily - this interview got cancelled"
   },
   {
     "id": "489020418-u0arhugnxg9",
@@ -3894,7 +3898,8 @@
     "messageTs": "1789492156.485949",
     "sentAt": "2026-09-15T17:09:27.236Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "489239005-u0a0e4ucjcx",
@@ -3908,8 +3913,8 @@
     "channelId": "U0A0E4UCJCX",
     "messageTs": "1789492159.251939",
     "sentAt": "2026-09-15T17:09:27.236Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "Candidate was a no show and I said this in Ashby."
   },
   {
     "id": "489552260-caroline-lumalabs-ai",
@@ -3920,6 +3925,51 @@
     "eventName": "Luma & You",
     "startTime": "2026-09-14 23:15:00+00:00",
     "date": "Sep 14",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "487893313-u0abl0cpam8",
+    "conversationId": 487893313,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Forward Deployed Engineering",
+    "eventName": "FDE + L&Y - FDE",
+    "startTime": "2026-09-15 17:00:00+00:00",
+    "date": "Sep 15",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1789578663.831249",
+    "sentAt": "2026-09-16T17:11:13.630Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "488635135-u0arhugnxg9",
+    "conversationId": 488635135,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": "U0ARHUGNXG9",
+    "department": "Product Management",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-15 16:00:00+00:00",
+    "date": "Sep 15",
+    "channelId": "U0ARHUGNXG9",
+    "messageTs": "1789578665.961589",
+    "sentAt": "2026-09-16T17:11:13.630Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "492467018-caroline-lumalabs-ai",
+    "conversationId": 492467018,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Product Management",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-15 18:15:00+00:00",
+    "date": "Sep 15",
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
