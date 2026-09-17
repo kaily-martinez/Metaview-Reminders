@@ -3554,8 +3554,8 @@
     "channelId": "U0BCK12DSJK",
     "messageTs": "1789146662.434029",
     "sentAt": "2026-09-11T17:11:10.082Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "Hi Kaily, yes I can take technical deep dive.",
     "rawReplyText": null
   },
   {
@@ -3944,7 +3944,8 @@
     "messageTs": "1789578663.831249",
     "sentAt": "2026-09-16T17:11:13.630Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "488635135-u0arhugnxg9",
@@ -3959,7 +3960,8 @@
     "messageTs": "1789578665.961589",
     "sentAt": "2026-09-16T17:11:13.630Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "492467018-caroline-lumalabs-ai",
@@ -3973,6 +3975,51 @@
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "486953266-u09n9s0pxh8",
+    "conversationId": 486953266,
+    "interviewerName": "Brennan Lowe",
+    "interviewerSlackId": "U09N9S0PXH8",
+    "department": "Forward Deployed Creative",
+    "eventName": "Case Study Exercise",
+    "startTime": "2026-09-16 19:45:00+00:00",
+    "date": "Sep 16",
+    "channelId": "U09N9S0PXH8",
+    "messageTs": "1789664969.619079",
+    "sentAt": "2026-09-17T17:09:39.943Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "486953266-u0a7c87vdpa",
+    "conversationId": 486953266,
+    "interviewerName": "Alexia Adana",
+    "interviewerSlackId": "U0A7C87VDPA",
+    "department": "Forward Deployed Creative",
+    "eventName": "Case Study Exercise",
+    "startTime": "2026-09-16 19:45:00+00:00",
+    "date": "Sep 16",
+    "channelId": "U0A7C87VDPA",
+    "messageTs": "1789664971.876129",
+    "sentAt": "2026-09-17T17:09:39.943Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "486953266-u0anpbp72ls",
+    "conversationId": 486953266,
+    "interviewerName": "Hans Weiss",
+    "interviewerSlackId": "U0ANPBP72LS",
+    "department": "Forward Deployed Creative",
+    "eventName": "Case Study Exercise",
+    "startTime": "2026-09-16 19:45:00+00:00",
+    "date": "Sep 16",
+    "channelId": "U0ANPBP72LS",
+    "messageTs": "1789664974.012489",
+    "sentAt": "2026-09-17T17:09:39.943Z",
     "reason": null,
     "replyRaw": null
   }
