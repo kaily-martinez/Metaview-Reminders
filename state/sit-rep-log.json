@@ -3991,7 +3991,8 @@
     "messageTs": "1789664969.619079",
     "sentAt": "2026-09-17T17:09:39.943Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "486953266-u0a7c87vdpa",
@@ -4006,7 +4007,8 @@
     "messageTs": "1789664971.876129",
     "sentAt": "2026-09-17T17:09:39.943Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "486953266-u0anpbp72ls",
@@ -4020,6 +4022,52 @@
     "channelId": "U0ANPBP72LS",
     "messageTs": "1789664974.012489",
     "sentAt": "2026-09-17T17:09:39.943Z",
+    "reason": null,
+    "replyRaw": null,
+    "rawReplyText": null
+  },
+  {
+    "id": "491687277-u0ag909m66a",
+    "conversationId": 491687277,
+    "interviewerName": "Avni Kakkar",
+    "interviewerSlackId": "U0AG909M66A",
+    "department": "Product Management",
+    "eventName": "Untitled interview",
+    "startTime": "2026-09-17 19:00:00+00:00",
+    "date": "Sep 17",
+    "channelId": "U0AG909M66A",
+    "messageTs": "1789751623.231609",
+    "sentAt": "2026-09-18T17:13:51.776Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "493023727-u099lhbaw4t",
+    "conversationId": 493023727,
+    "interviewerName": "Ann-Marie Harbour",
+    "interviewerSlackId": "U099LHBAW4T",
+    "department": "Product Management",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-17 18:00:00+00:00",
+    "date": "Sep 17",
+    "channelId": "U099LHBAW4T",
+    "messageTs": "1789751625.339929",
+    "sentAt": "2026-09-18T17:13:51.776Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "494664445-caroline-lumalabs-ai",
+    "conversationId": 494664445,
+    "interviewerName": "Caroline Ingeborn",
+    "interviewerSlackId": null,
+    "department": "Product Management",
+    "eventName": "Luma & You",
+    "startTime": "2026-09-17 18:15:00+00:00",
+    "date": "Sep 17",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
     "reason": null,
     "replyRaw": null
   }
