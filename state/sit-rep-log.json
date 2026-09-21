@@ -2730,8 +2730,8 @@
     "channelId": "U09T1FVBX2T",
     "messageTs": "1788369057.443869",
     "sentAt": "2026-09-02T17:10:57.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "Files: CALIFORNIA.pdf (ID: F0BUYUCGCBV, application/pdf, 2.4 MB)",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -3646,8 +3646,8 @@
     "channelId": "U0AR7V2L51T",
     "messageTs": "1789406121.131249",
     "sentAt": "2026-09-14T17:15:38.784Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I Can let Punit know to take it remotely",
     "rawReplyText": null
   },
   {
@@ -3866,8 +3866,8 @@
     "channelId": "U0AR7V2L51T",
     "messageTs": "1789492150.718519",
     "sentAt": "2026-09-15T17:09:27.236Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I Can let Punit know to take it remotely",
     "rawReplyText": null
   },
   {
@@ -4039,7 +4039,8 @@
     "messageTs": "1789751623.231609",
     "sentAt": "2026-09-18T17:13:51.776Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "493023727-u099lhbaw4t",
@@ -4054,7 +4055,8 @@
     "messageTs": "1789751625.339929",
     "sentAt": "2026-09-18T17:13:51.776Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "494664445-caroline-lumalabs-ai",
@@ -4068,6 +4070,36 @@
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "489914111-u0abl0cpam8",
+    "conversationId": 489914111,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Product Management",
+    "eventName": "Technical Partnership & Platform Reality",
+    "startTime": "2026-09-18 21:00:00+00:00",
+    "date": "Sep 18",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1790010727.205329",
+    "sentAt": "2026-09-21T17:12:14.896Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "492528026-u0arhugnxg9",
+    "conversationId": 492528026,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": "U0ARHUGNXG9",
+    "department": "Product Management",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-09-18 19:00:00+00:00",
+    "date": "Sep 18",
+    "channelId": "U0ARHUGNXG9",
+    "messageTs": "1790010729.796599",
+    "sentAt": "2026-09-21T17:12:14.896Z",
     "reason": null,
     "replyRaw": null
   }
