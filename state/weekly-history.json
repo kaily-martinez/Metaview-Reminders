@@ -26,5 +26,12 @@
     "scheduled": 133,
     "missed": 18,
     "missRate": 13.5
+  },
+  {
+    "weekStartISO": "2026-09-14",
+    "weekEndISO": "2026-09-20",
+    "scheduled": 121,
+    "missed": 20,
+    "missRate": 16.5
   }
 ]
