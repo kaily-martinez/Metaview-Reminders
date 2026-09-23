@@ -2967,8 +2967,8 @@
     "channelId": "U0B0DUVJ9QE",
     "messageTs": "1788455529.390789",
     "sentAt": "2026-09-03T17:12:09.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "It was an inperson interview and I logged in in the room and had gemini record - there was no metaview",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -2984,8 +2984,8 @@
     "channelId": "U0B0DUVJ9QE",
     "messageTs": "1788455529.390789",
     "sentAt": "2026-09-03T17:12:09.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "It was an inperson interview and I logged in in the room and had gemini record - there was no metaview",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -3001,8 +3001,8 @@
     "channelId": "U0B0DUVJ9QE",
     "messageTs": "1788455529.390789",
     "sentAt": "2026-09-03T17:12:09.000Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "It was an inperson interview and I logged in in the room and had gemini record - there was no metaview",
     "rawReplyText": null,
     "replyIsThreaded": null
   },
@@ -3630,8 +3630,8 @@
     "channelId": "U0AG909M66A",
     "messageTs": "1789406118.739719",
     "sentAt": "2026-09-14T17:15:38.784Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I keep admitting the Metaview bot into the call from my laptop and I see it on the screen (in the conference room) so I have no idea why it isn't capturing notes",
     "rawReplyText": null
   },
   {
@@ -4038,8 +4038,8 @@
     "channelId": "U0AG909M66A",
     "messageTs": "1789751623.231609",
     "sentAt": "2026-09-18T17:13:51.776Z",
-    "reason": null,
-    "replyRaw": null,
+    "reason": "other",
+    "replyRaw": "I keep admitting the Metaview bot into the call from my laptop and I see it on the screen (in the conference room) so I have no idea why it isn't capturing notes",
     "rawReplyText": null
   },
   {
@@ -4086,7 +4086,8 @@
     "messageTs": "1790010727.205329",
     "sentAt": "2026-09-21T17:12:14.896Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "492528026-u0arhugnxg9",
@@ -4100,6 +4101,82 @@
     "channelId": "U0ARHUGNXG9",
     "messageTs": "1790010729.796599",
     "sentAt": "2026-09-21T17:12:14.896Z",
+    "reason": null,
+    "replyRaw": null,
+    "rawReplyText": null
+  },
+  {
+    "id": "493023733-u0abl0cpam8",
+    "conversationId": 493023733,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Product",
+    "eventName": "Luma & You",
+    "startTime": "2026-09-22 19:00:00+00:00",
+    "date": "Sep 22",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1790183881.694779",
+    "sentAt": "2026-09-23T17:18:15.948Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "497910142-u09n9s0pxh8",
+    "conversationId": 497910142,
+    "interviewerName": "Brennan Lowe",
+    "interviewerSlackId": "U09N9S0PXH8",
+    "department": "Forward Deployed Creative",
+    "eventName": "Case Study Exercise",
+    "startTime": "2026-09-22 15:00:00+00:00",
+    "date": "Sep 22",
+    "channelId": "U09N9S0PXH8",
+    "messageTs": "1790183884.463729",
+    "sentAt": "2026-09-23T17:18:15.948Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "497910142-u0bg5t6llpr",
+    "conversationId": 497910142,
+    "interviewerName": "Calum Youngson",
+    "interviewerSlackId": "U0BG5T6LLPR",
+    "department": "Forward Deployed Creative",
+    "eventName": "Case Study Exercise",
+    "startTime": "2026-09-22 15:00:00+00:00",
+    "date": "Sep 22",
+    "channelId": "U0BG5T6LLPR",
+    "messageTs": "1790183887.417809",
+    "sentAt": "2026-09-23T17:18:15.948Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "497910142-u09ny2gt0qh",
+    "conversationId": 497910142,
+    "interviewerName": "Cherice Whewell",
+    "interviewerSlackId": "U09NY2GT0QH",
+    "department": "Forward Deployed Creative",
+    "eventName": "Case Study Exercise",
+    "startTime": "2026-09-22 15:00:00+00:00",
+    "date": "Sep 22",
+    "channelId": "U09NY2GT0QH",
+    "messageTs": "1790183890.137059",
+    "sentAt": "2026-09-23T17:18:15.948Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "495137686-andrea-lumalabs-ai",
+    "conversationId": 495137686,
+    "interviewerName": "Andrea Lobato",
+    "interviewerSlackId": null,
+    "department": "Legal",
+    "eventName": "Legal Take Home Review",
+    "startTime": "2026-09-22 22:30:00+00:00",
+    "date": "Sep 22",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
     "reason": null,
     "replyRaw": null
   }
