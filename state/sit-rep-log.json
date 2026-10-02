@@ -4438,8 +4438,8 @@
     "channelId": "U0ACDKQ8T6C",
     "messageTs": "1790874834.940209",
     "sentAt": "2026-10-01T17:14:01.752Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "that got rescheduled"
   },
   {
     "id": "500985812-amit-lumalabs-ai",
@@ -4450,6 +4450,36 @@
     "eventName": "Luma & You",
     "startTime": "2026-10-01 00:00:00+00:00",
     "date": "Sep 30",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "501458608-u0abl0cpam8",
+    "conversationId": 501458608,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Forward Deployed Engineering",
+    "eventName": "Scott | Ian Scott",
+    "startTime": "2026-10-01 22:00:00+00:00",
+    "date": "Oct 1",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1790961225.070239",
+    "sentAt": "2026-10-02T17:13:55.189Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "501030665-amit-lumalabs-ai",
+    "conversationId": 501030665,
+    "interviewerName": "Amit Jain",
+    "interviewerSlackId": null,
+    "department": "Product Management",
+    "eventName": "Luma & You",
+    "startTime": "2026-10-01 22:30:00+00:00",
+    "date": "Oct 1",
     "channelId": null,
     "messageTs": null,
     "sentAt": null,
