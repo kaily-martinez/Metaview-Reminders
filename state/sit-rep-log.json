@@ -4317,8 +4317,8 @@
     "channelId": "U0BNPNY7NUF",
     "messageTs": "1790270666.587669",
     "sentAt": "2026-09-24T17:24:34.622Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "i think we did track it? probably double check with <@U0ALHJHG9TP|Nicolas Chan> since he is facilitating the interview"
   },
   {
     "id": "494299348-u0alhjhg9tp",
@@ -4332,6 +4332,51 @@
     "channelId": "U0ALHJHG9TP",
     "messageTs": "1790270668.493689",
     "sentAt": "2026-09-24T17:24:34.622Z",
+    "reason": "other",
+    "replyRaw": "c, I definitely added metaview"
+  },
+  {
+    "id": "497369031-u0abl0cpam8",
+    "conversationId": 497369031,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Product Management",
+    "eventName": "Shipping Research & Execution",
+    "startTime": "2026-10-05 23:15:00+00:00",
+    "date": "Oct 5",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1791306800.464849",
+    "sentAt": "2026-10-06T17:13:55.257Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "495725047-u0abl0cpam8",
+    "conversationId": 495725047,
+    "interviewerName": "Scott Shumaker",
+    "interviewerSlackId": "U0ABL0CPAM8",
+    "department": "Forward Deployed Engineering",
+    "eventName": "FDE + L&Y - FDE",
+    "startTime": "2026-10-05 21:00:00+00:00",
+    "date": "Oct 5",
+    "channelId": "U0ABL0CPAM8",
+    "messageTs": "1791306800.464849",
+    "sentAt": "2026-10-06T17:13:55.257Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "497369026-u0c3ubabr40",
+    "conversationId": 497369026,
+    "interviewerName": "Ranjan Gulati",
+    "interviewerSlackId": "U0C3UBABR40",
+    "department": "Product Management",
+    "eventName": "Take Home Review",
+    "startTime": "2026-10-05 21:30:00+00:00",
+    "date": "Oct 5",
+    "channelId": "U0C3UBABR40",
+    "messageTs": "1791306802.703559",
+    "sentAt": "2026-10-06T17:13:55.257Z",
     "reason": null,
     "replyRaw": null
   }
