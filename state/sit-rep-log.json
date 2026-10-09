@@ -4303,7 +4303,8 @@
     "messageTs": "1790270664.186649",
     "sentAt": "2026-09-24T17:24:34.622Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "494299348-u0bnpny7nuf",
@@ -4317,8 +4318,8 @@
     "channelId": "U0BNPNY7NUF",
     "messageTs": "1790270666.587669",
     "sentAt": "2026-09-24T17:24:34.622Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "i think we did track it? probably double check with <@U0ALHJHG9TP|Nicolas Chan> since he is facilitating the interview"
   },
   {
     "id": "494299348-u0alhjhg9tp",
@@ -4332,6 +4333,21 @@
     "channelId": "U0ALHJHG9TP",
     "messageTs": "1790270668.493689",
     "sentAt": "2026-09-24T17:24:34.622Z",
+    "reason": "other",
+    "replyRaw": "c, I definitely added metaview"
+  },
+  {
+    "id": "500940152-u0arhugnxg9",
+    "conversationId": 500940152,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": "U0ARHUGNXG9",
+    "department": "Product Management",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-10-08 23:30:00+00:00",
+    "date": "Oct 8",
+    "channelId": "U0ARHUGNXG9",
+    "messageTs": "1791565956.233139",
+    "sentAt": "2026-10-09T17:12:41.283Z",
     "reason": null,
     "replyRaw": null
   }
