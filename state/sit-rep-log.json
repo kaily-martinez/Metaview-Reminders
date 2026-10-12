@@ -4303,7 +4303,8 @@
     "messageTs": "1790270664.186649",
     "sentAt": "2026-09-24T17:24:34.622Z",
     "reason": null,
-    "replyRaw": null
+    "replyRaw": null,
+    "rawReplyText": null
   },
   {
     "id": "494299348-u0bnpny7nuf",
@@ -4317,8 +4318,8 @@
     "channelId": "U0BNPNY7NUF",
     "messageTs": "1790270666.587669",
     "sentAt": "2026-09-24T17:24:34.622Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "i think we did track it? probably double check with @Nicolas Chan since he is facilitating the interview"
   },
   {
     "id": "494299348-u0alhjhg9tp",
@@ -4332,7 +4333,7 @@
     "channelId": "U0ALHJHG9TP",
     "messageTs": "1790270668.493689",
     "sentAt": "2026-09-24T17:24:34.622Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "c, I definitely added metaview"
   }
 ]
