@@ -4317,8 +4317,8 @@
     "channelId": "U0BNPNY7NUF",
     "messageTs": "1790270666.587669",
     "sentAt": "2026-09-24T17:24:34.622Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "e",
+    "replyRaw": "e"
   },
   {
     "id": "494299348-u0alhjhg9tp",
@@ -4332,7 +4332,7 @@
     "channelId": "U0ALHJHG9TP",
     "messageTs": "1790270668.493689",
     "sentAt": "2026-09-24T17:24:34.622Z",
-    "reason": null,
-    "replyRaw": null
+    "reason": "other",
+    "replyRaw": "I didn't do that interview"
   }
 ]
