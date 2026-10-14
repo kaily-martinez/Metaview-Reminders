@@ -21,7 +21,9 @@
   "doNotMessage": [
     { "name": "Caroline Ingeborn", "email": "caroline@lumalabs.ai" },
     { "name": "Amit Jain", "email": "amit@lumalabs.ai" },
-    { "name": "Andrea Lobato", "email": "andrea@lumalabs.ai" }
+    { "name": "Andrea Lobato", "email": "andrea@lumalabs.ai" },
+    { "name": "Jay Gurudevan" },
+    { "name": "Scott Shumaker" }
   ],
   "excludedInterviewers": [
     { "name": "Matt Tancik" },
