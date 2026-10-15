@@ -4334,5 +4334,35 @@
     "sentAt": "2026-09-24T17:24:34.622Z",
     "reason": "other",
     "replyRaw": "I didn't do that interview"
+  },
+  {
+    "id": "505095821-u0bcf1mgdmj",
+    "conversationId": 505095821,
+    "interviewerName": "Mila Wilson",
+    "interviewerSlackId": "U0BCF1MGDMJ",
+    "department": "Growth",
+    "eventName": "Interview with Mila Wilson - Engineering Partnership",
+    "startTime": "2026-10-14 16:45:00+00:00",
+    "date": "Oct 14",
+    "channelId": "U0BCF1MGDMJ",
+    "messageTs": "1792084373.677389",
+    "sentAt": "2026-10-15T17:07:00.000Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "502043347-jay-gurudevan-lumalabs-ai",
+    "conversationId": 502043347,
+    "interviewerName": "Jay Gurudevan",
+    "interviewerSlackId": null,
+    "department": "Product Management",
+    "eventName": "Hiring Manager Screen",
+    "startTime": "2026-10-14 23:00:00+00:00",
+    "date": "Oct 14",
+    "channelId": null,
+    "messageTs": null,
+    "sentAt": null,
+    "reason": null,
+    "replyRaw": null
   }
 ]
