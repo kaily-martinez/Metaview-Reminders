@@ -4334,5 +4334,35 @@
     "sentAt": "2026-09-24T17:24:34.622Z",
     "reason": "other",
     "replyRaw": "I didn't do that interview"
+  },
+  {
+    "id": "506838484-u09rv2s0wpj",
+    "conversationId": 506838484,
+    "interviewerName": "Jason Day",
+    "interviewerSlackId": "U09RV2S0WPJ",
+    "department": "Customer Success",
+    "eventName": "F2F Interview with Head of EMEA",
+    "startTime": "2026-10-15 14:30:00+00:00",
+    "date": "Oct 15",
+    "channelId": "U09RV2S0WPJ",
+    "messageTs": "1792170764.883659",
+    "sentAt": "2026-10-16T17:13:11.811Z",
+    "reason": null,
+    "replyRaw": null
+  },
+  {
+    "id": "506838475-u09rv2s0wpj",
+    "conversationId": 506838475,
+    "interviewerName": "Jason Day",
+    "interviewerSlackId": "U09RV2S0WPJ",
+    "department": "Enterprise",
+    "eventName": "Final Interview with Head of EMEA",
+    "startTime": "2026-10-15 14:00:00+00:00",
+    "date": "Oct 15",
+    "channelId": "U09RV2S0WPJ",
+    "messageTs": "1792170764.883659",
+    "sentAt": "2026-10-16T17:13:11.811Z",
+    "reason": null,
+    "replyRaw": null
   }
 ]
